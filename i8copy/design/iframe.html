@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>流程表单设计器 (Version 0.2.1)</title>
+    <link href="//res.i8xiaoshi.com/community/combine/style/i8fw-core.min.css?v=20160801" media="all" rel="stylesheet">
+    <link type="text/css" rel="stylesheet"
+          href="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/stylesheets/designerstyle.css">
+    <script src="//res.i8xiaoshi.com/community/combine/script/i8plugins-core.min.js?v=20160801"></script>
+    <link type="text/css" rel="stylesheet"
+          href="https://res.i8xiaoshi.com/workflow/default/stylesheets/vacation.css?ver=20160801">
+    <link type="text/css" rel="stylesheet"
+          href="https://res.i8xiaoshi.com/workflow/default/stylesheets/process/app_process_payment.css?ver=20160801">
+    <link type="text/css" rel="stylesheet"
+          href="https://res.i8xiaoshi.com/workflow/default/stylesheets/process/app_process_extend_component.css?ver=20160801">
+    <script type="text/javascript">
+        var i8_session = {
+            "uid": "35acfa7f-0533-4bba-99db-d2fdd6d4c5d4",
+            "uname": "杨国超",
+            "utype": [4, 20, 30, 40],
+            "readstatus": 11111,
+            "orgid": "1",
+            "orgname": "北京友善科技有限公司",
+            "ukankan": true,
+            "uimage30": "https://dn-i8res.qbox.me/public/platform/defhead.png",
+            "email": "499251782@qq.com",
+            "aid": "3a1b83cb-cca7-41c1-852c-e5fceb78df4e",
+            "aname": "北京友善科技有限公司",
+            "nodeKey": "default",
+            "cname": "北京友善科技有限公司",
+            "clogo": "https://dn-i8res.qbox.me/public/platform/deflogo.png",
+            "apps": ["app_notice", "app_schedule", "app_task", "app_report", "app_document", "app_vacation", "app_finacial", "app_attendance", "app_salarybill", "app_personnelfile"],
+            "platform": {"version": "trial", "storagelimit": "5", "maxuser": "1000", "dctoken": "0"},
+            "usernum": 1,
+            "storenum": 0,
+            "expire": "2016-10-01 23:59:59",
+            "expireapp": {},
+            "adminnav": {"invitemate": true, "designwf": true},
+            "usernav": {"addwf": true},
+            "portal": "calendar:true,checktop:true,members:true,birthday:true,topic:true,novice:true,taskrpt:true,managenovice:true,",
+            "notice": null,
+            "step": 0,
+            "appadmin": ["app_notice", "app_schedule", "app_task", "app_report", "app_document", "app_vacation", "app_finacial", "app_attendance", "app_salarybill", "app_personnelfile"],
+            "multiact": false,
+            "enbleinvite": true,
+            "cusapp": [],
+            "ability": ["app_finacial_payment_report"],
+            "timestamp": "2016-08-02 20:32:23.361",
+            "comapp": false,
+            "apppmt": {},
+            "userpmt": {"app_finacial": {"app_finacial_payment_report": "true"}},
+            "passexpire": 0,
+            "apppersonnel": [],
+            "resHost": "https://res.i8xiaoshi.com/community/",
+            "resWfHost": "https://res.i8xiaoshi.com/workflow/",
+            "ajaxHost": "/community/",
+            "ajaxWfHost": "/workflow/",
+            "baseHost": "/community/",
+            "wfbaseHost": "/workflow/",
+            "resVersion": "20160801",
+            "gotourl": "/workflow/process/task",
+            "protocol": "https://",
+            "subdomain": "953308",
+            "sid": "10e6ed75-a5bc-46d1-8c04-cc76ad1315e0"
+        };
+        var extra_ctrl = [{
+            "ctype": "vacationSummaryComponent",
+            "cname": "假期预算统计组件",
+            "cpath": "./controls/vacationSummaryComponent"
+        }, {
+            "ctype": "paymentReport",
+            "cname": "收支报表",
+            "cpath": "./controls/payment/paymentReportComponent"
+        }, {
+            "ctype": "bankSlip",
+            "cname": "关联银行水单控件",
+            "cpath": "./controls/payment/bankSlipComponent"
+        }, {
+            "ctype": "paymentReport",
+            "cname": "收支报表",
+            "cpath": "./controls/payment/paymentReportComponent"
+        }, {
+            "ctype": "bankSlip",
+            "cname": "关联银行水单控件",
+            "cpath": "./controls/payment/bankSlipComponent"
+        }, {
+            "ctype": "overTimeComponent",
+            "cname": "加班统计组件",
+            "cpath": "./controls/overTimeComponent"
+        }, {
+            "ctype": "cancelVacationComponent",
+            "cname": "销假统计组件",
+            "cpath": "./controls/CancelVacationComponent"
+        }, {
+            "ctype": "paymentPay",
+            "cname": "预算控件",
+            "cpath": "./controls/payment/paymentPayComponent"
+        }, {
+            "ctype": "paymentPay",
+            "cname": "预算控件",
+            "cpath": "./controls/payment/paymentPayComponent"
+        }, {
+            "ctype": "punchForget",
+            "cname": "考勤补卡控件",
+            "cpath": "./controls/attendance/punchForgetComponent"
+        }, {
+            "ctype": "paymentIncome",
+            "cname": "收入控件",
+            "cpath": "./controls/payment/paymentIncomeComponent"
+        }, {
+            "ctype": "punchForget",
+            "cname": "考勤补卡控件",
+            "cpath": "./controls/attendance/punchForgetComponent"
+        }, {
+            "ctype": "paymentIncome",
+            "cname": "收入控件",
+            "cpath": "./controls/payment/paymentIncomeComponent"
+        }, {
+            "ctype": "fieldwork",
+            "cname": "外勤控件",
+            "cpath": "./controls/attendance/fieldworkComponent"
+        }, {
+            "ctype": "fieldwork",
+            "cname": "外勤控件",
+            "cpath": "./controls/attendance/fieldworkComponent"
+        }, {
+            "ctype": "fullmember",
+            "cname": "转正控件",
+            "cpath": "./controls/personnelfile/fullMemberComponent"
+        }, {
+            "ctype": "paymentApplication",
+            "cname": "费用申请",
+            "cpath": "./controls/payment/paymentApplicationComponent"
+        }, {
+            "ctype": "paymentApplication",
+            "cname": "费用申请",
+            "cpath": "./controls/payment/paymentApplicationComponent"
+        }, {
+            "ctype": "paymentVerification",
+            "cname": "费用核销",
+            "cpath": "./controls/payment/paymentVerificationComponent"
+        }, {
+            "ctype": "paymentVerification",
+            "cname": "费用核销",
+            "cpath": "./controls/payment/paymentVerificationComponent"
+        }];
+        var orProcBaseInfo = {
+            "ProcFullName": "阿三大飒飒",
+            "OrgStructure": 1,
+            "StartActID": "00000000-0000-0000-0000-000000000000",
+            "ActivityVersion": "5f3a506d-c339-4f2d-8b07-222321ccd9bb",
+            "FormID": "00000000-0000-0000-0000-000000000000",
+            "GuidID": "b4fba9cd-73c1-4d12-b9af-49b5da23cbda",
+            "Version": 1,
+            "StartUrl": null,
+            "ProcType": 0,
+            "Duration": 0,
+            "ProcDesignMetaData": null,
+            "ProcStepStatus": 0,
+            "ProcStatus": 0,
+            "CreateUser": "35acfa7f-0533-4bba-99db-d2fdd6d4c5d4",
+            "UpdateTime": "0001-01-01 00:00:00",
+            "LastUpdateUser": "35acfa7f-0533-4bba-99db-d2fdd6d4c5d4",
+            "TemplateCode": null,
+            "IsSkip": false,
+            "Config": {"isRequireAttachment": false, "isUsePrintSet": false, "printFields": ""},
+            "FieldList": null,
+            "ID": "1cb3b558-927e-448d-b208-fc6c8131dc35",
+            "LastUpdateTime": "2016-08-02 21:48:46",
+            "CreateTime": "2016-08-02 21:48:46",
+            "AccountID": "3a1b83cb-cca7-41c1-852c-e5fceb78df4e"
+        }
+        seajs.config({
+            base: 'https://res.i8xiaoshi.com/workflow/',
+            debug: true,
+            charset: 'utf-8',
+            timeout: 20000,
+            map: [[/^(.*\.(?:css|js))(.*)$/i, '$1?ver=20160801'], [/^((.*)default(.*\.tpl))$/, 'https://res.i8xiaoshi.com/workflow/default$3']]
+        });
+        seajs.use('default/javascripts/plugins/i8formdesigner/designer-core', function (data) {
+            data.initFormDesigner();
+        });
+    </script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/designer-core.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/base-plugin.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/sourceCache.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/common/util.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/designer-config.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/common/i8ui.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/process/pagemainjs/state/control-enum.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/workflow_pinyin.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/template/form-dialogBox.tpl.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/designer-datasource.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8selector/fw_selector.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8selector/fw_selectornologin.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/controls/simpleTextBox.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/controls/mutiTextBox.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/controls/dateTime.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/controls/subsetoption.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/controls/selectoption.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/controls/moneyTextBox.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/controls/radio.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/controls/checkBox.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/controls/selector.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/controls/orgSelector.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/controls/richTextBox.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/controls/customFormNew.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/controls/separator.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/controls/userInfoComponent.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/controls/contentMark.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/controls/autocalculate/autoCalculate.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/controls/vacationSummaryComponent.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/controls/payment/paymentReportComponent.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/controls/payment/bankSlipComponent.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/controls/overTimeComponent.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/controls/CancelVacationComponent.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/controls/payment/paymentPayComponent.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/controls/attendance/punchForgetComponent.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/controls/payment/paymentIncomeComponent.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/controls/attendance/fieldworkComponent.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/controls/personnelfile/fullMemberComponent.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/controls/payment/paymentApplicationComponent.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/controls/payment/paymentVerificationComponent.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/template/property-userInfoComponent.tpl.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/template/control-userInfoComponent.tpl.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/template/payment/control-bankSlipComponent.tpl.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/template/payment/control-paymentReportComponent.tpl.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/template/property-simpleTextBox.tpl.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/template/control-simpleTextBox.tpl.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/template/property-selectoption.tpl.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/template/control-selectoption.tpl.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/template/property-mutiTextBox.tpl.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/template/control-mutiTextBox.tpl.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/template/property-cancelVacationComponent.tpl.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/template/control-cancelVacationComponent.tpl.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/template/property-separator.tpl.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/template/control-separator.tpl.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/template/property-dateTime.tpl.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/template/control-dateTime.tpl.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/template/payment/property-budgetComponent.tpl.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/template/payment/control-budgetComponent.tpl.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/template/property-contentMark.tpl.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/template/control-contentMark.tpl.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/template/personnelfile/control-fullmember.tpl.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/template/property-customFormNew.tpl.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/template/control-customFormNew.tpl.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/template/property-moneyTextBox.tpl.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/template/control-moneyTextBox.tpl.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/template/attendance/control-fieldwork.tpl.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/template/property-vacationSummaryComponent.tpl.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/template/control-vacationSummaryComponent.tpl.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/template/property-autocalculate.tpl.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/template/control-autocalculate.tpl.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/template/attendance/control-punchForget.tpl.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/template/control-overTimeComponent.tpl.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/template/property-orgSelector.tpl.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/template/control-orgSelector.tpl.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/template/property-checkBox.tpl.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/template/control-checkBox.tpl.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/template/property-subsetoption.tpl.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/template/control-subsetoption.tpl.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/template/property-selector.tpl.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/template/control-selector.tpl.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/template/property-radio.tpl.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/template/control-radio.tpl.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/jwysiwyg/jquery.wysiwyg.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/template/property-richTextBox.tpl.js?ver=20160801"></script>
+    <script charset="utf-8" async=""
+            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/template/control-richTextBox.tpl.js?ver=20160801"></script>
+</head>
+<body style="cursor: auto;">
+<div class="fdtopbg">
+    <div class="fdtopcon">
+        <div class="leftw">
+            <h1>表单编辑器</h1>
+            <span class="tlftitle" id="txt_span_formName">阿三大飒飒</span>
+        </div>
+        <div class="rightw">
+            <input type="button" class="btnsave" id="btn_savedesigndata" value=" 保　存 ">　
+            <input type="button" class="btnrevert" id="btn_revertwindow" value="还原窗口">
+        </div>
+    </div>
+</div>
+<div class="fdformbody">
+    <div class="fdfb_left mCustomScrollbar _mCS_1 mCS-autoHide" style="max-height: 563px; overflow: visible;">
+        <div id="mCSB_1" class="mCustomScrollBox mCS-minimal-dark mCSB_vertical_horizontal mCSB_outside" tabindex="0"
+             style="max-height: 563px;">
+            <div id="mCSB_1_container" class="mCSB_container mCS_x_hidden mCS_no_scrollbar_x"
+                 style="position: relative; top: 0px; left: 0px; width: 190px;" dir="ltr">
+                <div class="fdfb_menu" style="display:none">
+                    <div tag="ctrl" class="fdfb_menu_item curtmenuitem" style="left:0px">控件库</div>
+                    <div tag="dsrc" class="fdfb_menu_item" style="left:100px">数据源</div>
+                </div>
+                <div class="controls_ls">
+                    <div class="clistc" id="fdclist_boxer" style="display: block;">
+                        <div id="fdclist" class="ulc">
+                            <div class="controls-box" ext="true">
+                                <div class="control-headline headhover">基础控件</div>
+                                <div class="control-body" id="fdclist-base-controls">
+                                    <div class="ctoolitem ui-draggable" ctype="simpleTextBox" style=""><i
+                                            style="background-position: 0px 2px;"></i><span>单行文本框</span></div>
+                                    <div class="ctoolitem ui-draggable" ctype="mutiTextBox" style=""><i
+                                            style="background-position: 0px -40px;"></i><span>多行文本框</span></div>
+                                    <div class="ctoolitem ui-draggable" ctype="dateTime" style=""><i
+                                            style="background-position: 0px -286px;"></i><span>日期控件</span></div>
+                                    <div class="ctoolitem ui-draggable" ctype="subsetoption" style=""><i
+                                            style="background-position: 0px -532px;"></i><span>级联菜单</span></div>
+                                    <div class="ctoolitem ui-draggable" ctype="selectoption" style=""><i
+                                            style="background-position: 0px -81px;"></i><span>下拉菜单</span></div>
+                                    <div class="ctoolitem ui-draggable" ctype="moneyTextBox" style=""><i
+                                            style="background-position: 0px -490px;"></i><span>金额控件</span></div>
+                                    <div class="ctoolitem ui-draggable" ctype="radio" style=""><i
+                                            style="background-position: 0px -204px;"></i><span>单选框控件</span></div>
+                                    <div class="ctoolitem ui-draggable" ctype="checkBox" style=""><i
+                                            style="background-position: 0px -163px;"></i><span>多选框控件</span></div>
+                                    <div class="ctoolitem ui-draggable" ctype="selector" style=""><i
+                                            style="background-position: 0px -122px;"></i><span>选人控件</span></div>
+                                    <div class="ctoolitem ui-draggable" ctype="orgSelector" style=""><i
+                                            style="background-position: 0px -410px;"></i><span>选部门控件</span></div>
+                                    <div class="ctoolitem ui-draggable" ctype="richTextBox" style=""><i
+                                            style="background-position: 0px -40px;"></i><span>富文本框</span></div>
+                                    <div class="ctoolitem ui-draggable" ctype="customFormNew" style=""><i
+                                            style="background-position: 0px -245px;"></i><span>自定义明细表</span></div>
+                                    <div class="ctoolitem ui-draggable" ctype="separator" style=""><i
+                                            style="background-position: 0px -450px;"></i><span>分隔线</span></div>
+                                    <div class="ctoolitem ui-draggable" ctype="UserInfoComponent" style=""><i
+                                            style="background-position: 0px -613px;"></i><span>员工信息控件</span></div>
+                                    <div class="ctoolitem ui-draggable" ctype="contentMark" style=""><i
+                                            style="background-position: 0px -368px;"></i><span>文本描述控件</span></div>
+                                    <div class="ctoolitem ui-draggable" ctype="autocalculate" style=""><i
+                                            style="background-position: 0px -727px;"></i><span>自动计算控件</span></div>
+                                </div>
+                            </div>
+                            <div class="controls-box" ext="false">
+                                <div class="control-headline">应用控件</div>
+                                <div class="control-body" id="fdclist-ext-controls" style="display:none">
+                                    <div class="ctoolitem ui-draggable" ctype="VacationSummaryComponent" style=""><i
+                                            style="background-position: 0px -689px;"></i><span>请假组件(假期应用)</span></div>
+                                    <div class="ctoolitem ui-draggable" ctype="paymentReport" style=""><i
+                                            style="background-position: 0px -772px;"></i><span>收支报表（预算费控）</span></div>
+                                    <div class="ctoolitem ui-draggable" ctype="bankSlip" style=""><i
+                                            style="background-position: 0px -772px;"></i><span>银行水单控件（i8金融）</span></div>
+                                    <div class="ctoolitem ui-draggable" ctype="OverTimeComponent" style=""><i
+                                            style="background-position: 0px -689px;"></i><span>加班组件(假期应用)</span></div>
+                                    <div class="ctoolitem ui-draggable" ctype="cancelVacationComponent" style=""><i
+                                            style="background-position: 0px -689px;"></i><span>销假组件(假期应用)</span></div>
+                                    <div class="ctoolitem ui-draggable" ctype="paymentPay" style=""><i
+                                            style="background-position: 0px -817px;"></i><span>支出组件（预算费控）</span></div>
+                                    <div class="ctoolitem ui-draggable" ctype="punchForget" style=""><i
+                                            style="background-position: 0px -655px;"></i><span>漏打卡控件（考勤应用）</span></div>
+                                    <div class="ctoolitem ui-draggable" ctype="paymentIncome" style=""><i
+                                            style="background-position: 0px -772px;"></i><span>收入组件（预算费控）</span></div>
+                                    <div class="ctoolitem ui-draggable" ctype="fieldwork" style=""><i
+                                            style="background-position: 0px -655px;"></i><span>外勤控件（考勤应用）</span></div>
+                                    <div class="ctoolitem ui-draggable" ctype="fullmember" style=""><i
+                                            style="background-position: 0px -727px;"></i><span>转正控件（人事档案）</span></div>
+                                    <div class="ctoolitem ui-draggable" ctype="paymentapplication" style=""><i
+                                            style="background-position: 0px -772px;"></i><span>费用申请控件（预算费控）</span></div>
+                                    <div class="ctoolitem ui-draggable" ctype="paymentverification" style=""><i
+                                            style="background-position: 0px -772px;"></i><span>费用核销控件（预算费控）</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clistc" id="cRec_boxer">
+                        <div id="fdcdls_mtype">
+                            <ul id="fdcdatals" class="ulc_dType"></ul>
+                        </div>
+                        <div class="clistc_add_area">
+                            <span class="c_add_dType" id="c_add_newdataType">添加新类</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="datasource-loading" style="display: none;">
+
+
+                </div>
+            </div>
+        </div>
+        <div id="mCSB_1_scrollbar_vertical"
+             class="mCSB_scrollTools mCSB_1_scrollbar mCS-minimal-dark mCSB_scrollTools_vertical mCSB_scrollTools_onDrag_expand"
+             style="display: block;">
+            <div class="mCSB_draggerContainer">
+                <div id="mCSB_1_dragger_vertical" class="mCSB_dragger"
+                     style="position: absolute; min-height: 50px; display: block; height: 484px; max-height: 529px;"
+                     oncontextmenu="return false;">
+                    <div class="mCSB_dragger_bar" style="line-height: 50px;"></div>
+                </div>
+                <div class="mCSB_draggerRail"></div>
+            </div>
+        </div>
+        <div id="mCSB_1_scrollbar_horizontal"
+             class="mCSB_scrollTools mCSB_1_scrollbar mCS-minimal-dark mCSB_scrollTools_horizontal mCSB_scrollTools_onDrag_expand"
+             style="display: none;">
+            <div class="mCSB_draggerContainer">
+                <div id="mCSB_1_dragger_horizontal" class="mCSB_dragger"
+                     style="position: absolute; min-width: 50px; width: 0px; left: 0px;" oncontextmenu="return false;">
+                    <div class="mCSB_dragger_bar"></div>
+                </div>
+                <div class="mCSB_draggerRail"></div>
+            </div>
+        </div>
+    </div>
+    <div class="fdfb_right">
+        <div class="fd_design_title"></div>
+        <div class="fd_design_top"></div>
+        <div id="fd_designArea" class="ui-sortable"></div>
+        <div class="fd_design_btm"></div>
+    </div>
+</div>
+<div class="fdfformwarninfo">
+    <h1>表单编辑器使用帮助：</h1>
+
+    <p>1.表单编辑器由控件库、数据源和表单设计区三部分组成。</p>
+
+    <p>2.控件库里提供了设计表单的常用控件，拖拽控件到设计区即可对表单属性值进行设置。</p>
+
+    <p>3.数据源部分提供了一些常见的数据属性值，如假期类型、报销费用类型等，数据源可根据需要增加和修改。</p>
+
+    <p>4.表单设计区的头部和尾部是所有流程表单都有的通用功能，系统已经集成好，不需要再每支流程单独设计。</p>
+
+    <p>5.表单设计区的中间部分可编辑，主要用来设计具体流程的业务表单部分，业务表单部分支持一栏和两栏布局。</p>
+
+    <p style="color:red;">6.表单设计区中的字段名称请尽量控制在6个字以内。</p>
+</div>
+
+
+<style>#ck_needprint, #ck_needprint_label {
+    display: none !important;
+}</style>
+<div class="fd_bgcanvas" id="div_canvas07563610111828893"></div>
+</body>
+</html>

@@ -1,0 +1,94 @@
+{
+  "Code": 0,
+  "Result": true,
+  "ReturnObject": {
+    "Item1": 6,
+    "Item2": [
+      {
+        "RoleName": "财务专员",
+        "UserID": [
+          "35acfa7f-0533-4bba-99db-d2fdd6d4c5d4"
+        ],
+        "UserName": "杨国超",
+        "Type": 2,
+        "IsSys": true,
+        "RoleIntro": "重点参与财务相关流程的审批，例如：费用报销流程、付款申请流程等",
+        "ID": "77c63c34-4c47-46cb-96c7-3129206bcc78",
+        "LastUpdateTime": "2014-09-11 09:41:29",
+        "CreateTime": "2016-08-01 10:19:13",
+        "AccountID": "3a1b83cb-cca7-41c1-852c-e5fceb78df4e"
+      },
+      {
+        "RoleName": "人事专员",
+        "UserID": [
+          "35acfa7f-0533-4bba-99db-d2fdd6d4c5d4"
+        ],
+        "UserName": "杨国超",
+        "Type": 1,
+        "IsSys": true,
+        "RoleIntro": "重点参与人事相关流程的审批，例如：新员工入职流程、员工离职申请等",
+        "ID": "d33d1748-f8df-4f7d-9656-6f5ae756ab81",
+        "LastUpdateTime": "2014-09-11 09:40:29",
+        "CreateTime": "2016-08-01 10:19:13",
+        "AccountID": "3a1b83cb-cca7-41c1-852c-e5fceb78df4e"
+      },
+      {
+        "RoleName": "行政专员",
+        "UserID": [
+          "35acfa7f-0533-4bba-99db-d2fdd6d4c5d4"
+        ],
+        "UserName": "杨国超",
+        "Type": 5,
+        "IsSys": true,
+        "RoleIntro": "重点参与行政相关流程的审批，例如：名片申请流程、考勤假期流程等",
+        "ID": "0514b9a0-6648-412e-99fc-57410687ede2",
+        "LastUpdateTime": "2014-09-11 09:39:29",
+        "CreateTime": "2016-08-01 10:19:13",
+        "AccountID": "3a1b83cb-cca7-41c1-852c-e5fceb78df4e"
+      },
+      {
+        "RoleName": "采购专员",
+        "UserID": [
+          "35acfa7f-0533-4bba-99db-d2fdd6d4c5d4"
+        ],
+        "UserName": "杨国超",
+        "Type": 4,
+        "IsSys": true,
+        "RoleIntro": "重点参与采购相关流程的审批，例如：采购申请流程等",
+        "ID": "d949eda3-a58c-4128-80c5-7491afa0b390",
+        "LastUpdateTime": "2014-09-11 09:38:29",
+        "CreateTime": "2016-08-01 10:19:13",
+        "AccountID": "3a1b83cb-cca7-41c1-852c-e5fceb78df4e"
+      },
+      {
+        "RoleName": "法务专员",
+        "UserID": [
+          "35acfa7f-0533-4bba-99db-d2fdd6d4c5d4"
+        ],
+        "UserName": "杨国超",
+        "Type": 3,
+        "IsSys": true,
+        "RoleIntro": "重点参与法务相关流程的审批，例如：合同审批流程等",
+        "ID": "dc51284c-a11c-4c52-be81-b9a5146352b2",
+        "LastUpdateTime": "2014-09-11 09:37:29",
+        "CreateTime": "2016-08-01 10:19:13",
+        "AccountID": "3a1b83cb-cca7-41c1-852c-e5fceb78df4e"
+      },
+      {
+        "RoleName": "CEO/总经理/总裁",
+        "UserID": [
+          "35acfa7f-0533-4bba-99db-d2fdd6d4c5d4"
+        ],
+        "UserName": "杨国超",
+        "Type": 6,
+        "IsSys": true,
+        "RoleIntro": "公司的最高行政角色，通常在重要流程审批中作为最后决策环节，例如财务审批等",
+        "ID": "b36d97c9-60be-4ecb-8717-083c95dd0ba4",
+        "LastUpdateTime": "2016-08-01 14:41:32",
+        "CreateTime": "2016-08-01 10:19:13",
+        "AccountID": "3a1b83cb-cca7-41c1-852c-e5fceb78df4e"
+      }
+    ]
+  },
+  "Description": ""
+}

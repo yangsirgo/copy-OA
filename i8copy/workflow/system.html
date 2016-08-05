@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="x-ua-compatible" content="IE=edge"/>
+    <meta name="renderer" content="webkit"/>
+    <meta name="apple-itunes-app" content="app-id=668876137"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <base href="https://953308.i8xiaoshi.com/workflow/">
+    <title>i8工作流平台</title>
+    <!-- build:css ../resource/compress/css/i8fw.css  -->
+    <link href="//res.i8xiaoshi.com/community/combine/style/i8fw-core.min.css?v=20160801" media="all" rel="stylesheet"/>
+    <link type="text/css" rel="stylesheet"
+          href="https://res.i8xiaoshi.com/workflow/default/stylesheets/app.css?ver=20160801"/>
+    <link type="text/css" rel="stylesheet"
+          href="https://res.i8xiaoshi.com/workflow/default/stylesheets/app_workflow_design.css?ver=20160801"/>
+    <link type="text/css" rel="stylesheet"
+          href="https://res.i8xiaoshi.com/workflow/default/stylesheets/i8ui.css?ver=20160801"/>
+
+    <!-- endbuild -->
+    <link type="text/css" rel="stylesheet"
+          href="https://res.i8xiaoshi.com/workflow/default/stylesheets/app_workflow_design.css"/>
+    <link type="text/css" rel="stylesheet"
+          href="https://res.i8xiaoshi.com/workflow/default/stylesheets/app_examples_of_management.css"/>
+    <style>
+
+        .editState a.ds_row_save, .editState a.ds_row_cancel {
+            display: none;
+        }
+
+        .saveState a.ds_row_save, .saveState a.ds_row_cancel {
+            display: inline-block;
+        }
+
+        .saveState a.ds_row_edit, .saveState a.ds_row_delete, .saveState a.ds_row_subset {
+            display: none;
+        }
+
+        .popup-datasrouce-container {
+            width: 480px;
+            padding: 20px;
+        }
+
+        .editName-text-box-index {
+            width: 30px;
+        }
+
+        .ct-ly {
+
+        }
+
+        .popup-datasource-tips {
+            color: red;
+            font-weight: bold;
+        }
+
+        div.div_editSource {
+            overflow-x: auto !important;;
+        }
+
+        .ct-ly-msg {
+
+        }
+
+        .div_editSource table tbody td {
+            padding: 5px 25px 2px 20px;
+            border-bottom: 1px dashed #D9D9D9;
+            white-space: nowrap;
+        }
+
+        .div_editSource table th {
+            border-top: solid 1px #B2D1FF;
+            padding: 5px 25px 5px 20px;
+            white-space: nowrap;
+            background: #F9F7F8;
+            border-bottom: 1px solid #E2E8E8;
+            font-size: 14px;
+        }
+
+        .div_editSource table, .row_tips table {
+            text-shadow: none;
+            border: 1px solid #E2E8E8;
+            border-top: none;
+            width: 100%;
+        }
+
+        .subsetListBox {
+            z-index: 9999;
+            position: absolute;
+            left: 120px;
+            top: 5px;
+            padding: 5px;
+            border: 1px solid #EEE;
+            background: #FFF;
+
+        }
+
+        .subsetListBox table thead th {
+            border-top: solid 1px #B2D1FF;
+            padding: 5px 10px;
+            white-space: nowrap;
+            background: #F9F7F8;
+            border-bottom: 1px solid #E2E8E8;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .div_editSource {
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .payment-report-btn {
+            display: none;
+        }
+
+        .tb_subsetrow_item {
+            height: 28px;
+            text-align: center;
+            vertical-align: middle;
+            width: 102px;
+        }
+
+        .tb_subsetrow_item input {
+            width: 100px;
+        }
+
+        .row_subset_save_container, .tb_subsetrow_control {
+            vertical-align: middle;
+        }
+
+        .app-radio-label {
+            vertical-align: 5px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            display: inline-block;
+            width: 130px;
+        }
+
+        .leadertable {
+            border: 1px solid #dfdfdf;
+            width: 500px;
+        }
+
+        .leadertable th, .leadertable td {
+            line-height: 30px;
+            padding: 0 15px;
+            text-align: left;
+        }
+
+        .leadertable th {
+            border-bottom: 1px solid #dfdfdf;
+        }
+
+        .subsettable {
+            width: 100%;;
+        }
+
+        .subsettable .row_subset_save_container {
+            text-align: center;;
+        }
+
+        .subsettable tfoot {
+            text-align: center;
+        }
+
+        .subsettable tfoot td {
+            border: none;
+            height: 40px;
+            vertical-align: middle;
+        }
+
+        .tb_subsetrow_control {
+            text-align: center;
+            padding-left: 20px;
+            padding-right: 20px;
+            width: 100px;;
+        }
+
+        .tb_subsetrow_item {
+            min-width: 120px;
+            width: auto !important;
+        }
+
+        .tb_subsetrow_item {
+            padding: 10px;
+        }
+
+        .subsettable td {
+            border: 1px solid #dfdfdf;
+        }
+    </style>
+    <script type="text/javascript">
+        var i8_session = {
+            "uid": "35acfa7f-0533-4bba-99db-d2fdd6d4c5d4",
+            "uname": "杨国超",
+            "utype": [4, 20, 30, 40],
+            "readstatus": 11111,
+            "orgid": "1",
+            "orgname": "北京友善科技有限公司",
+            "ukankan": true,
+            "uimage30": "https://dn-i8res.qbox.me/public/platform/defhead.png",
+            "email": "499251782@qq.com",
+            "aid": "3a1b83cb-cca7-41c1-852c-e5fceb78df4e",
+            "aname": "北京友善科技有限公司",
+            "nodeKey": "default",
+            "cname": "北京友善科技有限公司",
+            "clogo": "https://dn-i8res.qbox.me/public/platform/deflogo.png",
+            "apps": ["app_notice", "app_schedule", "app_task", "app_report", "app_document", "app_vacation", "app_finacial", "app_attendance", "app_salarybill", "app_personnelfile"],
+            "platform": {"version": "trial", "storagelimit": "5", "maxuser": "1000", "dctoken": "0"},
+            "usernum": 1,
+            "storenum": 0,
+            "expire": "2016-10-01 23:59:59",
+            "expireapp": {},
+            "adminnav": {"invitemate": true, "designwf": true},
+            "usernav": {"addwf": true},
+            "portal": "calendar:true,checktop:true,members:true,birthday:true,topic:true,novice:true,taskrpt:true,managenovice:true,",
+            "notice": null,
+            "step": 0,
+            "appadmin": ["app_notice", "app_schedule", "app_task", "app_report", "app_document", "app_vacation", "app_finacial", "app_attendance", "app_salarybill", "app_personnelfile"],
+            "multiact": false,
+            "enbleinvite": true,
+            "cusapp": [],
+            "ability": ["app_finacial_payment_report"],
+            "timestamp": "2016-08-02 11:03:28.768",
+            "comapp": false,
+            "apppmt": {},
+            "userpmt": {"app_finacial": {"app_finacial_payment_report": "true"}},
+            "passexpire": 0,
+            "apppersonnel": [],
+            "resHost": "https://res.i8xiaoshi.com/community/",
+            "resWfHost": "https://res.i8xiaoshi.com/workflow/",
+            "ajaxHost": "/community/",
+            "ajaxWfHost": "/workflow/",
+            "baseHost": "/community/",
+            "wfbaseHost": "/workflow/",
+            "resVersion": "20160801",
+            "gotourl": "/workflow/process/task",
+            "protocol": "https://",
+            "subdomain": "953308",
+            "sid": "52f218c0-a2ce-40eb-9023-f6ad8bb9bb37"
+        };
+        var fw_globalConfig = {};
+        fw_globalConfig.root = i8_session.resHost || '/';
+
+        if (typeof i8_session != 'undefined') {
+            cpec_session = i8_session;
+        }
+
+    </script>
+</head>
+<body class="rootskin">
+
+<div id="js_head_nav" class="app-header">
+    <div class="app-header-top">
+        <div class="login-info">
+
+            <a href="javascript:;">杨国超</a>
+            您好，欢迎来到 北京友善科技有限公司 社区！ 企业代码：<span style="color:#DA6638;">953308</span><a href="/community/logout"
+                                                                                     title="退出系统">退出</a>
+
+            <div id="js_time_tps" class="rt endtime-tps oflow"></div>
+        </div>
+    </div>
+    <div class="app-header-main app-header-main2">
+        <div class="app-cp-logo">
+
+            <a href="/community/home" class="logo-link bold tcenter" title="北京友善科技有限公司">北京友善科技有限公司</a>
+
+
+        </div>
+
+        <div id="js_top_links" class="app-funs rel">
+            <ul class="my-system">
+                <li class="my-search">
+                    <a class="my-search-link" href="/community/search#dynamic">
+                        <span id="" class="icon icon-search-gray"></span>
+                    </a>
+                </li>
+                <li class="my-info">
+                    <a>&nbsp;</a>
+
+                    <div class="my-system-menu">
+                        <div class="my-system-posi"></div>
+                        <a href="/community/users/settings/info"><i class="sp-menu-hd1"></i>个人设置</a>
+                        <a href="/community/users/settings/header"><i class="sp-menu-hd2"></i>修改头像</a>
+
+                        <a href="/community/users/settings/pwdreset"><i class="sp-menu-hd3"></i>密码修改</a>
+
+                        <a href="/community/users/settings/tips"><i class="sp-menu-hd4"></i>提醒设置</a>
+                        <a href="/community/logout"><i class="sp-menu-hd5"></i>退出</a>
+                    </div>
+                </li>
+                <li class="my-message">
+                    <a>&nbsp;</a>
+
+                    <div class="my-system-menu">
+                        <div class="my-system-posi"></div>
+                        <div class="tips-list-linka"></div>
+                        <a href="/community/users/view/comments#recieved"><i class="sp-menu-hd6"></i>评论</a>
+                        <a href="/community/users/view/atme#blog-list"><i class="sp-menu-hd7"></i>@我的</a>
+                        <a href="/community/users/view/sys-msg"><i class="sp-menu-hd8"></i>系统消息</a>
+                    </div>
+                </li>
+            </ul>
+            <div id="js_tips_fixed" class="system-message-div">
+                <div class="tips-list-linka">
+                    <a><span class="my-tips-num">1</span>人参与新投票</a>
+                    <a><span class="my-tips-num">1</span>新的侃侃评论</a>
+                </div>
+                <span class="my-tps-close"></span>
+            </div>
+        </div>
+        <span class="my-control" _href="/community/home">
+            <span class="my-control-table">企业管家</span>
+            <span class="icon my-control-btn unrootbtn"></span>
+            <span class="my-control-housekeeper">工作台</span>
+        </span>
+        <ul class="app-mapsite fz14-weight">
+            <li><a id="nav_baseinfo" href="/community/setcenter/corp-baseinfo" navkeyword="/corp-baseinfo">基础设置</a></li>
+            <li><a id="nav_designer" menuname="processDesign" href="/workflow/design/">流程管理</a></li>
+            <li><a id="nav_hrdata" menuname="hrdata" href="/workflow/vacation/introduction" class="cement-nav"
+                   navkeyword="hrdata">人事应用</a></li>
+            <li><a id="nav_finacial" menuname="finacial" href="/workflow/finacial/statistics" class="cement-nav"
+                   navkeyword="overallbudget">预算费控</a></li>
+        </ul>
+
+    </div>
+</div>
+<div class="app-content-bg">
+    <div id="js_left_bg" class="app-content-bg-left"></div>
+    <div class="app-content">
+        <div class="app-content-border"></div>
+        <ul id="app_left" class="app-left">
+            <li>设计</li>
+            <li>
+                <ul>
+                    <li targetmenu="processDesign" class=" li-nav-guide"><a target="_self" href="design/guide">设计引导</a>
+                    </li>
+                    <li targetmenu="processDesign" class=" current li-nav-setting"><a target="_self"
+                                                                                      href="system/setting">基础配置</a>
+                    </li>
+                    <li targetmenu="processDesign" class=" li-nav-develop"><a target="_self" href="design/list">流程设计</a>
+                    </li>
+                    <li targetmenu="processDesign" class=" li-nav-template"><a target="_self"
+                                                                               href="design/template/list">流程模板</a></li>
+                </ul>
+            </li>
+            <li>监控</li>
+            <li>
+                <ul>
+                    <li targetmenu="processDesign" class=" li-nav-approvalefficiency"><a target="_self"
+                                                                                         href="monitor/approvalefficiency">流程审批效率</a>
+                    </li>
+                    <li targetmenu="processDesign" class=" li-nav-approvalstay"><a target="_self"
+                                                                                   href="monitor/approvalstay">流程审批停留</a>
+                    </li>
+                    <li targetmenu="processDesign" class=" li-nav-personnelstay"><a target="_self"
+                                                                                    href="monitor/personnelstay">人员审批停留</a>
+                    </li>
+                </ul>
+            </li>
+            <li>管理</li>
+            <li>
+                <ul>
+                    <li targetmenu="processDesign" class=" li-nav-turnsign"><a target="_self" href="process/turnsign">流程记录管理</a>
+                    </li>
+                    <li targetmenu="processDesign" class=" li-nav-monitor"><a target="_self" href="javascript:void(0)">流程监控</a>
+                    </li>
+                    <li targetmenu="processDesign" class=" li-nav-reciveperson"><a target="_self"
+                                                                                   href="process/reciveperson">收文人管理</a>
+                    </li>
+                    <li targetmenu="processDesign" class=" li-nav-instance"><a target="_self" href="process/manage">流程历史数据</a>
+                    </li>
+                    <li targetmenu="processDesign" class=" li-nav-auth"><a target="_self" href="auth/setting">权限设置</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <div class="app-right" id="app_right">
+
+            <div class="app-map-site app-menu-navigation-container">
+                <ul class="app-menu-list app-menu-navigation">
+                    <li class="">
+                        <div listType="category">设置流程分类
+                            <em class="em1"><em class="em2"></em></em>
+                        </div>
+
+                    </li>
+                    <li>
+                        <div listType="specialrole">设置专项角色
+                            <em class="em1"><em class="em2"></em></em>
+                        </div>
+
+                    </li>
+                    <li>
+                        <div listType="rankrole">设置职级角色
+                            <em class="em1"><em class="em2"></em></em>
+                        </div>
+
+                    </li>
+                    <li>
+                        <div listType="processdata">数据源管理
+                            <em class="em1"><em class="em2"></em></em>
+                        </div>
+
+                    </li>
+                </ul>
+            </div>
+            <!--流程分类配置-->
+            <div id="category" class="fw_hidden">
+
+                <div class="app-dielog-warning app-warning-icon single-line-warning">
+                    <i></i>提示：排序分值越高，排名越靠前
+                </div>
+                <div class="app-table-list">
+                    <table>
+                        <thead>
+                        <tr>
+                            <td class="p-l-50 perc-40">类别名称
+                            </td>
+                            <td class="p-l-50 perc-20">排序分值
+                            </td>
+                            <td class="perc-12">已上架/所有流程数
+                            </td>
+                            <td class="p-l-l10">操作
+                            </td>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                    <button class="sys-mgadd-btn"><i></i>添加流程类型</button>
+                    <div class="pagination"></div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+
+            <!--专项角色-->
+            <div id="specialrole" class="fw_hidden">
+
+                <div class="app-dielog-warning app-warning-icon single-line-warning">
+                    提示：专项角色指的是企业里承担专项职责的特定岗位角色，例如：考勤专员承担考勤相关事物的审批职责
+                </div>
+
+                <div class="app-table-list">
+                    <table>
+                        <thead>
+                        <tr>
+                            <td class="p-l-50 perc-40">角色名称
+                            </td>
+                            <td class="p-l-50 perc-20">员工姓名
+                            </td>
+                            <td class="perc-12">属性</td>
+                            <td>操作</td>
+                        </tr>
+                        </thead>
+                        <tbody class="sys-zxrole-list">
+                        </tbody>
+                    </table>
+                    <button class="sys-mgadd-btn add"><i></i>添加专项角色</button>
+                    <div class="pagination"></div>
+                </div>
+            </div>
+
+            <!--职级角色-->
+            <div id="rankrole" class="fw_hidden">
+
+                <div class="app-dielog-warning app-warning-icon single-line-warning">
+                    提示：职级角色是根据企业里职级体系而设置的特定角色，例如：企业职级体系为“ceo-总监-员工”，则总监角色对应多个部门总监，可用于总监审批各自部门流程
+                </div>
+                <div class="app-table-list">
+                    <table>
+                        <thead>
+                        <tr>
+                            <td class="p-l-50 w-85">职级
+                            </td>
+                            <td class="p-l-50">相关人员
+                            </td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <script>
+                            var pbk = [{
+                                "Level": {
+                                    "ID": {
+                                        "Timestamp": 1470017953,
+                                        "Machine": 10375484,
+                                        "Pid": 2220,
+                                        "Increment": 10521033,
+                                        "CreationTime": "2016-08-01 02:19:13"
+                                    },
+                                    "LevelID": 1,
+                                    "Name": "CEO",
+                                    "Score": 10000,
+                                    "ParentID": 0,
+                                    "RootID": 1,
+                                    "Status": 0,
+                                    "LastUpdateTime": "2016-08-01 10:19:13",
+                                    "CreateTime": "2016-08-01 10:19:13",
+                                    "AccountID": "3a1b83cb-cca7-41c1-852c-e5fceb78df4e"
+                                }, "PersonList": [], "PartTimeList": null
+                            }, {
+                                "Level": {
+                                    "ID": {
+                                        "Timestamp": 1470017953,
+                                        "Machine": 10375484,
+                                        "Pid": 2220,
+                                        "Increment": 10521034,
+                                        "CreationTime": "2016-08-01 02:19:13"
+                                    },
+                                    "LevelID": 2,
+                                    "Name": "副总",
+                                    "Score": 5000,
+                                    "ParentID": 1,
+                                    "RootID": 1,
+                                    "Status": 0,
+                                    "LastUpdateTime": "2016-08-01 10:19:13",
+                                    "CreateTime": "2016-08-01 10:19:13",
+                                    "AccountID": "3a1b83cb-cca7-41c1-852c-e5fceb78df4e"
+                                }, "PersonList": [], "PartTimeList": null
+                            }, {
+                                "Level": {
+                                    "ID": {
+                                        "Timestamp": 1470017953,
+                                        "Machine": 10375484,
+                                        "Pid": 2220,
+                                        "Increment": 10521035,
+                                        "CreationTime": "2016-08-01 02:19:13"
+                                    },
+                                    "LevelID": 3,
+                                    "Name": "经理",
+                                    "Score": 2500,
+                                    "ParentID": 2,
+                                    "RootID": 1,
+                                    "Status": 0,
+                                    "LastUpdateTime": "2016-08-01 10:19:13",
+                                    "CreateTime": "2016-08-01 10:19:13",
+                                    "AccountID": "3a1b83cb-cca7-41c1-852c-e5fceb78df4e"
+                                }, "PersonList": [], "PartTimeList": null
+                            }, {
+                                "Level": {
+                                    "ID": {
+                                        "Timestamp": 1470017953,
+                                        "Machine": 10375484,
+                                        "Pid": 2220,
+                                        "Increment": 10521036,
+                                        "CreationTime": "2016-08-01 02:19:13"
+                                    },
+                                    "LevelID": 4,
+                                    "Name": "员工",
+                                    "Score": 0,
+                                    "ParentID": 3,
+                                    "RootID": 1,
+                                    "Status": 0,
+                                    "LastUpdateTime": "2016-08-01 10:19:13",
+                                    "CreateTime": "2016-08-01 10:19:13",
+                                    "AccountID": "3a1b83cb-cca7-41c1-852c-e5fceb78df4e"
+                                },
+                                "PersonList": [{
+                                    "PassportID": "35acfa7f-0533-4bba-99db-d2fdd6d4c5d4",
+                                    "Name": "杨国超",
+                                    "NamePinyin": "YangGuoChao",
+                                    "EnName": null,
+                                    "Birthday": null,
+                                    "MPhone": "15122653844",
+                                    "Tel": null,
+                                    "OrgID": 1,
+                                    "OrgName": "北京友善科技有限公司",
+                                    "ClassID": 4,
+                                    "ClassName": null,
+                                    "PTRoleName": null,
+                                    "Position": null,
+                                    "Type": 0,
+                                    "Status": 0,
+                                    "Email": "499251782@qq.com",
+                                    "QQ": null,
+                                    "Gender": null,
+                                    "Labels": [],
+                                    "Comment": null,
+                                    "BirthLocation": null,
+                                    "HeadImage": "https://dn-i8res.qbox.me/public/platform/defhead.png",
+                                    "Portal": "calendar:true,checktop:true,members:true,birthday:true,topic:true,novice:true,taskrpt:true,managenovice:true,",
+                                    "Alarm": {
+                                        "Tips": ["00000000-0000-0000-0000-000000000000", "4b1e7570-15dd-4a4f-88ca-af4c9cc87f99", "4a935fa4-4f55-4b01-89e2-d2f0b6e8ba39"],
+                                        "EMail": ["RemindMail_Schedule", "RemindMail_Workflow", "RemindMail_OverWorkflow", "RemindMail_ReturnWorkflow", "RemindMail_FileWorkflow", "RemindMail_RemindersWorkflow"],
+                                        "Frequency": "7"
+                                    },
+                                    "Contacts": [],
+                                    "LearnNav": {"addwf": true},
+                                    "CoverImg": null,
+                                    "City": null,
+                                    "LeaderFlag": 0,
+                                    "StatusRemark": null,
+                                    "DepartureTime": null,
+                                    "EmployeeNo": null,
+                                    "LeaderName": null,
+                                    "Notice": {},
+                                    "OrderField": 0,
+                                    "AppPmt": {"app_finacial": {"app_finacial_payment_report": "true"}},
+                                    "UserFields": {},
+                                    "EmployeeNoRuleID": "00000000-0000-0000-0000-000000000000",
+                                    "ID": "f94a17d6-10b4-40fa-ad7e-e5c090c5a312",
+                                    "LastUpdateTime": "2016-08-01 10:19:13",
+                                    "CreateTime": "2016-08-01 10:19:13",
+                                    "AccountID": "3a1b83cb-cca7-41c1-852c-e5fceb78df4e"
+                                }],
+                                "PartTimeList": null
+                            }];
+                            console.log(pbk);
+                        </script>
+
+
+                        <tr>
+                            <td class="p-l-50">CEO
+                            </td>
+                            <td class="p-l-50">
+
+                                <div class="l-h35-c54">暂无数据</div>
+
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td class="p-l-50">副总
+                            </td>
+                            <td class="p-l-50">
+
+                                <div class="l-h35-c54">暂无数据</div>
+
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td class="p-l-50">经理
+                            </td>
+                            <td class="p-l-50">
+
+                                <div class="l-h35-c54">暂无数据</div>
+
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td class="p-l-50">员工
+                            </td>
+                            <td class="p-l-50">
+
+                                <div class="l-h35-c54">其它</div>
+
+                            </td>
+                        </tr>
+
+
+                        </tbody>
+                    </table>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <!--数据源管理-->
+            <div id="processdata" class="fw_hidden">
+                <div class="app-dielog-warning app-warning-icon single-line-warning">
+                    提示：数据源是多个同属性选项的组合，例如：假期类型有年假、事假、病假等，可用于请假、销假流程选择请假或销假补扣假期时间的类型。
+                </div>
+                <div class="app-table-list">
+                    <table>
+                        <thead>
+                        <tr>
+                            <td class="p-l-50 perc-40">数据源名称
+                            </td>
+                            <td class="p-l-50 perc-20">参与流程数
+                            </td>
+                            <td class="perc-12">属性
+                            </td>
+                            <td>操作
+                            </td>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                    <button class="sys-mgadd-btn"><i></i>添加数据源</button>
+                    <div class="pagination"></div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<style>
+    html {
+        position: relative;
+        min-height: 100%;
+    }
+
+    .app-content-bg, .set-cont, .proc_detail_center_out_wrap {
+        padding-bottom: 120px;
+    }
+</style>
+<div class="app-footer">
+    <ul class="links-list">
+        <li><a target="_blank" href="http://www.i8xiaoshi.com/help">帮助中心</a><span>|</span></li>
+        <li><a target="_blank" href="http://www.i8xiaoshi.com/mobile">移动端</a><span>|</span></li>
+        <li><a target="_blank" href="http://www.i8xiaoshi.com/abouti8/home#linkme">联系我们</a></li>
+        <li><a class="footer-phone"></a></li>
+        <li><a target="_blank"
+               href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&amp;key=XzkzODAyNTMwMl8xNjY3MDlfNDAwODc3MTE4MV8yXw"
+               class="footer-qq"></a></li>
+    </ul>
+    <div class="app-copyright">沪ICP备13026113号 Copyright @ 2012-2016 i8xiaoshi</div>
+</div>
+<script src="//res.i8xiaoshi.com/community/combine/script/i8plugins-core.min.js?v=20160801"></script>
+<!--<script  src="https://res.i8xiaoshi.com/community/workflow/javascripts/common/i8_lib.js"></script>-->
+<script>
+    seajs.config({
+        base: '',
+        debug: true,
+        charset: 'utf-8',
+        timeout: 20000,
+//        map: [[/^(.*\.(?:css|js))(.*)$/i, '$1?ver=20160801'], [/^((.*)default(.*\.tpl))$/, 'https://res.i8xiaoshi.com/workflow/default$3']]
+    });
+</script>
+<script src="//res.i8xiaoshi.com/cb-res/??combine/script/com-controls.min.js,combine/script/com-tips.min.js?v=20160801"></script>
+<script type="text/javascript">seajs.use("default/javascripts/modules/tips")</script>
+
+<script>
+    seajs.use('./js/unrootbtn.js');
+</script>
+<script>
+    if (!window.location.hash) {
+        window.location.hash = 'page=category';
+    }
+    seajs.use('./js/setting.js');
+
+
+</script>
+<script>
+
+    // $('.app-mapsite').on('click','a',function(){
+    //
+    var pageInit = function () {
+        var _targetMenu = $('.app-left').find('.current').attr('targetmenu') || '';
+
+        if (!!_targetMenu) {
+
+            var _$container = $('.app-mapsite');
+            _$container.find('.current').removeClass('current');
+            _$container.find('a').each(function (item) {
+
+                if ($(this).attr('menuname') === _targetMenu) {
+                    $(this).addClass('current');
+                    return false;
+                }
+                return true;
+            });
+        }
+        // $(this).addClass('current');
+        //  })
+    }();
+
+</script>
+</body>
+</html>
+

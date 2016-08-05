@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="x-ua-compatible" content="IE=edge" />
+    <meta name="renderer" content="webkit"/>
+    <meta name="apple-itunes-app" content="app-id=668876137" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <base href="https://953308.i8xiaoshi.com/workflow/">
+    <title>i8工作流平台</title>
+    <!-- build:css ../resource/compress/css/i8fw.css  -->
+    <link href="//res.i8xiaoshi.com/community/combine/style/i8fw-core.min.css?v=20160801" media="all" rel="stylesheet" />
+    <link type="text/css" rel="stylesheet" href="https://res.i8xiaoshi.com/workflow/default/stylesheets/app.css?ver=20160801" />
+    <link type="text/css" rel="stylesheet" href="https://res.i8xiaoshi.com/workflow/default/stylesheets/app_workflow_design.css?ver=20160801"/>
+    <link type="text/css" rel="stylesheet" href="https://res.i8xiaoshi.com/workflow/default/stylesheets/i8ui.css?ver=20160801" />
+
+    <!-- endbuild -->
+    <link type="text/css" rel="stylesheet" href="https://res.i8xiaoshi.com/workflow/default/stylesheets/app_workflow_design.css?ver=20160801" />
+    <link type="text/css" href="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/i8formdesigner/stylesheets/designerstyle.css?ver=20160801" rel="stylesheet" />
+    <link type="text/css" rel="stylesheet" href="https://res.i8xiaoshi.com/workflow/default/stylesheets/design/activity/app_processDesign.css?ver=20160801" />
+    <link type="text/css" rel="stylesheet" href="https://res.i8xiaoshi.com/workflow/default/stylesheets/app.css?ver=20160801" />
+    <link type="text/css" rel="stylesheet" href="https://res.i8xiaoshi.com/workflow/default/stylesheets/communityPlugin.css?ver=20160801" />
+    <link type="text/css" rel="stylesheet" href="https://res.i8xiaoshi.com/workflow/default/stylesheets/copy-fw-dirlog.css?ver=20160801" />
+    <link type="text/css" rel="stylesheet" href="https://res.i8xiaoshi.com/workflow/default/stylesheets/personal_info.css?ver=20160801" />
+    <link type="text/css" rel="stylesheet" href="https://res.i8xiaoshi.com/workflow/default/stylesheets/vacation.css?ver=20160801" />
+    <link type="text/css" rel="stylesheet" href="https://res.i8xiaoshi.com/workflow/default/stylesheets/process/app_process_payment.css?ver=20160801" />
+    <link type="text/css" rel="stylesheet" href="https://res.i8xiaoshi.com/workflow/default/stylesheets/process/app_process_extend_component.css?ver=20160801" />
+
+    <script type="text/javascript">
+        var i8_session={"uid":"35acfa7f-0533-4bba-99db-d2fdd6d4c5d4","uname":"杨国超","utype":[4,20,30,40],"readstatus":11111,"orgid":"1","orgname":"北京友善科技有限公司","ukankan":true,"uimage30":"https://dn-i8res.qbox.me/public/platform/defhead.png","email":"499251782@qq.com","aid":"3a1b83cb-cca7-41c1-852c-e5fceb78df4e","aname":"北京友善科技有限公司","nodeKey":"default","cname":"北京友善科技有限公司","clogo":"https://dn-i8res.qbox.me/public/platform/deflogo.png","apps":["app_notice","app_schedule","app_task","app_report","app_document","app_vacation","app_finacial","app_attendance","app_salarybill","app_personnelfile"],"platform":{"version":"trial","storagelimit":"5","maxuser":"1000","dctoken":"0"},"usernum":1,"storenum":0,"expire":"2016-10-01 23:59:59","expireapp":{},"adminnav":{"invitemate":true,"designwf":true},"usernav":{"addwf":true},"portal":"calendar:true,checktop:true,members:true,birthday:true,topic:true,novice:true,taskrpt:true,managenovice:true,","notice":null,"step":0,"appadmin":["app_notice","app_schedule","app_task","app_report","app_document","app_vacation","app_finacial","app_attendance","app_salarybill","app_personnelfile"],"multiact":false,"enbleinvite":true,"cusapp":[],"ability":["app_finacial_payment_report"],"timestamp":"2016-08-03 22:20:45.472","comapp":false,"apppmt":{},"userpmt":{"app_finacial":{"app_finacial_payment_report":"true"}},"passexpire":0,"apppersonnel":[],"resHost":"https://res.i8xiaoshi.com/community/","resWfHost":"https://res.i8xiaoshi.com/workflow/","ajaxHost":"/community/","ajaxWfHost":"/workflow/","baseHost":"/community/","wfbaseHost":"/workflow/","resVersion":"20160801","gotourl":"/workflow/process/task","protocol":"https://","subdomain":"953308","sid":"f3f37718-5f85-41e7-b880-e546efaa435f"};
+        var  fw_globalConfig = {};
+        fw_globalConfig.root=i8_session.resHost ||'/';
+
+        if(typeof i8_session != 'undefined'){
+            cpec_session = i8_session;
+        }
+
+    </script>
+</head>
+<body class="rootskin">
+
+<div id="js_head_nav" class="app-header">
+    <div class="app-header-top">
+        <div class="login-info">
+
+            <a href="javascript:;">杨国超</a>
+            您好，欢迎来到 北京友善科技有限公司 社区！ 企业代码：<span style="color:#DA6638;">953308</span><a href="/community/logout" title="退出系统">退出</a>
+
+            <div id="js_time_tps" class="rt endtime-tps oflow"></div>
+        </div>
+    </div>
+    <div class="app-header-main app-header-main2">
+        <div class="app-cp-logo">
+
+            <a href="/community/home" class="logo-link bold tcenter" title="北京友善科技有限公司">北京友善科技有限公司</a>
+
+
+        </div>
+
+        <div id="js_top_links" class="app-funs rel">
+            <ul class="my-system">
+                <li class="my-search">
+                    <a class="my-search-link" href="/community/search#dynamic">
+                        <span id="" class="icon icon-search-gray"></span>
+                    </a>
+                </li>
+                <li class="my-info">
+                    <a >&nbsp;</a>
+                    <div class="my-system-menu">
+                        <div class="my-system-posi"></div>
+                        <a href="/community/users/settings/info"><i class="sp-menu-hd1"></i>个人设置</a>
+                        <a href="/community/users/settings/header"><i class="sp-menu-hd2"></i>修改头像</a>
+
+                        <a href="/community/users/settings/pwdreset"><i class="sp-menu-hd3"></i>密码修改</a>
+
+                        <a href="/community/users/settings/tips"><i class="sp-menu-hd4"></i>提醒设置</a>
+                        <a href="/community/logout"><i class="sp-menu-hd5"></i>退出</a>
+                    </div>
+                </li>
+                <li class="my-message">
+                    <a >&nbsp;</a>
+                    <div class="my-system-menu">
+                        <div class="my-system-posi"></div>
+                        <div class="tips-list-linka"></div>
+                        <a href="/community/users/view/comments#recieved"><i class="sp-menu-hd6"></i>评论</a>
+                        <a href="/community/users/view/atme#blog-list"><i class="sp-menu-hd7"></i>@我的</a>
+                        <a href="/community/users/view/sys-msg"><i class="sp-menu-hd8"></i>系统消息</a>
+                    </div>
+                </li>
+            </ul>
+            <div id="js_tips_fixed" class="system-message-div">
+                <div class="tips-list-linka">
+                    <a><span class="my-tips-num">1</span>人参与新投票</a>
+                    <a><span class="my-tips-num">1</span>新的侃侃评论</a>
+                </div>
+                <span class="my-tps-close"></span>
+            </div>
+        </div>
+        <span class="my-control" _href="/community/home">
+            <span class="my-control-table">企业管家</span>
+            <span class="icon my-control-btn unrootbtn"></span>
+            <span class="my-control-housekeeper">工作台</span>
+        </span>
+        <ul class="app-mapsite fz14-weight">
+            <li><a id="nav_baseinfo" href="/community/setcenter/corp-baseinfo" navkeyword="/corp-baseinfo" >基础设置</a></li><li><a id="nav_designer" menuname="processDesign" href="/workflow/design/">流程管理</a></li><li><a id="nav_hrdata" menuname="hrdata" href="/workflow/vacation/introduction" class="cement-nav" navkeyword="hrdata">人事应用</a></li><li><a id="nav_finacial"  menuname="finacial" href="/workflow/finacial/statistics" class="cement-nav" navkeyword="overallbudget">预算费控</a></li>
+        </ul>
+
+    </div></div>
+<div class="app-content-bg">
+    <div id="js_left_bg" class="app-content-bg-left"></div>
+    <div class="app-content">
+        <div class="app-content-border"></div>
+        <ul id="app_left" class="app-left">
+            <li>设计</li><li><ul><li targetmenu="processDesign" class=" li-nav-guide"><a target="_self" href="design/guide">设计引导</a></li><li targetmenu="processDesign" class=" li-nav-setting"><a target="_self" href="system/setting">基础配置</a></li><li targetmenu="processDesign" class=" li-nav-develop"><a target="_self" href="design/list">流程设计</a></li><li targetmenu="processDesign" class=" li-nav-template"><a target="_self" href="design/template/list">流程模板</a></li></ul></li>  <li>监控</li><li><ul><li targetmenu="processDesign" class=" li-nav-approvalefficiency"><a target="_self" href="monitor/approvalefficiency">流程审批效率</a></li><li targetmenu="processDesign" class=" li-nav-approvalstay"><a target="_self" href="monitor/approvalstay">流程审批停留</a></li><li targetmenu="processDesign" class=" li-nav-personnelstay"><a target="_self" href="monitor/personnelstay">人员审批停留</a></li></ul></li>  <li>管理</li><li><ul><li targetmenu="processDesign" class=" li-nav-turnsign"><a target="_self" href="process/turnsign">流程记录管理</a></li><li targetmenu="processDesign" class=" li-nav-monitor"><a target="_self" href="javascript:void(0)">流程监控</a></li><li targetmenu="processDesign" class=" li-nav-reciveperson"><a target="_self" href="process/reciveperson">收文人管理</a></li><li targetmenu="processDesign" class=" li-nav-instance"><a target="_self" href="process/manage">流程历史数据</a></li><li targetmenu="processDesign" class=" li-nav-auth"><a target="_self" href="auth/setting">权限设置</a></li></ul></li>
+        </ul>
+        <div class="app-right" id="app_right">
+            <script>
+                if(window.location.hash){
+                    window.location.href=i8_session.wfbaseHost+'design/dev?baseinfoid='+window.location.hash.substr(1);
+                }
+            </script>
+            <div class="app-map-site">
+                <ul class="app-menu">
+                    <li>DIY设计流程&nbsp;</li>
+                </ul>
+            </div>
+            <div class="design-form m-t15">
+                <div class="design-form-title">
+                    <label id="lbl_procTitle"></label>
+                </div>
+                <ul class="design-form-nav">
+                    <li>
+                        <a class="selected" showid="div_baseinfo">基本信息</a>
+                    </li>
+                    <li>
+                        <a showid="div_form">流程表单</a>
+                    </li>
+                    <li>
+                        <a showid="div_act">流程审批链</a>
+                    </li>
+                    <!--<li>
+                        <a showid="div_3rdDev">流程高级开发</a>
+                    </li>-->
+                    <li class="">
+                        <a showid="div_auth">流程表单权限</a>
+                    </li>
+                </ul>
+                <div class="go-template">更多流程模板，尽在i8模板库，<a target="_blank" href="https://www.i8xiaoshi.com/template/home">点击进入</a></div>
+                <div class="app-templete-body">
+                    <!--基本信息-->
+                    <div id="div_baseinfo">
+                        <div class="app-templete-line oflow_visible ">
+                            <span class="w-120">组织架构</span>
+                            <!--<select id="ddl_OrgsType" class="app_process_design_type"><option value="1">北京友善科技有限公司</option></select>-->
+                            <select id="ddl_OrgsType" class="app_process_design_type">
+                                <option value="1">汇报关系</option>
+                                <option value="0">组织架构</option>
+                            </select>
+                        </div>
+                        <div class="app-templete-line">
+                            <span class="w-120">流程名称</span>
+                            <input class="w-520-h36" id="txt_name"/>
+                        </div>
+                        <div class="app-templete-line oflow_visible">
+                            <span class="w-120">流程类型</span>
+                            <select id="ddl_CategoryType" class="app_process_design_type"><option value=' ' >--请选择--</option><option value="8ac0a5bd-be6b-d409-8694-708d94e30830" text="财务">财务</option><option value="89f81cba-ddc4-89e6-0096-7bc2332c3e72" text="与国土与">与国土与</option><option value="ce9a7a3b-e740-6fc3-6271-e656dc62dde9" text="法务">法务</option><option value="cbc7ef8d-d787-c8a7-b5d7-4a7d7a9a7a0f" text="123">123</option><option value="fb9b2cef-f9bf-47d3-a732-2e960e6867da" text="IT类">IT类</option><option value="e1e2ce06-7c01-9f60-2982-2a2b2434522f" text="1">1</option><option value="83c5bbe5-29a7-4751-83b9-09b765f46786" text="人事类">人事类</option></select><!---->
+                            <a id="btnAddCategory" href="javascript:void(0);" class="app_process_design_type_add">
+                                +增加分类</a>
+                        </div>
+                        <div class="app-templete-line">
+                            <span class="w-120">流程排序</span>
+                            <input class="w-520-h36" id="txt_order" maxlength="9" value="0"/>
+                        </div>
+                        <div class="app-templete-line " style="height: auto" >
+                            <span class="w-120">流程帮助</span>
+                            <textarea class="app_process_design_deital" id="txt_Actdirections"></textarea>
+                        </div>
+                        <div class="app-templete-line">
+                            <span class="w-120">审批链设置</span>
+                            <span class="design-bg-icons3 app-checkbox" style="margin: 10px 5px 0px 8px;" id="span_skip"></span>
+                            <span style="margin: 10px 15px 0px 0px;">相同审批人过滤</span>
+                            <span class="m-t10" style="color: #999999;">勾选后，同一审批人需要多次审批时只审批一次，后续审批自动跳过</span>
+                        </div>
+                        <div class="app-templete-line">
+                            <span class="w-120">附件上传设置</span>
+                            <span class="design-bg-icons3 app-checkbox" style="margin: 10px 5px 0px 8px;" id="span_require_attach"></span>
+                            <span style="margin: 10px 15px 0px 0px;">发起人必填</span>
+                            <span class="m-t10" style="color: #999999;">勾选后，流程发起时必须上传附件，否则无法提交</span>
+                        </div>
+                        <!--            <div class="app-templete-line">
+                                        <span class="w-120">打印设置</span>
+                                        <div>
+                                            <div style="height: 30px;">
+                                                <span class="design-bg-icons3 app-checkbox" style="margin: 10px 5px 0px 8px;" id="span_fixed_print"></span>
+                                                <span style="margin: 10px 15px 0px 0px;">固定打印模板</span>
+                                                <span class="m-t10" style="color: #999999;">勾选后，所有人员打印时都采用此打印模板，无法自定义打印范围</span>
+                                            </div>
+                                            <table id="print_box" style="display:none;width: 600px;border: 1px solid #dfdfdf;border-radius: 4px; margin-left: 119px;box-sizing: border-box;padding: 22px;height: 78px;margin-top: 7px;">
+                                                <tbody>
+                                                <tr>
+                                                    <td> <span class="design-bg-icons3 app-checkbox" style="margin: 10px 5px 0px 8px;" ekey="print_startuser"></span>
+                                                        <span style="margin: 10px 15px 0px 0px;">发起人信息</span></td>
+                                                    <td>  <span class="design-bg-icons3 app-checkbox" style="margin: 10px 5px 0px 8px;" ekey="print_receiver"></span>
+                                                        <span style="margin: 10px 15px 0px 0px;">收文人</span></td>
+                                                    <td> <span class="design-bg-icons3 app-checkbox" style="margin: 10px 5px 0px 8px;" ekey="print_attachment"></span>
+                                                        <span style="margin: 10px 15px 0px 0px;">附件</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>    <span class="design-bg-icons3 app-checkbox" style="margin: 10px 5px 0px 8px;" ekey="print_relevance"></span>
+                                                        <span style="margin: 10px 15px 0px 0px;">关联流程</span></td>
+                                                    <td>     <span class="design-bg-icons3 app-checkbox" style="margin: 10px 5px 0px 8px;" ekey="print_approveoption"></span>
+                                                        <span style="margin: 10px 15px 0px 0px;">审批意见</span></td>
+                                                    <td>   <span class="design-bg-icons3 app-checkbox" style="margin: 10px 5px 0px 8px;" ekey="print_comment"></span>
+                                                        <span style="margin: 10px 15px 0px 0px;">流程留言</span></td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+
+                                    </div>-->
+                        <div class="app-templete-line">
+
+                            <span class="w-120">固定收文人</span>
+                            <div class="design-radio-list" id="design_radio_list">
+                                <div class="design-radio-line" style="padding-top: 0">
+                                    <span class="design-bg-icons3 app-radio checked m-t5" id="receiptbyUser" ></span>
+                                    <span class="m-t5 app-radio-text">按人员</span>
+                                    <div style="margin-left:120px;" class="radio-option-list">
+                                        <input id="txt_KSN_Receipt"/>
+                                    </div>
+                                </div>
+
+                                <div class="design-radio-line m-t10">
+                                    <span class="design-bg-icons3 app-radio" id="receiptbyRole"></span>
+                                    <span class="app-radio-text">按专项角色</span>
+                                    <div class="radio-option-list fw_left hide" style="max-width: 400px">
+                                        <div id="selectrole"   >
+
+
+                                        </div>
+                                        <a class="m-l15 fw_right" id="showspecialrole">点击选择</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!--
+                            <span class="design-bg-icons3 app-radio checked" id="app_process_range_all"></span>
+                            <span>按人员</span>
+                            <div style="margin-left:220px;">
+                                <input id="txt_KSN_Receipt"/>
+                            </div>
+                            <div class="design-radio-line">
+                                <span class="design-bg-icons3 app-radio" id="app_process_range_desc"></span>
+                                <span>按专项角色</span>
+                            </div>-->
+
+                        </div>
+                        <div class="app-templete-line">
+                            <span class="w-120">设定发起范围</span>
+                            <div class="design-radio-list">
+                                <div class="design-radio-line">
+                                    <span class="design-bg-icons3 app-radio checked" id="app_process_range_all"></span>
+                                    <span>全员均可发起</span>
+                                </div>
+                                <div class="design-radio-line p-r20">
+                                    <span class="design-bg-icons3 app-radio" id="app_process_range_desc"></span>
+                                    <span>指定范围的成员</span>
+                        <span class="rel fw_left" style="margin-left: 44px;margin-top: -8px;">
+                             <div class="helper">
+                                 <i></i>
+                                 <div class="helpertext" style="margin-top: -15px;padding: 10px;line-height: 20px">可选择部门（组织）、群组、人员及其组合。
+                                     <em class="em1" style="top: 24px;">
+                                         <em class="em2"></em>
+                                     </em>
+                                 </div>
+                             </div>
+                        </span>
+                                    <div class="clear"></div>
+                                </div>
+                                <div class="app_process_design_limit_control">
+                                    <input type="text" id="txt__KSN_LaunchLimit"/>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="app-templete-line">
+                            <span class="w-120">流程编号规则设置</span>
+                            <div class="design-radio-list" id="ruleRadio">
+                                <div class="design-radio-line">
+                                    <span type="0" class="design-bg-icons3 app-radio checked" ></span>
+                                    <span>系统默认设置</span>
+                                </div>
+                                <div class="design-radio-line">
+                                    <span type="1" class="design-bg-icons3 app-radio" ></span>
+                                    <span>自定义规则 (编号规则是：前缀+年号+编号值，如E201507024)</span>
+                        <span class="rel" style="margin-left: 44px;margin-top: -8px;">
+                             <div class="helper">
+                                 <i></i>
+                                 <div class="helpertext" style="margin-top: -38px;padding: 10px;line-height: 20px;width: 400px">
+                                     设置本流程编号规则后，发起的流程编号都按自定义规则设置。每次流程发起时编号会自动加1。
+                                     年号规则是按年月设置编号，重置规则设置编号值重置为初始值的时间。
+                                     <em class="em1" style="top: 43px;">
+                                         <em class="em2"></em>
+                                     </em>
+                                 </div>
+                             </div>
+                        </span>
+                                    <div class="clear"></div>
+                                </div>
+
+                                <div class="number-rule hide">
+                                    <div class="rule-box">
+                                        <dl>
+                                            <dt>固定前缀：</dt>
+                                            <dd><input  id="folioPrefix" placeholder="请输入字母" /></dd>
+                                            <dt>初始编号：</dt>
+                                            <dd><input maxlength="10" id="folioInit" placeholder="001" /></dd>
+                                        </dl>
+                                        <dl>
+                                            <dt>年号规则：</dt>
+                                            <dd>年月</dd>
+                                            <dt>重置规则</dt>
+                                            <dd>
+                                                <select id="folioResetType" class="w-100">
+                                                    <option value="1">年</option>
+                                                    <option value="2">月</option>
+                                                </select>
+                                            </dd>
+                                        </dl>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="desc-btn-list">
+                            <a class="btn-yellow-h32" id="btn_BaseInfo">保存并进入下一步</a>
+                            <!--<span class="desc m-l15">编辑基本信息不会导致流程下架。</span>-->
+                        </div>
+                    </div>
+                    <!--表单信息-->
+                    <div id="div_form" class="fw_hidden">
+                        <div class="app-templete-line" id="edit_line">
+                            <a class="design-bg-icons3 btn-edit-two" id="btn_edit_form" >编辑</a><a class="design-bg-icons3 btn-edit-two" id="btn_copyform">复制其他流程表单</a>
+                        </div>
+                        <div id="app_process_design_edit" class="form-preview"><div class="create-form" id="btn_edit_form_icon"><a >编辑创建新表单</a></div> </div>
+                        <div class="desc-btn-list">
+                            <a class="btn-yellow-h32 m-l25" id="btn_Form">下一步</a>
+                            <!--<span class="desc m-l15">编辑基本信息不会导致流程下架。</span>-->
+                        </div>
+                    </div>
+                    <!--环节信息-->
+                    <div id="div_act" class="fw_hidden">
+                        <div class="app-choose-design">
+                            <span class="design-bg-icons3 app-radio checked" id="span_design"></span>
+                            <span>通过设计器设计新审批链</span>
+                            <span class="design-bg-icons3 app-radio" id="span_custom"></span>
+                            <span>或者使用自定义审批链</span>
+                        </div>
+                        <div class="app-templete-line">
+                            <a class="design-bg-icons3 btn-edit-two"  id="js_edit_designer">编辑</a><a class="design-bg-icons3 btn-edit-two"  id="js_copydesigner">复制其他流程审批链</a>
+                        </div>
+                        <div class="app-templete-line">
+                            <div id="div_mxGraphView">
+                                <div class="create-form create-form2"><a >编辑创建新审批链</a></div>
+                            </div>
+                        </div>
+                        <div class="desc-btn-list">
+                            <a class="btn-yellow-h32" id="btn_act">保存并进入下一步</a>
+                            <a class="btn-yellow-h32" id="btn_actDraft">保存为草稿</a>
+                        </div>
+                    </div>
+                    <!--流程表单权限-->
+                    <div id="div_auth" class="fw_hidden">
+                        <div style="margin-bottom:10px;" class="app_process_setper_divview">
+                            <table class="app_process_setper_table">
+                                <!--流程字段配置内容-->
+                            </table>
+                        </div>
+                        <div class="desc-btn-list">
+                            <a class="btn-yellow-h32" id="btn_auth">保存并上架</a>
+                            <a class="btn-yellow-h32" id="btn_draft">保存为草稿</a>
+
+                            <a id="proc-go-2-adv" class="proc-2-adv">流程二次高级开发&gt;&gt;</a>
+                        </div>
+                    </div>
+                    <!--流程高级开发-->
+                    <style type="text/css">
+                        .frm-ls{padding:15px;}
+                        .frm-ls li{overflow: hidden;}
+                        .frm-title{float:left;width:130px;text-align: right;padding-right:15px;line-height:35px;}
+                        .frm-prtt{float:left;}
+                        .frm-prtt input{width:750px;}
+                        .lableTxt{line-height:35px;
+                            display: inline;}
+                        .txt-desc{margin:10px 30px;
+                            padding: 15px;line-height: 25px;;
+                            color: #D26B00;
+                            background-color: #FFFBF4;
+                            border: 1px solid #D26B00;
+                            -webkit-box-shadow: #FF4C00 0 0 3px;
+                            -moz-box-shadow: #FF4C00 0 0 3px;
+                            box-shadow: #FF4C00 0 0 3px;
+                            -webkit-border-radius: 5px;
+                            -moz-border-radius: 5px;
+                            -ms-border-radius: 5px;
+                            -o-border-radius: 5px;
+                            border-radius: 5px;}
+                        .txt-desc p{text-indent:50px;}
+                    </style>
+                </div>
+            </div>
+            <script id="div_advanceDev" type="text/html">
+                <div id="div_3rdDev">
+                    <div class="txt-desc">
+                        <b>温馨提示：</b><br/>
+                        <p>1,当前设置，仅针对于流程的高级开发使用，若该流程涉及二次高级开发，则需要设置，若没有涉及，请忽略！</p>
+                        <p>2,第三方style与script文件导入时，请填写资源文件的绝对地址，若当前主域名使用https协议，则资源文件也需使用https协议！多个文件地址，请以半角输入法下的分号“;”隔开。</p>
+                        <p>3,经过二次高级开发后的流程，可能不能适应移动APP端发起使用，请在此设置是否允许移动端发起。</p>
+                    </div>
+                    <ul class="frm-ls">
+                        <li class="app-templete-line">
+                            <div class="frm-title">style样式导入：</div>
+                            <div class="frm-prtt"><input type="text" class="w-520-h36" placeholder="style脚本资源，请使用以https协议的地址，多个以半角输入法下分号“;”隔开" id="txt_css_uris"/></div></li>
+                        <li class="app-templete-line">
+                            <div class="frm-title">script脚本导入：</div>
+                            <div class="frm-prtt"><input type="text" class="w-520-h36" placeholder="javascript脚本资源，请使用以https协议的地址，多个以半角输入法下分号“;”隔开" id="txt_js_uris"/></div></li>
+                        <li class="app-templete-line" id="area-selector">
+                            <div class="frm-title">移动端发起：</div>
+                            <div class="frm-prtt">
+                                <div class="design-radio-line">
+                                    <span type="0" id="radio-enableMS-0" class="design-bg-icons3 app-radio radio-enableMS checked"></span>
+                                    <span class="lableTxt">不允许移动端发起</span>
+                                </div>
+                                <div class="design-radio-line">
+                                    <span type="1" id="radio-enableMS-1" class="design-bg-icons3 app-radio radio-enableMS"></span>
+                                    <span class="lableTxt">允许移动端发起</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="app-templete-line" style="text-align: center">
+                            <a class="btn-yellow-h32 m-l25" id="btn_save2devSet">保存设置</a>
+                        </li>
+                    </ul>
+                </div>
+            </script>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<style>
+    html{ position: relative; min-height: 100%;}
+    .app-content-bg,.set-cont,.proc_detail_center_out_wrap{ padding-bottom: 120px;}
+</style>
+<div class="app-footer">
+    <ul class="links-list"><li><a target="_blank" href="http://www.i8xiaoshi.com/help">帮助中心</a><span>|</span></li><li><a target="_blank" href="http://www.i8xiaoshi.com/mobile">移动端</a><span>|</span></li><li><a target="_blank" href="http://www.i8xiaoshi.com/abouti8/home#linkme">联系我们</a></li><li><a class="footer-phone"></a></li><li><a target="_blank" href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&amp;key=XzkzODAyNTMwMl8xNjY3MDlfNDAwODc3MTE4MV8yXw" class="footer-qq"></a></li></ul><div class="app-copyright">沪ICP备13026113号 Copyright @ 2012-2016 i8xiaoshi</div>
+</div>
+<script  src="//res.i8xiaoshi.com/community/combine/script/i8plugins-core.min.js?v=20160801"></script>
+<!--<script  src="https://res.i8xiaoshi.com/community/default/javascripts/common/i8_lib.js"></script>-->
+<script>
+    seajs.config({base:'https://res.i8xiaoshi.com/workflow/',debug:true,charset:'utf-8',timeout:20000,map:[[ /^(.*\.(?:css|js))(.*)$/i, '$1?ver=20160801' ],[/^((.*)default(.*\.tpl))$/, 'https://res.i8xiaoshi.com/workflow/default$3']]});
+</script>
+<script  src="//res.i8xiaoshi.com/cb-res/??combine/script/com-controls.min.js,combine/script/com-tips.min.js?v=20160801"></script><script type="text/javascript">seajs.use("default/javascripts/modules/tips")</script>
+
+<script>
+    seajs.use('https://res.i8xiaoshi.com/community/default/javascripts/common/unrootbtn.js')
+</script>
+<script type="text/javascript">
+    var js_wf_BaseInfoID = '';//流程基本信息ID
+    var copyBaseInfoID = '';//复制功能的零食复制ID变量
+    var js_wf_Status = "";//流程状态，新增还是修改
+    if(js_wf_BaseInfoID != "")
+        js_wf_Status = "edit";
+    var diagramMetaData = "";//设计器内容
+    var tamplatePowerAid = "cd2977ad7aee4db19d321516a9addf89";
+    seajs.use("default/javascripts/design/dev",function(dev){
+        dev.init();
+    });
+</script>
+
+<script>
+
+    // $('.app-mapsite').on('click','a',function(){
+    //
+    var pageInit = function() {
+        var _targetMenu = $('.app-left').find('.current').attr('targetmenu') ||'';
+
+        if(!!_targetMenu){
+
+            var _$container = $('.app-mapsite');
+            _$container.find('.current').removeClass('current');
+            _$container.find('a').each(function(item){
+
+                if($(this).attr('menuname') === _targetMenu){
+                    $(this).addClass('current');
+                    return false;
+                }
+                return true;
+            });
+        }
+        // $(this).addClass('current');
+        //  })
+    }();
+
+</script>
+</body>
+</html>
+

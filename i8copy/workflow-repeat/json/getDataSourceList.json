@@ -1,0 +1,37 @@
+/**
+ * Created by ryf on 2016/8/2.
+ */
+{
+  "Code": 0,
+  "Result": true,
+  "ReturnObject": {
+    "Item1": 2,
+    "Item2": [
+      {
+        "Name": "人员职级[系统]",
+        "Status": 1,
+        "SortIndex": 0,
+        "Type": 2,
+        "Items": null,
+        "ProcCount": 2,
+        "ID": "713e0725-6c2b-43e1-845f-db4a653ddba6",
+        "LastUpdateTime": "2016-08-01 10:19:17",
+        "CreateTime": "2016-08-01 10:19:17",
+        "AccountID": "3a1b83cb-cca7-41c1-852c-e5fceb78df4e"
+      },
+      {
+        "Name": "交通工具",
+        "Status": 1,
+        "SortIndex": 0,
+        "Type": 0,
+        "Items": null,
+        "ProcCount": 0,
+        "ID": "56b40745-e75b-4462-9e4f-fdf1cccffabf",
+        "LastUpdateTime": "2016-08-01 10:19:14",
+        "CreateTime": "2016-08-01 10:19:14",
+        "AccountID": "3a1b83cb-cca7-41c1-852c-e5fceb78df4e"
+      }
+    ]
+  },
+  "Description": ""
+}

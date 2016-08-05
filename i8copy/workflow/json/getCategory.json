@@ -1,0 +1,76 @@
+{
+  "Code": 0,
+  "Result": true,
+  "ReturnObject": {
+    "Item1": 6,
+    "Item2": [
+      {
+        "CategoryName": "财务",
+        "SortIndex": 11111,
+        "Status": 1,
+        "ActiveCount": 1,
+        "TotalCount": 3,
+        "ID": "8ac0a5bd-be6b-d409-8694-708d94e30830",
+        "LastUpdateTime": "2016-08-01 16:51:22",
+        "CreateTime": "2016-08-01 13:33:44",
+        "AccountID": "3a1b83cb-cca7-41c1-852c-e5fceb78df4e"
+      },
+      {
+        "CategoryName": "法务",
+        "SortIndex": 1111,
+        "Status": 1,
+        "ActiveCount": 0,
+        "TotalCount": 3,
+        "ID": "ce9a7a3b-e740-6fc3-6271-e656dc62dde9",
+        "LastUpdateTime": "2016-08-01 16:51:17",
+        "CreateTime": "2016-08-01 13:33:59",
+        "AccountID": "3a1b83cb-cca7-41c1-852c-e5fceb78df4e"
+      },
+      {
+        "CategoryName": "与国土与",
+        "SortIndex": 1111,
+        "Status": 1,
+        "ActiveCount": 0,
+        "TotalCount": 0,
+        "ID": "89f81cba-ddc4-89e6-0096-7bc2332c3e72",
+        "LastUpdateTime": "2016-08-01 16:51:29",
+        "CreateTime": "2016-08-01 14:43:27",
+        "AccountID": "3a1b83cb-cca7-41c1-852c-e5fceb78df4e"
+      },
+      {
+        "CategoryName": "123",
+        "SortIndex": 123,
+        "Status": 1,
+        "ActiveCount": 0,
+        "TotalCount": 0,
+        "ID": "cbc7ef8d-d787-c8a7-b5d7-4a7d7a9a7a0f",
+        "LastUpdateTime": "2016-08-01 16:51:07",
+        "CreateTime": "2016-08-01 16:14:19",
+        "AccountID": "3a1b83cb-cca7-41c1-852c-e5fceb78df4e"
+      },
+      {
+        "CategoryName": "IT类",
+        "SortIndex": 2,
+        "Status": 1,
+        "ActiveCount": 1,
+        "TotalCount": 2,
+        "ID": "fb9b2cef-f9bf-47d3-a732-2e960e6867da",
+        "LastUpdateTime": "2016-08-01 12:36:22",
+        "CreateTime": "2016-08-01 10:19:16",
+        "AccountID": "3a1b83cb-cca7-41c1-852c-e5fceb78df4e"
+      },
+      {
+        "CategoryName": "人事类",
+        "SortIndex": 0,
+        "Status": 1,
+        "ActiveCount": 1,
+        "TotalCount": 1,
+        "ID": "83c5bbe5-29a7-4751-83b9-09b765f46786",
+        "LastUpdateTime": "2016-08-01 10:19:17",
+        "CreateTime": "2016-08-01 10:19:17",
+        "AccountID": "3a1b83cb-cca7-41c1-852c-e5fceb78df4e"
+      }
+    ]
+  },
+  "Description": ""
+}

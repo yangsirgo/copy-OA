@@ -1,0 +1,1 @@
+define("default/javascripts/plugins/i8formdesigner/template/property-subsetoption.tpl", [], '<div class="boxrow">\n	<div class="brtt">\n		<span class="span_bfieldTxt">数据源：</span>\n	</div>\n	<div class="brbx">\n		<select id="slt_selectdatasource"></select>\n	</div>\n</div>');

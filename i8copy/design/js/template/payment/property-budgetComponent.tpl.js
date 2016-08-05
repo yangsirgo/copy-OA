@@ -1,0 +1,1 @@
+define("default/javascripts/plugins/i8formdesigner/template/payment/property-budgetComponent.tpl", [], '<div class="boxrow">\n  <div class="brtt">\n    <span class="span_bfieldTxt">显示字段：</span>\n  </div>\n  <div class="brbx budget-extent-datasource" style="width:200px;">\n\n  </div>\n</div>');

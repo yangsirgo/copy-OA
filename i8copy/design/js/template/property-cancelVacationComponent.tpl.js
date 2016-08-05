@@ -1,0 +1,1 @@
+define("default/javascripts/plugins/i8formdesigner/template/property-cancelVacationComponent.tpl", [], "");
