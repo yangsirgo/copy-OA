@@ -9,18 +9,18 @@ define(function (require, exports) {
     // var guidang= require.async(""+i8_session.resHost+"default/javascripts/document/common.js");
     window.powerIndex=window.powerIndex || 1;
     var sf = {
-        fjId: "js_fj_id",  //控制显示隐藏容器ID
-        panlId: "js_sf_panl", //整个查看器容器ID
-        closeId: "js_sf_close", //关闭按钮ID
-        fullScreenId:'js_sf_fullScreen',//全屏
-        showleftId: "js_showimg_div", //左侧图片展示容器ID
-        ckImgId: "js_showimg_id", //展示当前选择图片的ID
-        bigckImgId: "js_showbigimg_id",//大图
-        ckFileId: "js_sf_id", //展示当前附件容器ID
-        imgsPanlId: "js_imgsall_Id",//图片列表容器ID
-        prevImg: "/default/images/fjsee/pic_prev.cur",   //上一张图标路�?
-        nextImg: "/default/images/fjsee/pic_next.cur",   //下一张图标路�?
-        datas: {},                  //附件参数缓存
+        fjId: "js_fj_id",  //鎺у埗鏄剧ず闅愯棌瀹瑰櫒ID
+        panlId: "js_sf_panl", //鏁翠釜鏌ョ湅鍣ㄥ鍣↖D
+        closeId: "js_sf_close", //鍏抽棴鎸夐挳ID
+        fullScreenId:'js_sf_fullScreen',//鍏ㄥ睆
+        showleftId: "js_showimg_div", //宸︿晶鍥剧墖灞曠ず瀹瑰櫒ID
+        ckImgId: "js_showimg_id", //灞曠ず褰撳墠閫夋嫨鍥剧墖鐨処D
+        bigckImgId: "js_showbigimg_id",//澶у浘
+        ckFileId: "js_sf_id", //灞曠ず褰撳墠闄勪欢瀹瑰櫒ID
+        imgsPanlId: "js_imgsall_Id",//鍥剧墖鍒楄〃瀹瑰櫒ID
+        prevImg: "/default/images/fjsee/pic_prev.cur",   //涓婁竴寮犲浘鏍囪矾鍔?
+        nextImg: "/default/images/fjsee/pic_next.cur",   //涓嬩竴寮犲浘鏍囪矾鍔?
+        datas: {},                  //闄勪欢鍙傛暟缂撳瓨
         fileBgUrl: i8_session.resHost+"default/images/fjsee/",
         protocol:window.location.protocol,
         iframeUrl: "",
@@ -78,7 +78,7 @@ define(function (require, exports) {
                 return document.documentElement.clientHeight;
             }
         },
-        //初始化加载框�?
+        //鍒濆鍖栧姞杞芥鏋?
         begin: function (data) {
             sf.datas = data;
             var _downurl=sf.getDownUrl(data.imgs[data.ckindex]);
@@ -92,17 +92,17 @@ define(function (require, exports) {
                 '<div id="' + sf.imgsPanlId + '" class="fj_smalls">',
                 '<div class="fj_small_cont">',
                 '<div id="fj_img_editdiv" class="fj_links_div hide">',
-                //'<a class="del_file fj3">删除</a>',
-                '<a class="upimg_angle fj1">向左�?</a>',
-                '<a class="upimg_angle fj2">向右�?</a>',
-                '<a class="upimg_size fj3">放大</a>',
-                '<a id="fj_file_guidang" gd-in-dielog="true" class="fj_file_guidang fj5 hide">归档到企业文�?</a>',
-                '<a class="down_link fj4" href="'+_downurl+'" target="_blank">下载原图</a>',
+                //'<a class="del_file fj3">鍒犻櫎</a>',
+                '<a class="upimg_angle fj1">鍚戝乏杞?</a>',
+                '<a class="upimg_angle fj2">鍚戝彸杞?</a>',
+                '<a class="upimg_size fj3">鏀惧ぇ</a>',
+                '<a id="fj_file_guidang" gd-in-dielog="true" class="fj_file_guidang fj5 hide">褰掓。鍒颁紒涓氭枃妗?</a>',
+                '<a class="down_link fj4" href="'+_downurl+'" target="_blank">涓嬭浇鍘熷浘</a>',
                 '</div>',
                 '<div id="fj_file_editdiv" class="fj_links_div hide">',
-                //'<a class="del_file fj3">删除</a>',
-                '<a gd-in-dielog="true" class="fj_file_guidang fj5 hide">归档到企业文�?</a>',
-                '<span class="down_file fj4" target="_blank">下载查看</span>',
+                //'<a class="del_file fj3">鍒犻櫎</a>',
+                '<a gd-in-dielog="true" class="fj_file_guidang fj5 hide">褰掓。鍒颁紒涓氭枃妗?</a>',
+                '<span class="down_file fj4" target="_blank">涓嬭浇鏌ョ湅</span>',
                 '</div>',
                 '</div>',
                 '<ul class="fj_small_ul oflow">',
@@ -135,7 +135,7 @@ define(function (require, exports) {
                 $(document).height();
             }
         },
-        //计算宽度，高度函�?
+        //璁＄畻瀹藉害锛岄珮搴﹀嚱鏁?
         countSize: function () {
             if (top.location == location) {
                 $(document.body).css("overflow", "hidden");
@@ -151,7 +151,7 @@ define(function (require, exports) {
             $panl.width(panlWidth);
             //$pleft.width(panlWidth);
 
-            //判断遮罩层是否存�?
+            //鍒ゆ柇閬僵灞傛槸鍚﹀瓨鍦?
             if (!sf.getEment("js_mask_zhezhao_div")) {
                 if (top.location != location) {
                     $(window.parent.document.body).append('<div id="js_mask_zhezhao_div" class="fw_mask" style="display:block;"></div>');
@@ -162,20 +162,20 @@ define(function (require, exports) {
                 sf.dg("js_mask_zhezhao_div").show();
                 $("#js_mask_zhezhao_div").show();
             }
-            //设置弹出层的位置
+            //璁剧疆寮瑰嚭灞傜殑浣嶇疆
 
             $fjdiv.css({ "width": panlWidth, "height": sf.getHeight() }).show();
             sf.imgMaxH = sf.getClientHeight() - sf.footheight;
-            $pleft.css({ "height": sf.imgMaxH + "px", "line-height": sf.imgMaxH + "px" }); //修改适用于图片查看的样式
+            $pleft.css({ "height": sf.imgMaxH + "px", "line-height": sf.imgMaxH + "px" }); //淇敼閫傜敤浜庡浘鐗囨煡鐪嬬殑鏍峰紡
             sf.dg(sf.imgsPanlId).width(panlWidth);
-            //显示图片文件列表
+            //鏄剧ず鍥剧墖鏂囦欢鍒楄〃
             sf.loadAllimgs();
 
             var ckobj = sf.datas.imgs[sf.datas.ckindex];
-            //加载当前选择�?
+            //鍔犺浇褰撳墠閫夋嫨椤?
             sf.loadChecked(ckobj);
         },
-        //显示当前选中的图�?
+        //鏄剧ず褰撳墠閫変腑鐨勫浘鐗?
         checkImg: function (item) {
             sf.dg("js_no_see_file").remove();
             var imgDom = sf.getEment(sf.ckImgId)
@@ -185,14 +185,14 @@ define(function (require, exports) {
             }
             sf.dg("js_loading").show();
             //sf.imgMaxW = $(document).width() - 140;
-            //操作区域更替
+            //鎿嶄綔鍖哄煙鏇存浛
             sf.dg("fj_file_editdiv").hide();
             sf.dg("fj_img_editdiv").show();
             if (imgDom) {
                 sf.narrowImg();
                 imgDom.style.display = "none";
                 imgDom.src = item.FilePath;
-                var oldsrc = sf.getEment(sf.bigckImgId).src; //保存原来显示的图片地坢�
+                var oldsrc = sf.getEment(sf.bigckImgId).src; //淇濆瓨鍘熸潵鏄剧ず鐨勫浘鐗囧湴鍧€
                 sf.getEment(sf.bigckImgId).src = item.ImageLarge;
                 $(imgDom).attr("rotation", "0").attr("angle", "0").css({ "max-height": sf.imgMaxH, "max-width": sf.imgMaxW });
             } else {
@@ -204,8 +204,8 @@ define(function (require, exports) {
                 $pleft.append(conhtml);
                 imgDom = sf.getEment(sf.ckImgId);
             }
-            sf.dg(sf.imgsPanlId).find(".down_link").attr("href", _downurl);	 //更新下载图片地址
-            if (oldsrc && oldsrc.indexOf(item.FilePath) >= 0) {  //如果图片地址无改�? 则需手动显示 无法触发onload事件
+            sf.dg(sf.imgsPanlId).find(".down_link").attr("href", _downurl);	 //鏇存柊涓嬭浇鍥剧墖鍦板潃
+            if (oldsrc && oldsrc.indexOf(item.FilePath) >= 0) {  //濡傛灉鍥剧墖鍦板潃鏃犳敼鍙? 鍒欓渶鎵嬪姩鏄剧ず 鏃犳硶瑙﹀彂onload浜嬩欢
                 sf.dg("js_loading").hide();
                 imgDom.style.display = "inline-block";
             }
@@ -214,14 +214,14 @@ define(function (require, exports) {
                 sf.dg("js_loading").hide();
             }
             if (item.CreaterID==i8_session.uid && item.DocTreeID==0) {
-                sf.dg(sf.imgsPanlId).find('.fj_file_guidang').css('display','inline-block').text('归档到企业文�?').attr('docname',item.FileName).attr('docid',item.ID);
+                sf.dg(sf.imgsPanlId).find('.fj_file_guidang').css('display','inline-block').text('褰掓。鍒颁紒涓氭枃妗?').attr('docname',item.FileName).attr('docid',item.ID);
             } else if(item.CreaterID==i8_session.uid && item.DocTreeID!=0){
-                sf.dg(sf.imgsPanlId).find('.fj_file_guidang').css('display','inline-block').text('已归�?').attr('docname',item.FileName).attr('docid',item.ID);
+                sf.dg(sf.imgsPanlId).find('.fj_file_guidang').css('display','inline-block').text('宸插綊妗?').attr('docname',item.FileName).attr('docid',item.ID);
             }else{
                 sf.dg(sf.imgsPanlId).find('.fj_file_guidang').hide();
             }
         },
-        //显示当前选中的文�?
+        //鏄剧ず褰撳墠閫変腑鐨勬枃妗?
         checkFile: function (item, aid) {
             var down_url=sf.getDownUrl(item);
             var fileDom = sf.getEment(sf.ckFileId);
@@ -231,7 +231,7 @@ define(function (require, exports) {
             }
             var ldDom = sf.dg("js_loading");
             ldDom.hide();
-            //操作区域更替
+            //鎿嶄綔鍖哄煙鏇存浛
             sf.dg("fj_img_editdiv").hide();
             sf.dg("fj_file_editdiv").show();
             sf.dg(sf.imgsPanlId).find(".down_link").attr("href", down_url);
@@ -240,15 +240,15 @@ define(function (require, exports) {
                 sf.dg("js_loading").hide();
                 sf.dg(sf.ckFileId).hide();
                 if (!sf.getEment("js_no_see_file")) {
-                    sf.dg(sf.showleftId).append("<div docid='"+item.ID+"' id='js_no_see_file' style='background:#fff; font-size:14px; color: red;'>该文件不支持在线阅读�?<span class='down_file' target='_blank' >请下载查�?</span></div>");
+                    sf.dg(sf.showleftId).append("<div docid='"+item.ID+"' id='js_no_see_file' style='background:#fff; font-size:14px; color: red;'>璇ユ枃浠朵笉鏀寔鍦ㄧ嚎闃呰锛?<span class='down_file' target='_blank' >璇蜂笅杞芥煡鐪?</span></div>");
                     sf.dg(sf.imgsPanlId).find(".down_file").attr("href",down_url);
                 }
-                //归档绑定
+                //褰掓。缁戝畾
                 sf.dg(sf.imgsPanlId).find(".down_file").attr("href", down_url);
                 if (item.CreaterID==i8_session.uid && item.DocTreeID==0) {
-                    sf.dg(sf.imgsPanlId).find('.fj_file_guidang').css('display','inline-block').text('归档到企业文�?').attr('docname',item.FileName).attr('docid',item.ID);
+                    sf.dg(sf.imgsPanlId).find('.fj_file_guidang').css('display','inline-block').text('褰掓。鍒颁紒涓氭枃妗?').attr('docname',item.FileName).attr('docid',item.ID);
                 } else if(item.CreaterID==i8_session.uid && item.DocTreeID!=0){
-                    sf.dg(sf.imgsPanlId).find('.fj_file_guidang').css('display','inline-block').text('已归�?').attr('docname',item.FileName).attr('docid',item.ID);
+                    sf.dg(sf.imgsPanlId).find('.fj_file_guidang').css('display','inline-block').text('宸插綊妗?').attr('docname',item.FileName).attr('docid',item.ID);
                 }else{
                     sf.dg(sf.imgsPanlId).find('.fj_file_guidang').hide();
                 }
@@ -272,30 +272,30 @@ define(function (require, exports) {
             fileDom.style.display = "block";
             sf.dg(sf.imgsPanlId).find(".down_file").attr("href", down_url);
             if (item.CreaterID==i8_session.uid && item.DocTreeID==0) {
-                sf.dg(sf.imgsPanlId).find('.fj_file_guidang').css('display','inline-block').text('归档到企业文�?').attr('docname',item.FileName).attr('docid',item.ID);
+                sf.dg(sf.imgsPanlId).find('.fj_file_guidang').css('display','inline-block').text('褰掓。鍒颁紒涓氭枃妗?').attr('docname',item.FileName).attr('docid',item.ID);
             } else if(item.CreaterID==i8_session.uid && item.DocTreeID!=0){
-                sf.dg(sf.imgsPanlId).find('.fj_file_guidang').css('display','inline-block').text('已归�?').attr('docname',item.FileName).attr('docid',item.ID);
+                sf.dg(sf.imgsPanlId).find('.fj_file_guidang').css('display','inline-block').text('宸插綊妗?').attr('docname',item.FileName).attr('docid',item.ID);
             }else{
                 sf.dg(sf.imgsPanlId).find('.fj_file_guidang').hide();
             }
             // @todo
             //sf.dg("fj_file_guidang").hide();
         },
-        //加载当前选择�?
+        //鍔犺浇褰撳墠閫夋嫨椤?
         loadChecked: function (ckobj) {
             if (sf.datas.imgs.length <= 0) {
                 sf.close();
             }
             if (ks.getTypestr(ckobj.Extension) == "img") {
-                sf.checkImg(ckobj);//图片
+                sf.checkImg(ckobj);//鍥剧墖
             } else {
-                sf.checkFile(ckobj); //文件
+                sf.checkFile(ckobj); //鏂囦欢
             }
             var objlis = sf.dg(sf.imgsPanlId).find("li.fj_small_li");
             objlis.removeClass("current");
             $(objlis[sf.datas.ckindex]).addClass("current");
         },
-        //加载扢�有附件列�?
+        //鍔犺浇鎵€鏈夐檮浠跺垪琛?
         loadAllimgs: function () {
             var imgpanl = sf.dg(sf.imgsPanlId);
             var imgul = imgpanl.find("ul");
@@ -320,7 +320,7 @@ define(function (require, exports) {
         },
         guidang:function($guidangbtn){
             var $this=$guidangbtn;
-            if($this.text()=='已归�?'){
+            if($this.text()=='宸插綊妗?'){
                 return false;
             }
             var item= sf.datas.imgs[sf.datas.ckindex];
@@ -340,9 +340,9 @@ define(function (require, exports) {
                 }
                 sf.updateData(_fileId,$kk_files_panl);
                 sf.updateData(_fileId,$if_kk_files_panl);
-                $this.text('已归�?');
-                $('.btn-place-on-file[docid='+_fileId+']').replaceWith('<a class="btn-has-place-on-file" href="javascript:void(0)">已归�?</a>')
-                $(window.frames["iframe-kankan"].document).find('.btn-place-on-file[docid='+_fileId+']').replaceWith('<a class="btn-has-place-on-file" href="javascript:void(0)">已归�?</a>')
+                $this.text('宸插綊妗?');
+                $('.btn-place-on-file[docid='+_fileId+']').replaceWith('<a class="btn-has-place-on-file" href="javascript:void(0)">宸插綊妗?</a>')
+                $(window.frames["iframe-kankan"].document).find('.btn-place-on-file[docid='+_fileId+']').replaceWith('<a class="btn-has-place-on-file" href="javascript:void(0)">宸插綊妗?</a>')
             })
 
         },
@@ -360,7 +360,7 @@ define(function (require, exports) {
             data_arr=util.toJsonString(data_arr);
             $kk_files_panl.attr('data-arrs',data_arr);
         },
-        //旋转函数
+        //鏃嬭浆鍑芥暟
         setAngle: function (obj, size, index) {
             var browser = navigator.appName
             var b_version = navigator.appVersion
@@ -408,7 +408,7 @@ define(function (require, exports) {
                 }).attr("angle", angle);
             }
         },
-        //缩小放大图片并将图片旋转归零函数
+        //缂╁皬鏀惧ぇ鍥剧墖骞跺皢鍥剧墖鏃嬭浆褰掗浂鍑芥暟
         narrowImg: function () {
             if (sf.getEment(sf.ckImgId).style.filter) {
                 sf.getEment(sf.ckImgId).style.filter = "progid:DXImageTransform.Microsoft.BasicImage(rotation=0)";
@@ -434,11 +434,11 @@ define(function (require, exports) {
             sf.dg(sf.bigckImgId).hide();
             sf.dg(sf.ckImgId).attr("angle", "0").attr("rotation", "0");
             sf.dg(sf.showleftId).css("overflow", "hidden");
-            sf.dg(sf.imgsPanlId).find("a.upimg_size").removeClass("fj3_1").html('放大');
+            sf.dg(sf.imgsPanlId).find("a.upimg_size").removeClass("fj3_1").html('鏀惧ぇ');
         },
-        //绑定图片的各种事�?
+        //缁戝畾鍥剧墖鐨勫悇绉嶄簨浠?
         bindImgclick: function () {
-            //鼠标移动时显示的图标更换
+            //榧犳爣绉诲姩鏃舵樉绀虹殑鍥炬爣鏇存崲
             sf.dg(sf.showleftId).unbind().mousemove(function (e) {
                 var objthis = $(this);
                 var left = objthis.offset().left;
@@ -461,7 +461,7 @@ define(function (require, exports) {
                     }
                 }
             });
-            //图片切换事件
+            //鍥剧墖鍒囨崲浜嬩欢
             sf.dg(sf.showleftId).click(function (e) {
                 var objthis = $(this);
                 var left = objthis.offset().left;
@@ -470,9 +470,9 @@ define(function (require, exports) {
                 var ev = window.event || e || window.parent.event;
                 var sizeX = ev.clientX || ev.pageX;
                 if (sizeX - left > contwidth / 2) {
-                    sf.datas.ckindex++;		//下一�?
+                    sf.datas.ckindex++;		//涓嬩竴寮?
                 } else {
-                    sf.datas.ckindex--;		// 上一�?
+                    sf.datas.ckindex--;		// 涓婁竴寮?
                 }
                 if (sf.datas.ckindex < 0) {
                     sf.datas.ckindex = 0;
@@ -482,67 +482,67 @@ define(function (require, exports) {
                     sf.datas.ckindex = sf.datas.imgs.length - 1;
                     return;
                 }
-                //显示当先选择�?
+                //鏄剧ず褰撳厛閫夋嫨椤?
                 sf.loadChecked(sf.datas.imgs[sf.datas.ckindex]);
             });
-            //关闭事件
+            //鍏抽棴浜嬩欢
             sf.dg(sf.closeId).click(function () {
                 sf.close();
             });
-            //全屏事件
+            //鍏ㄥ睆浜嬩欢
             sf.dg(sf.fullScreenId).click(function () {
                 sf.fullScreen();
             });
-            //底部图片排列事件，阻止事件冒�?
+            //搴曢儴鍥剧墖鎺掑垪浜嬩欢锛岄樆姝簨浠跺啋娉?
             sf.dg(sf.imgsPanlId).delegate("ul", "click", function () {
                 return false;
             });
-            //放大缩小事件
+            //鏀惧ぇ缂╁皬浜嬩欢
             sf.dg(sf.imgsPanlId).delegate(".upimg_size", "click", function () {
                 var thistext = $.trim($(this).text());
-                if (thistext == "放大") {
+                if (thistext == "鏀惧ぇ") {
                     sf.dg(sf.ckImgId).hide();
                     sf.dg(sf.bigckImgId).show();
                     sf.dg(sf.showleftId).css("overflow", "auto");
-                    $(this).html('缩小').addClass("fj3_1");
+                    $(this).html('缂╁皬').addClass("fj3_1");
                 }
-                if (thistext == "缩小") {
+                if (thistext == "缂╁皬") {
                     sf.dg(sf.bigckImgId).hide();
                     sf.dg(sf.ckImgId).show();
                     sf.dg(sf.showleftId).css("overflow", "hidden");
-                    $(this).html('放大').removeClass("fj3_1");
+                    $(this).html('鏀惧ぇ').removeClass("fj3_1");
                 }
             });
-            //图片旋转事件
+            //鍥剧墖鏃嬭浆浜嬩欢
             sf.dg(sf.imgsPanlId).delegate(".upimg_angle", "click", function () {
                 if (sf.getEment(sf.ckImgId).style.display == "none") {
                     sf.narrowImg();
                 }
-                if ($(this).text() == "向右�?") {
+                if ($(this).text() == "鍚戝彸杞?") {
                     sf.setAngle(sf.dg(sf.ckImgId), 90, 1);
                 } else {
                     sf.setAngle(sf.dg(sf.ckImgId), -90, -1);
                 }
             });
-            //底部图片点击切换事件
+            //搴曢儴鍥剧墖鐐瑰嚮鍒囨崲浜嬩欢
             sf.dg(sf.imgsPanlId).delegate("li.fj_small_li", "click", function () {
                 var objlis = sf.dg(sf.imgsPanlId).find("li.fj_small_li");
                 var index = objlis.index($(this));
                 sf.datas.ckindex = index;
                 sf.loadChecked(sf.datas.imgs[index]);
             });
-            //归档到知识库
+            //褰掓。鍒扮煡璇嗗簱
             sf.dg(sf.imgsPanlId).find('.fj_file_guidang').click(function () {
                 var $this=$(this);
                 sf.guidang($this);
                 return false;
                 //sf.guidang(sf.datas.imgs[sf.datas.ckindex].ID);
             });
-            //下载文档事件
+            //涓嬭浇鏂囨。浜嬩欢
             sf.dg(sf.fjId).delegate(".down_file", "click", function () {
                 window.open($(this).attr("href"));
             });
-            //删除事件
+            //鍒犻櫎浜嬩欢
             sf.dg(sf.fjId).delegate(".del_file", "click", function () {
                 //console.log(sf.datas.ckindex);
                 var thisobj = sf.dg(sf.imgsPanlId).find(".current");
@@ -554,7 +554,7 @@ define(function (require, exports) {
 
             });
         },
-        //关闭函数
+        //鍏抽棴鍑芥暟
         close: function () {
             sf.dg(sf.fjId).remove();
             sf.dg(sf.fullScreenId).remove();
@@ -566,7 +566,7 @@ define(function (require, exports) {
                 $("#js_mask_zhezhao_div").hide();
             }
         },
-        //全屏
+        //鍏ㄥ睆
         fullScreen:function(){
             //console.log(sf.dg(sf.fjId))
             //sf.dg(sf.fjId).remove();
@@ -579,9 +579,9 @@ define(function (require, exports) {
 
     var ks = {
         className: "kk_files_panl",
-        getHtml: function (arrs, isDel,fileMaxWidth) {//fileMaxWidth宽度文件名字宽度
+        getHtml: function (arrs, isDel,fileMaxWidth) {//fileMaxWidth瀹藉害鏂囦欢鍚嶅瓧瀹藉害
             var fileMaxWidth=fileMaxWidth || 320;
-            var ulfile='<ul class="att_ulfile">';//附件展示刘表
+            var ulfile='<ul class="att_ulfile">';//闄勪欢灞曠ず鍒樿〃
             for (var i = 0; i < arrs.length; i++) {
                 var item = arrs[i];
                 var display = "none";
@@ -592,16 +592,16 @@ define(function (require, exports) {
                 }
                 var guidangHtml='';
                 if(item.CreaterID==i8_session.uid && item.DocTreeID!=0){
-                    guidangHtml='<a class="btn-has-place-on-file" href="javascript:void(0)">已归�?</a>'
+                    guidangHtml='<a class="btn-has-place-on-file" href="javascript:void(0)">宸插綊妗?</a>'
                 }else if(item.CreaterID==i8_session.uid && item.DocTreeID==0){
-                    guidangHtml='<a class="btn-place-on-file" docname="'+item.FileName+'" docid="'+item.ID+'" href="javascript:void(0)">归档</a>'
+                    guidangHtml='<a class="btn-place-on-file" docname="'+item.FileName+'" docid="'+item.ID+'" href="javascript:void(0)">褰掓。</a>'
                 }
                 ulfile += '<li style="'+m_l0+' ;padding-right:20px;" docid="'+item.ID+'" class=" oflow" id="' + item.ID + '">\
                             <span style="max-width:'+fileMaxWidth+'px;" docid="'+item.ID+'" title="'+item.FileName+'" class="filename-span kks_option_li m-l10" zindex="' + i + '">' + item.FileName + '</span>\
                                 <div class="rt m-r10">\
                                 <span class="" style="vertical-align: -2px;margin-right: 20px;">'+item.CreaterName+' '+new Date(item.CreateTime.replace(/-/g,'/')).format('yyyy/MM/dd hh:mm')+'</span>\
-                                <a class="kks_option_li" style="float: none;" zindex="' + i + '" href="javascript:void(0)">查看</a>\
-                                <a class="kks-down-a attfile-down" href="'+_downurl+'">下载</a>'+guidangHtml+'</div>\
+                                <a class="kks_option_li" style="float: none;" zindex="' + i + '" href="javascript:void(0)">鏌ョ湅</a>\
+                                <a class="kks-down-a attfile-down" href="'+_downurl+'">涓嬭浇</a>'+guidangHtml+'</div>\
                             <a class="del-down-a" style="margin-left:10px; display: ' + display + ';"></a>\
                             </li>';
             };
@@ -613,11 +613,11 @@ define(function (require, exports) {
             return ks.getHtml(arrs, isDel,fileMaxWidth);
         },
         getHtmlKK: function (arrs, isDel) {
-            var ulimgs = '<ul class="kks_op_ulimgs">'; //图片列表
-            var ulfile = '<ul class="kks_op_ulfiles">'; //文件列表
+            var ulimgs = '<ul class="kks_op_ulimgs">'; //鍥剧墖鍒楄〃
+            var ulfile = '<ul class="kks_op_ulfiles">'; //鏂囦欢鍒楄〃
             var SoundFile = '';
 
-            //对集合重新排�?
+            //瀵归泦鍚堥噸鏂版帓搴?
             var newarrs = [];
             for (var i = 0; i < arrs.length; i++) {
                 var item = arrs[i];
@@ -647,21 +647,21 @@ define(function (require, exports) {
                     dsplay = "inline";
                 }
                 var guidangHtml='';
-                //归档按钮
+                //褰掓。鎸夐挳
                 if(item.CreaterID==i8_session.uid && item.DocTreeID!=0){
-                    guidangHtml='<a class="btn-has-place-on-file" href="javascript:void(0)">已归�?</a>'
+                    guidangHtml='<a class="btn-has-place-on-file" href="javascript:void(0)">宸插綊妗?</a>'
                 }else if(item.CreaterID==i8_session.uid && item.DocTreeID==0){
-                    guidangHtml='<a class="btn-place-on-file" docname="'+item.FileName+'" docid="'+item.ID+'" href="javascript:void(0)">归档</a>'
+                    guidangHtml='<a class="btn-place-on-file" docname="'+item.FileName+'" docid="'+item.ID+'" href="javascript:void(0)">褰掓。</a>'
                 }
                 if (ks.getTypestr(item.Extension) == "img") {
-                    //ulimgs += '<li class="kks_option_li rel" id="' + item.ID + '" zindex="' + i + '" ><a class="del-down-a ct_layer_close" style="margin:0px; top:0px; right:-1px; width:7px; height: 6px; display:' + dsplay + ';" title="删除"></a><img src="' + item.ImageSmall + '"></li>';
+                    //ulimgs += '<li class="kks_option_li rel" id="' + item.ID + '" zindex="' + i + '" ><a class="del-down-a ct_layer_close" style="margin:0px; top:0px; right:-1px; width:7px; height: 6px; display:' + dsplay + ';" title="鍒犻櫎"></a><img src="' + item.ImageSmall + '"></li>';
                     ulfile += '<li docid="'+item.ID+'" style="'+m_l0+'" class="kks_option_li oflow" id="' + item.ID + '" zindex="' + i + '">' +
                         '<img class="uploader-process-image-preview" style="width:80px;height:80px;" src="'+item.FilePath +'?imageView2/1/w/80/h/80" />' +
                         '<div class="kks_op_file_info">' +
                         '<p class="attfile-name">' + decodeURI(item.FileName) + '</p>' +
                         '<div><span style="color:#999;">' + item.CreaterName +'</span></div>' +
                         '<div><span style="color:#999;">' + item.CreateTime + '</span></div>'+
-                        '<p><a  class="attfile-view" href="javascript:void(0)" >查看</a><a class="kks-down-a attfile-down" href="'+_downurl+'">下载</a>'+guidangHtml+'<a class="del-down-a" style="margin-left:10px; display: ' + dsplay + ';"></a></p>' +
+                        '<p><a  class="attfile-view" href="javascript:void(0)" >鏌ョ湅</a><a class="kks-down-a attfile-down" href="'+_downurl+'">涓嬭浇</a>'+guidangHtml+'<a class="del-down-a" style="margin-left:10px; display: ' + dsplay + ';"></a></p>' +
                         '</div>' +
                         '</li>';
                 }
@@ -672,7 +672,7 @@ define(function (require, exports) {
                         '<p class="attfile-name">' + decodeURI(item.FileName) + '</p>' +
                         '<div><span style="color:#999;">' + item.CreaterName +'</span></div>' +
                         '<div><span style="color:#999;">' + item.CreateTime + '</span></div>'+
-                        '<p><a href="javascript:void(0)">查看</a><a class="kks-down-a attfile-down" href="'+_downurl+'">下载</a>'+guidangHtml+'<a class="del-down-a" style="margin-left:10px; display: ' + dsplay + ';"></a></p>' +
+                        '<p><a href="javascript:void(0)">鏌ョ湅</a><a class="kks-down-a attfile-down" href="'+_downurl+'">涓嬭浇</a>'+guidangHtml+'<a class="del-down-a" style="margin-left:10px; display: ' + dsplay + ';"></a></p>' +
                         '</div>' +
                         '</li>';
                 }
@@ -714,7 +714,7 @@ define(function (require, exports) {
         },
         bindImgClick: function (obj, collback) {
             var $obj = obj;
-            //绑定图片或��文件的查看事件
+            //缁戝畾鍥剧墖鎴栬€呮枃浠剁殑鏌ョ湅浜嬩欢
             $obj.undelegate(".kks_option_li").delegate(".kks_option_li", "click", function () {
                 var datas = {};
                 datas.ckindex = $(this).attr("zindex");
@@ -728,7 +728,7 @@ define(function (require, exports) {
                 window.open(this.getAttribute("href"));
                 return false;
             });
-            //归档
+            //褰掓。
             $obj.on("click",".btn-place-on-file", function () {
                 var $this=$(this);
                 var $kk_files_panl=$this.parents('.kk_files_panl');
@@ -738,7 +738,7 @@ define(function (require, exports) {
                 _fileName=_fileName.substr(0,_fileName.lastIndexOf('.'));
                 if($('.new-folder-cont').length==0){
                     guidang.page.btn_guidang_ev_file(null,null,_fileName,_fileId,function(){
-                        $this.replaceWith('<a class="btn-has-place-on-file" href="javascript:void(0)">已归�?</a>');
+                        $this.replaceWith('<a class="btn-has-place-on-file" href="javascript:void(0)">宸插綊妗?</a>');
                         sf.updateData(_fileId,$kk_files_panl)
                     })
                 }
@@ -749,7 +749,7 @@ define(function (require, exports) {
                     var domLi = $(this).parents(".kks_option_li");
                     var linka = $(this);
 //                    sbox.i8confirm({
-//                        message: "确定要删除吗�?", obj: linka, showmask: false, success: function () {
+//                        message: "纭畾瑕佸垹闄ゅ悧锛?", obj: linka, showmask: false, success: function () {
 //                            var id = domLi.attr("id");
 //                            collback(id);
 //                            domLi.remove();

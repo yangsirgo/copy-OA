@@ -1,6 +1,3 @@
-/**
- * Created by ryf on 2016/8/4.
- */
 define(function (require) {
     var selector = require("./fw_selector");
     var dataCache=require('./sourceCache');
@@ -16,7 +13,7 @@ define(function (require) {
                 var _retObj = (data||{}).ReturnObject;
                 if (!!_retObj && $.isFunction(callback)) {
                     callback();
-                    //alert('±§Ç¸£¬´Ë×Ö¶ÎÒÑ²ÎÓëÉóÅúÁ´Éè¼Æ£¬ÎŞ·¨É¾³ı»·½Ú²ÎÊı£¡');
+                    //alert('æŠ±æ­‰ï¼Œæ­¤å­—æ®µå·²å‚ä¸å®¡æ‰¹é“¾è®¾è®¡ï¼Œæ— æ³•åˆ é™¤ç¯èŠ‚å‚æ•°ï¼');
                     //$(this).prop('selected',true);
                 }
             }
@@ -25,8 +22,8 @@ define(function (require) {
     /*removed content*/
     $.extend({
         "MsgBox": function (setting) {
-            setting = $.extend({ title: "ÕâÀïÊÇ±êÌâ",minWidth:350, content: null, isdrag: true, showBtns: true, btnconfirmtxt: "È·¶¨", confirmClick: function (data) { }, btncanceltxt: "¹Ø±Õ", cancelClick: function (data) { }, pos: { left: 0, top: 0} }, setting);
-            var boxframe = $('<div class="fdMsgBox"><div class="contentbox"><div class="btitle"><span class="titlewords">' + setting.title + '</span><span class="closeico closetag" title="' + setting.btncanceltxt + '">¡Á</span></div><div class="bcontent"></div>' + (setting.showBtns ? '<div class="optionbuttons"><input type="button" class="btnconfirm" value="' + setting.btnconfirmtxt + '"/>¡¡ <a class="closetag" href="#">¹Ø±Õ</a></div>' : '') + '</div><div>');
+            setting = $.extend({ title: "è¿™é‡Œæ˜¯æ ‡é¢˜",minWidth:350, content: null, isdrag: true, showBtns: true, btnconfirmtxt: "ç¡®å®š", confirmClick: function (data) { }, btncanceltxt: "å…³é—­", cancelClick: function (data) { }, pos: { left: 0, top: 0} }, setting);
+            var boxframe = $('<div class="fdMsgBox"><div class="contentbox"><div class="btitle"><span class="titlewords">' + setting.title + '</span><span class="closeico closetag" title="' + setting.btncanceltxt + '">Ã—</span></div><div class="bcontent"></div>' + (setting.showBtns ? '<div class="optionbuttons"><input type="button" class="btnconfirm" value="' + setting.btnconfirmtxt + '"/>ã€€ <a class="closetag" href="#">å…³é—­</a></div>' : '') + '</div><div>');
             var close = function () {
                 //$("body").css({ "overflow": "auto" });
                 $(".fdMsgShadow").remove();
@@ -58,32 +55,32 @@ define(function (require) {
                         'subsetoption':true
                     }
 
-                    $('#ck_procNode', boxframe).click(function () {
-                        var _that = this;
-                        if(!$(this).prop('checked')){
-                            if($(this).attr('isparam') == '1') {
-                                alert('±§Ç¸£¬´Ë×Ö¶ÎÒÑ²ÎÓëÉóÅúÁ´Éè¼Æ£¬ÎŞ·¨É¾³ı»·½Ú²ÎÊı£¡');
-                                $(this).prop('checked', true);
+                        $('#ck_procNode', boxframe).click(function () {
+                            var _that = this;
+                            if(!$(this).prop('checked')){
+                               if($(this).attr('isparam') == '1') {
+                                   alert('æŠ±æ­‰ï¼Œæ­¤å­—æ®µå·²å‚ä¸å®¡æ‰¹é“¾è®¾è®¡ï¼Œæ— æ³•åˆ é™¤ç¯èŠ‚å‚æ•°ï¼');
+                                   $(this).prop('checked', true);
+                               }
                             }
-                        }
-                        //var _baseid = util.urlParamToJson(window.location.href)['baseinfoid'];
-                        // var _fieldid = $(".ctrl-editing").attr('ctrl-name')||'';
+                            //var _baseid = util.urlParamToJson(window.location.href)['baseinfoid'];
+                            // var _fieldid = $(".ctrl-editing").attr('ctrl-name')||'';
 //                            if (!!_fieldid && !$(this).prop('selected')) {
 //                                fnGetProcLineByFieldID(_baseid, _fieldid, function () {
-//                                    alert('±§Ç¸£¬´Ë×Ö¶ÎÒÑ²ÎÓëÉóÅúÁ´Éè¼Æ£¬ÎŞ·¨É¾³ı»·½Ú²ÎÊı£¡');
+//                                    alert('æŠ±æ­‰ï¼Œæ­¤å­—æ®µå·²å‚ä¸å®¡æ‰¹é“¾è®¾è®¡ï¼Œæ— æ³•åˆ é™¤ç¯èŠ‚å‚æ•°ï¼');
 //                                    $(_that).prop('selected', true);
 //                                })
 //                            }
-                    });
+                        });
 
-                    fnGetProcLineByFieldID(_baseid, _fieldid, function () {
-                        if(_paramCtype[_ctype]) {
-                            var _tips = 'ÌáÊ¾£º´Ë×Ö¶ÎÒÑ²ÎÓë·ÖÖ§Ìõ¼şÉè¼Æ£¬ÎªÁË²»Ó°ÏìÁ÷³ÌÕı³£Ê¹ÓÃ£¬<br/>&nbsp;ÇëÔÚĞŞ¸ÄÊı¾İÔ´ºó¼°Ê±¸üĞÂÏà¹ØÁ÷³ÌÉè¼Æ£¡';
-                            $('.bcontent', boxframe).find('.boxrow').last().before('<div class="boxrow boxrow-tips">' + _tips + '</div>');
-                        }
-                        $('#ck_procNode').attr('isparam', 1);
+                        fnGetProcLineByFieldID(_baseid, _fieldid, function () {
+                            if(_paramCtype[_ctype]) {
+                                var _tips = 'æç¤ºï¼šæ­¤å­—æ®µå·²å‚ä¸åˆ†æ”¯æ¡ä»¶è®¾è®¡ï¼Œä¸ºäº†ä¸å½±å“æµç¨‹æ­£å¸¸ä½¿ç”¨ï¼Œ<br/>&nbsp;è¯·åœ¨ä¿®æ”¹æ•°æ®æºååŠæ—¶æ›´æ–°ç›¸å…³æµç¨‹è®¾è®¡ï¼';
+                                $('.bcontent', boxframe).find('.boxrow').last().before('<div class="boxrow boxrow-tips">' + _tips + '</div>');
+                            }
+                                $('#ck_procNode').attr('isparam', 1);
 
-                    })
+                        })
 
 
 //                    var getTips = function(){
@@ -136,21 +133,21 @@ define(function (require) {
         }
     });
 
-    /* ÁĞ±íÊı¾İ²å¼ş */
+    /* åˆ—è¡¨æ•°æ®æ’ä»¶ */
     $.fn.DataGridNew = function (columns,options) {
 
         //--var------------------------------------------------
 
-        //Ä¬ÈÏ³õÊ¼»¯×é¼ş²ÎÊı
+        //é»˜è®¤åˆå§‹åŒ–ç»„ä»¶å‚æ•°
         var defaults = {
             intRowNum: 0,
             columns: [],
             isSummary: true,
             mode: 'readonly',
-            sumaryCfg: { 'text': '×Ü¼Æ:', 'calculateCol': 'RbsCoins' },
+            sumaryCfg: { 'text': 'æ€»è®¡:', 'calculateCol': 'RbsCoins' },
             initDataSource: [],
             bindDataSource: [],
-            defaultSelectItem: '-ÇëÑ¡Ôñ-',
+            defaultSelectItem: '-è¯·é€‰æ‹©-',
             onEdit: function (obj) { },
             onDelete: function (obj) { },
             onSave: function (obj) { },
@@ -160,7 +157,7 @@ define(function (require) {
         //xx
         var grid = $(this);
 
-        //ºÏ²¢³õÊ¼»¯ÅäÖÃ
+        //åˆå¹¶åˆå§‹åŒ–é…ç½®
         var opts = $.extend({}, defaults, options);
 
         opts.columns = columns;
@@ -169,24 +166,24 @@ define(function (require) {
         //xx
         var calculateTotalObj = null;
 
-        //¼ÆËãÁĞË÷Òı
+        //è®¡ç®—åˆ—ç´¢å¼•
         var CalculateColIndex = 0;
 
-        //¿Ø¼ş¶ÔÏóÁĞ±í
+        //æ§ä»¶å¯¹è±¡åˆ—è¡¨
         var controlArr = [];
 
-        //¿Ø¼ş¶ÔÏóÁĞ±í,ÓÃÓÚĞŞ¸Ä
+        //æ§ä»¶å¯¹è±¡åˆ—è¡¨,ç”¨äºä¿®æ”¹
         controlArr2 = [];
-        //±í¸ñ¸¸ÈİÆ÷
+        //è¡¨æ ¼çˆ¶å®¹å™¨
         var parentContainer = $('<div class="workflow_table_container"></div>');
-        //±í¸ñÈİÆ÷
+        //è¡¨æ ¼å®¹å™¨
         var tableContainer = $('<table width="100%" class="datagrid" border="1" cellpadding="0" cellspacing="0"></table>');
 
 
 
         //--fn------------------------------------------------
 
-        //»ñÈ¡ÓÃ»§ids£¬namesÓÃ¶ººÅ·Ö¸î
+        //è·å–ç”¨æˆ·idsï¼Œnamesç”¨é€—å·åˆ†å‰²
         var getUserIDs = function (names) {
             var ary_uns = names.split(",");
             var getuseridbyname = function (name) {
@@ -210,7 +207,7 @@ define(function (require) {
             return cvtUID;
         }
 
-        //ÓÃ»§idÊÇ·ñÒÑ´æÔÚÓëwindow["KSNUSER_CACHE"]ÖĞ
+        //ç”¨æˆ·idæ˜¯å¦å·²å­˜åœ¨ä¸window["KSNUSER_CACHE"]ä¸­
         var useridIsExist = function (id) {
             if (window["KSNUSER_CACHE"]) {
                 for (var i = 0; i < window["KSNUSER_CACHE"].length; i++) {
@@ -222,7 +219,7 @@ define(function (require) {
             return false;
         };
 
-        //»ñÈ¡×éÖ¯ids£¬namesÓÃ¶ººÅ·Ö¸î
+        //è·å–ç»„ç»‡idsï¼Œnamesç”¨é€—å·åˆ†å‰²
         var getOrgIDs = function (names) {
             var ary_uns = names.split(",");
             var getuseridbyname = function (name) {
@@ -246,7 +243,7 @@ define(function (require) {
             return cvtUID;
         }
 
-        //ÓÃ»§idÊÇ·ñÒÑ´æÔÚÓëwindow["KSNUSER_CACHE"]ÖĞ
+        //ç”¨æˆ·idæ˜¯å¦å·²å­˜åœ¨ä¸window["KSNUSER_CACHE"]ä¸­
         var orgidIsExist = function (id) {
             if (window["KSNORG_CACHE"]) {
                 for (var i = 0; i < window["KSNORG_CACHE"].length; i++) {
@@ -258,7 +255,7 @@ define(function (require) {
             return false;
         };
 
-        //Ñ¡ÈËÑ¡×éÖ¯¿Ø¼ş¼¤»î
+        //é€‰äººé€‰ç»„ç»‡æ§ä»¶æ¿€æ´»
         var activeUserOrgControl = function (parentContainer) {
             parentContainer.find(".lsuserkeytag").each(function () {
                 var ksn_id = $(this).attr("id");
@@ -282,7 +279,7 @@ define(function (require) {
                 data = [];
 
             tableContainer.find("tr:gt(0)").each(function () {
-                //×Ü¼ÆĞĞ
+                //æ€»è®¡è¡Œ
                 if ($(this).attr("id") == "gridSummaryRow")
                     return;
                 var rowObj = [];
@@ -295,9 +292,9 @@ define(function (require) {
             grid.data("data", data);
         }
 
-        //ÖØÖÃ°´Å¥
+        //é‡ç½®æŒ‰é’®
         var ResetAddRowBtn = function () {
-            btnAddOrSave.val("Ìí¼Ó");
+            btnAddOrSave.val("æ·»åŠ ");
             btnAddOrSave.removeData("editRow");
             btnCancel.hide();
             for (var i = 0; i < controlArr.length; i++) {
@@ -305,7 +302,7 @@ define(function (require) {
             }
         }
 
-        //Ìí¼ÓĞĞ·½·¨
+        //æ·»åŠ è¡Œæ–¹æ³•
         var AddDataRows = function (tableContainer, rowArr) {
             var rowIndex = tableContainer.find("tr:gt(0)").length;
             var summaryRow = null;
@@ -328,11 +325,11 @@ define(function (require) {
                 var optionContainer = $('<td align="center" isoptiontd="true"></td>');
 
                 if (opts.mode == "edit") {
-                    //ĞŞ¸Ä
-                    var btnModify = $('<input type="button" class="datagrid_row_modify" title="ĞŞ¸Ä" />');
+                    //ä¿®æ”¹
+                    var btnModify = $('<input type="button" class="datagrid_row_modify" title="ä¿®æ”¹" />');
                     btnModify.click(function () {
                         var trParent = $(this).parent().parent();
-                        //´¥·¢Íâ²¿ÊÂ¼ş
+                        //è§¦å‘å¤–éƒ¨äº‹ä»¶
                         opts.onEdit(trParent);
                         for (var i = 0; i < controlArr.length; i++) {
                             controlArr[i].reset();
@@ -347,18 +344,18 @@ define(function (require) {
                         }
 
                         btnAddOrSave.data("editRow", trParent);
-                        btnAddOrSave.val('±£´æ');
+                        btnAddOrSave.val('ä¿å­˜');
                         btnCancel.show();
                     });
 
-                    //É¾³ı
-                    var btnDelete = $('<input type="button" class="datagrid_row_delete" title="É¾³ı" />');
+                    //åˆ é™¤
+                    var btnDelete = $('<input type="button" class="datagrid_row_delete" title="åˆ é™¤" />');
                     btnDelete.click(function () {
                         var trRow = $(this).parent().parent();
-                        //´¥·¢Íâ²¿É¾³ıÊÂ¼ş
+                        //è§¦å‘å¤–éƒ¨åˆ é™¤äº‹ä»¶
                         opts.onDelete(trRow);
                         trRow.remove();
-                        //ÖØĞÂÉú³ÉĞòºÅ
+                        //é‡æ–°ç”Ÿæˆåºå·
                         //                        tableContainer.find("tr:gt(0)").each(function (i) {
                         //                            var serialNumCell = $(this).find("td:eq(0)");
                         //                            if (serialNumCell.text() != "")
@@ -369,16 +366,16 @@ define(function (require) {
                         SaveData();
                     });
 
-                    //±£´æ
-                    //var btnSave = $('<a class="datagrid_row_save" href="javascript:void(0);" style="display:none;">±£´æ</a>');
+                    //ä¿å­˜
+                    //var btnSave = $('<a class="datagrid_row_save" href="javascript:void(0);" style="display:none;">ä¿å­˜</a>');
                     //btnSave.click(function () {
 
                     //    var trParent = $(this).parent().parent();
-                    //    //°´Å¥±ä»¯
+                    //    //æŒ‰é’®å˜åŒ–
                     //    $(this).parent().find(".datagrid_row_modify").show();
                     //    $(this).parent().find(".datagrid_row_delete").show();
                     //    $(this).parent().find(".datagrid_row_save").hide();
-                    //    //±à¼­×´Ì¬ÔÚĞĞÖĞÏÔÊ¾
+                    //    //ç¼–è¾‘çŠ¶æ€åœ¨è¡Œä¸­æ˜¾ç¤º
                     //    var _td = $("td", trParent);
                     //    _td.each(function (index) {
                     //        if (index != _td.length - 1) {
@@ -404,7 +401,7 @@ define(function (require) {
                     $(this).css({ 'background-color': 'white' });
                 });
                 if (opts.isSummary)
-                //summaryRow.before(trContainer);
+                    //summaryRow.before(trContainer);
                     $(".gridSummaryRow", tableContainer).before(trContainer);
                 else
                     tableContainer.append(trContainer);
@@ -415,30 +412,30 @@ define(function (require) {
 
         //--run------------------------------------------------
         parentContainer.append(tableContainer);
-        //Ìí¼Óµ½±í¸ñ
+        //æ·»åŠ åˆ°è¡¨æ ¼
         $(this).append(parentContainer);
 
-        //³õÊ¼»¯ÁĞÍ·
+        //åˆå§‹åŒ–åˆ—å¤´
         InitDataColumns(tableContainer, opts.columns,opts);
 
-        //ºÏ¼ÆÄÚÈİ
+        //åˆè®¡å†…å®¹
         if (opts.isSummary) {
-            //ºÏ¼Æ
+            //åˆè®¡
             var trSumary = '<tr class="gridSummaryRow">';
             for (var i = 0; i < opts.columns.length; i++) {
                 if (opts.columns[i].iscolsum) {
                     CalculateColIndex = i; //iscolsum
-                    var hidensum = '<input type="text" class="grid_col_total_inputvalue" isparam="' + opts.columns[i].isparam + '" valuetype="4" tagctrl="text" tagname="listSUM' + opts.columns[i].colName + '_'+(opts.tagName||'')+'" tagtitle="' + opts.columns[i].colText + 'ºÏ¼Æ" formdata="true" value="0">';
-                    trSumary += '<td class="td_summary_txt"><b>ºÏ¼Æ: <span class="grid_col_total">0</span></b>' + hidensum + '</td>';
+                    var hidensum = '<input type="text" class="grid_col_total_inputvalue" isparam="' + opts.columns[i].isparam + '" valuetype="4" tagctrl="text" tagname="listSUM' + opts.columns[i].colName + '_'+(opts.tagName||'')+'" tagtitle="' + opts.columns[i].colText + 'åˆè®¡" formdata="true" value="0">';
+                    trSumary += '<td class="td_summary_txt"><b>åˆè®¡: <span class="grid_col_total">0</span></b>' + hidensum + '</td>';
                 } else
                     trSumary += '<td></td>';
             }
             trSumary += '<td></td></tr>';
-            //´óĞ´
+            //å¤§å†™
             //var trSumaryChinese = '<tr class="gridSummaryRowChinese">';
             //for (var i = 0; i < opts.columns.length; i++) {
             //    if (opts.columns[i].iscolchinese) {
-            //        trSumaryChinese += '<td class="td_summary_txt"><b>´óĞ´: <span class="grid_col_total">0</span></b></td>';
+            //        trSumaryChinese += '<td class="td_summary_txt"><b>å¤§å†™: <span class="grid_col_total">0</span></b></td>';
             //    } else
             //        trSumaryChinese += '<td></td>';
             //}
@@ -449,14 +446,14 @@ define(function (require) {
             calculateTotalObj = tableContainer.find(".grid_col_total");
         }
 
-        //³õÊ¼»¯ĞĞ
+        //åˆå§‹åŒ–è¡Œ
         if (opts.initDataSource != null && opts.initDataSource.length > 0) {
-            //³õÊ¼»¯Ä¬ÈÏÊı¾İ
+            //åˆå§‹åŒ–é»˜è®¤æ•°æ®
             AddDataRows(tableContainer, opts.initDataSource);
             CalculateGridTotalDesc(tableContainer, CalculateColIndex, calculateTotalObj);
             SaveData();
         } else {
-            //³õÊ¼»¯¿ÕĞĞ
+            //åˆå§‹åŒ–ç©ºè¡Œ
             //var arr = [];
             //for (var i = 0; i < opts.intRowNum; i++) {
             //    arr[i] = [];
@@ -469,36 +466,36 @@ define(function (require) {
 
 
 
-        //±à¼­Ä£Ê½
+        //ç¼–è¾‘æ¨¡å¼
         if (opts.mode == "edit") {
             var EditContainer = $('<ul class="editulcontainer"></ul>');
             for (var i = 0; i < opts.columns.length; i++) {
                 var col = opts.columns[i];
                 var fieldContainer = $('<li></li>');
-                var fieldText = $('<div class="div_fieldtxt">' + (col.mustInput ? '<b class="span_mustinputtag">*</b>' : '') + col.colText + '£º</div>');
+                var fieldText = $('<div class="div_fieldtxt">' + (col.mustInput ? '<b class="span_mustinputtag">*</b>' : '') + col.colText + 'ï¼š</div>');
                 fieldContainer.append(fieldText);
 
 
-                //±à¼­ÇøÓò³õÊ¼»¯
-                //ÎÄ±¾
+                //ç¼–è¾‘åŒºåŸŸåˆå§‹åŒ–
+                //æ–‡æœ¬
                 if (col.colType == "Text") {
-                    //ÓÃÓÚÌí¼Ó
+                    //ç”¨äºæ·»åŠ 
                     var control = $('<input id="' + col.colName + '" ntext="' + col.colText + '" valuetype="' + col.valuetype + '" ismustinput="' + col.mustInput + '" class="floatRight" type="text" />');
-                    control.getValue = function (isVal) {//»ñÈ¡Öµ
+                    control.getValue = function (isVal) {//è·å–å€¼
                         var vType = $(this).attr("valuetype");
                         var cur_value = $.trim($(this).val()).replace(/[&<>]+/g, "");
                         var nText = $(this).attr("ntext");
                         switch (vType) {
                             case "unlimited":
                                 if (cur_value.length == 0 && isVal) {
-                                    alert(nText + 'Î´ÌîĞ´');
+                                    alert(nText + 'æœªå¡«å†™');
                                     return false;
                                 }
                                 break;
                             case "email":
                                 var email_reg = /^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/g;
                                 if (!email_reg.test(cur_value) && isVal) {
-                                    alert(nText + '×Ö¶ÎÇëÊäÈëÓÊÏä');
+                                    alert(nText + 'å­—æ®µè¯·è¾“å…¥é‚®ç®±');
                                     $(this).select();
                                     return false;
                                 }
@@ -506,7 +503,7 @@ define(function (require) {
                             case "phone":
                                 var cellphone_reg = /^1[3|4|5|6|8][0-9]\d{8}$/g;
                                 if (!cellphone_reg.test(cur_value) && isVal) {
-                                    alert(nText + '×Ö¶ÎÇëÊäÈëÊÖ»úºÅ');
+                                    alert(nText + 'å­—æ®µè¯·è¾“å…¥æ‰‹æœºå·');
                                     $(this).select();
                                     return false;
                                 }
@@ -514,7 +511,7 @@ define(function (require) {
                             case "number":
                                 var numberchar_reg = /^(\-?)[0-9]+(\.[0-9]+)?$/g; /* /^[1-9]\d*$/g;*/
                                 if (!numberchar_reg.test(cur_value) && isVal) {
-                                    alert(nText + '×Ö¶ÎÇëÊäÈëÊı×Ö');
+                                    alert(nText + 'å­—æ®µè¯·è¾“å…¥æ•°å­—');
                                     $(this).select();
                                     return false;
                                 }
@@ -522,7 +519,7 @@ define(function (require) {
                             case "numberchar":
                                 var numberchar_reg = /^\w+$/g;
                                 if (!numberchar_reg.test(cur_value) && isVal) {
-                                    alert(nText + '×Ö¶ÎÇëÊäÈë×ÖÄ¸»òÊı×Ö');
+                                    alert(nText + 'å­—æ®µè¯·è¾“å…¥å­—æ¯æˆ–æ•°å­—');
                                     $(this).select();
                                     return false;
                                 }
@@ -539,54 +536,54 @@ define(function (require) {
                     controlArr.push(control);
                     fieldContainer.append($('<div class="div_field_control"></div>').append(control));
                 }
-                //×Ô¶¯ĞòºÅ
+                //è‡ªåŠ¨åºå·
                 else if (col.colType == "AutoIndex") {
-                    //ÓÃÓÚÌí¼Ó
-                    // var control = $('<input readonly="readonly" id="' + col.colName + '" ntext="' + col.colText + '" valuetype="' + col.valuetype + '" ismustinput="' + col.mustInput + '" class="floatRight" type="text" />');
-                    var control="×Ô¶¯ĞòºÅÎŞĞèÌîĞ´";
+                    //ç”¨äºæ·»åŠ 
+                   // var control = $('<input readonly="readonly" id="' + col.colName + '" ntext="' + col.colText + '" valuetype="' + col.valuetype + '" ismustinput="' + col.mustInput + '" class="floatRight" type="text" />');
+                    var control="è‡ªåŠ¨åºå·æ— éœ€å¡«å†™";
                     controlArr.push(control);
                     fieldContainer.append($('<div class="div_field_control div_autoindex_control"></div>').append(control));
                 }
-                //ÏÂÀ­
+                    //ä¸‹æ‹‰
                 else if (col.colType == "Dropdown") {
-                    //ÓÃÓÚÌí¼Ó
+                    //ç”¨äºæ·»åŠ 
                     var dropdownControl = $('<select id="' + col.colName + '" ismustinput="' + col.mustInput + '" class="floatRight"></select>');
                     (function(dropdownControlSingle) {
-                        dropdownControlSingle.getValue = function (isVal) {
-                            var selectedValue = $(this).val();
-                            if (selectedValue == opts.defaultSelectItem && isVal) {
-                                var itemName = dropdownControlSingle.parents("li").find(".div_fieldtxt").text().replace(/[\*|:|£º]/ig, "");
-                                alert("ÇëÑ¡Ôñ" + itemName + "!");
-                                return false;
-                            }
-                            return selectedValue;
-                        };
-                        dropdownControlSingle.setValue = function (value) {
-                            $(this).val(value);
-                        }
-                        //Ìí¼ÓÄ¬ÈÏÖµ
-                        dropdownControlSingle.append('<option>' + opts.defaultSelectItem + '</option>');
-                        if (opts.bindDataSource) {
-                            dataCache.getSourceByID(col.dataSource, function (dataobj) {
-                                var opts = "";
-                                _.each(dataobj, function (item) {
-                                    opts += '<option>' + item.Text + '</option>';
-                                });
-                                dropdownControlSingle.append(opts);
-                            });
+                       dropdownControlSingle.getValue = function (isVal) {
+                           var selectedValue = $(this).val();
+                           if (selectedValue == opts.defaultSelectItem && isVal) {
+                               var itemName = dropdownControlSingle.parents("li").find(".div_fieldtxt").text().replace(/[\*|:|ï¼š]/ig, "");
+                               alert("è¯·é€‰æ‹©" + itemName + "!");
+                               return false;
+                           }
+                           return selectedValue;
+                       };
+                       dropdownControlSingle.setValue = function (value) {
+                           $(this).val(value);
+                       }
+                       //æ·»åŠ é»˜è®¤å€¼
+                       dropdownControlSingle.append('<option>' + opts.defaultSelectItem + '</option>');
+                       if (opts.bindDataSource) {
+                           dataCache.getSourceByID(col.dataSource, function (dataobj) {
+                               var opts = "";
+                               _.each(dataobj, function (item) {
+                                   opts += '<option>' + item.Text + '</option>';
+                               });
+                               dropdownControlSingle.append(opts);
+                           });
 
 
-                        }
-                        dropdownControlSingle.reset = function () {
-                            $(this)[0].selectedIndex = 0;
-                        }
-                        controlArr.push(dropdownControlSingle);
-                        fieldContainer.append($('<div class="div_field_control"></div>').append(dropdownControlSingle));
-                    })(dropdownControl);
+                       }
+                       dropdownControlSingle.reset = function () {
+                           $(this)[0].selectedIndex = 0;
+                       }
+                       controlArr.push(dropdownControlSingle);
+                       fieldContainer.append($('<div class="div_field_control"></div>').append(dropdownControlSingle));
+                   })(dropdownControl);
                 }
-                //×Ô¶¯¼ÆËã
+                    //è‡ªåŠ¨è®¡ç®—
                 else if (col.colType == "AutoCalculate") {
-                    var control = $('<span>×Ô¶¯¼ÆËãÁĞÎŞĞèÌîĞ´</span>');
+                    var control = $('<span>è‡ªåŠ¨è®¡ç®—åˆ—æ— éœ€å¡«å†™</span>');
                     control.getValue = function (isVal) {
 
                         return "";
@@ -601,13 +598,13 @@ define(function (require) {
                     fieldContainer.append($('<div class="div_field_control"></div>').append(control));
 
                 }
-                //¼¶Áª²Ëµ¥
+                    //çº§è”èœå•
                 else if (col.colType == "Subsetoption") {
 
                     (function(dropdownControl){
-                        //¼¶ÁªÊı¾İÔ´°ó¶¨
+                        //çº§è”æ•°æ®æºç»‘å®š
                         var subsetControlNew = function (data, $mainSelDom, $subSelDom) {
-                            //Ä¬ÈÏ
+                            //é»˜è®¤
                             var _sourceId = $mainSelDom.parent('span').attr('source-id');
                             for (var i = 0; i < data.length; i++) {
                                 if (data[i].DataSourceID != _sourceId) continue;
@@ -619,7 +616,7 @@ define(function (require) {
                                     }
                                 }
                             }
-                            //°ó¶¨¸Ä±ä·½·¨
+                            //ç»‘å®šæ”¹å˜æ–¹æ³•
                             $mainSelDom.change(function () {
                                 $subSelDom.html("");
 
@@ -636,12 +633,12 @@ define(function (require) {
                         };
 
 
-                        //Ìí¼Ó¶ÁÈ¡ÖµµÄ·½·¨
+                        //æ·»åŠ è¯»å–å€¼çš„æ–¹æ³•
                         dropdownControl.getValue = function (isVal) {
                             var selectedValue = $(this).val();
                             if (selectedValue == opts.defaultSelectItem && isVal) {
-                                var itemName = dropdownControl.parents("li").find(".div_fieldtxt").text().replace(/[\*|:|£º]/ig, "");
-                                alert("ÇëÑ¡Ôñ" + itemName + "!");
+                                var itemName = dropdownControl.parents("li").find(".div_fieldtxt").text().replace(/[\*|:|ï¼š]/ig, "");
+                                alert("è¯·é€‰æ‹©" + itemName + "!");
                                 return false;
                             }
 
@@ -682,9 +679,9 @@ define(function (require) {
 
                         controlArr.push(dropdownControl);
                         fieldContainer.append($('<div class="div_field_control"></div>').append(dropdownControl));
-                        //Ìí¼ÓÄ¬ÈÏÖµ
+                        //æ·»åŠ é»˜è®¤å€¼
                         //dropdownControl.append('<option>' + opts.defaultSelectItem + '</option>');
-                        //Ìí¼ÓÄ¬ÈÏÅäÖÃÊı¾İÔ´
+                        //æ·»åŠ é»˜è®¤é…ç½®æ•°æ®æº
                         if (opts.bindDataSource) {
                             dataCache.getSourceByID(col.dataSource, function (datalist) {
                                 //console.log(dropdownControl.html());
@@ -707,12 +704,12 @@ define(function (require) {
                         }
                     })($('<span id="' + col.colName + '" ismustinput="' + col.mustInput + '" class="floatRight" source-id="' + col.dataSource + '"><select class="ctrl_mainoptions"></select><select class="ctrl_subsetoptions"></select></span>'));
                 }
-                //Ñ¡ÈË¿Ø¼ş
+                    //é€‰äººæ§ä»¶
                 else if (col.colType == "UserKey") {
                     var userkey_rd_name = Math.random().toString().replace(".", "");
-                    window["KSNUSER_CACHE"] = window["KSNUSER_CACHE"] || []; /*Ñ¡ÔñµÄÈË»º´æÈ«¾Ö±äÁ¿Ö®ÖĞ*/
+                    window["KSNUSER_CACHE"] = window["KSNUSER_CACHE"] || []; /*é€‰æ‹©çš„äººç¼“å­˜å…¨å±€å˜é‡ä¹‹ä¸­*/
 
-                    //ÓÃÓÚÌí¼Ó
+                    //ç”¨äºæ·»åŠ 
                     var control = $('<div class="div_field_control" ismustinput="' + col.mustInput + '" ><input id="uk_' + userkey_rd_name + '" ukmodel="' + col.valuetype + '" class="lsuserkeytag floatRight" ismustinput="' + (col.mustInput == undefined ? true : false) + '" type="text" /></div>');
                     control.getValue = function (isVal) {
                         var _uns = "";
@@ -731,8 +728,8 @@ define(function (require) {
                             _uns = _uns.substr(0, _uns.lastIndexOf(","));
                         }
                         if (_uns.length == 0 && isVal) {
-                            var itemName = $(this).parents("li").find(".div_fieldtxt").text().replace(/[\*|:|£º]/ig, "");
-                            alert('ÇëÑ¡Ôñ' + itemName + "!");
+                            var itemName = $(this).parents("li").find(".div_fieldtxt").text().replace(/[\*|:|ï¼š]/ig, "");
+                            alert('è¯·é€‰æ‹©' + itemName + "!");
                             return false;
                         } else {
                             return _uns + "<input type='hidden' s-type='user' value='" + _uids + "'/>";
@@ -781,11 +778,11 @@ define(function (require) {
                     fieldContainer.append(control);
 
                 }
-                //Ñ¡²¿ÃÅ¿Ø¼ş
+                    //é€‰éƒ¨é—¨æ§ä»¶
                 else if (col.colType == "OrgKey") {
                     var orgkey_rd_name = Math.random().toString().replace(".", "");
                     window["KSNORG_CACHE"] = window["KSNORG_CACHE"] || [];
-                    //ÓÃÓÚÌí¼Ó
+                    //ç”¨äºæ·»åŠ 
                     var control = $('<div class="div_field_control" ismustinput="' + col.mustInput + '" ><input id="orgk_' + orgkey_rd_name + '" ukmodel="' + col.valuetype + '" class="lsorgkeytag floatRight" ismustinput="' + (col.mustInput == undefined ? true : false) + '" type="text" /></div>');
                     control.getValue = function (isVal) {
                         var _uns = "";
@@ -803,8 +800,8 @@ define(function (require) {
                             _uns = _uns.substr(0, _uns.lastIndexOf(","));
                         }
                         if (_uns.length == 0 && isVal) {
-                            var itemName = $(this).parents("li").find(".div_fieldtxt").text().replace(/[\*|:|£º]/ig, "");
-                            alert('ÇëÑ¡Ôñ' + itemName + "!");
+                            var itemName = $(this).parents("li").find(".div_fieldtxt").text().replace(/[\*|:|ï¼š]/ig, "");
+                            alert('è¯·é€‰æ‹©' + itemName + "!");
                             return false;
                         } else {
                             return _uns + "<input type='hidden' s-type='org' value='" + _uids + "'/>";
@@ -855,15 +852,15 @@ define(function (require) {
                     controlArr.push(control);
                     fieldContainer.append(control);
                 }
-                //ÈÕÆÚ¿Ø¼ş
+                    //æ—¥æœŸæ§ä»¶
                 else if (col.colType == "DatePicker") {
-                    //ÓÃÓÚÌí¼Ó
+                    //ç”¨äºæ·»åŠ 
                     var control = $('<input id="' + col.colName + '" ntext="' + col.colText + '" valuetype="' + col.valuetype + '" ismustinput="' + col.mustInput + '" class="floatRight Wdate" type="text" onFocus="WdatePicker({dateFmt:\'' + col.valuetype + '\',skin:\'whyGreen\'})" />');
                     control.getValue = function (isVal) {
                         var dText = $(this).val();
                         var nText = $(this).attr("ntext");
                         if (dText.length == 0 && isVal) {
-                            alert(nText + 'Î´Ñ¡Ôñ');
+                            alert(nText + 'æœªé€‰æ‹©');
                             return false;
                         }
                         return dText;
@@ -877,69 +874,69 @@ define(function (require) {
                     controlArr.push(control);
                     fieldContainer.append($('<div class="div_field_control"></div>').append(control));
                 }
-                //µ¥Ñ¡
+                    //å•é€‰
                 else if (col.colType == "RadioButton") {
-                    //ÓÃÓÚÌí¼Ó
+                    //ç”¨äºæ·»åŠ 
                     var control = $('<div class="wdf_tblist_radios" ismustinput="' + col.mustInput + '"></div>');
                     (function(control){
-                        if (opts.bindDataSource) {
-                            if (col.dataSource.length==36) {
+                    if (opts.bindDataSource) {
+                        if (col.dataSource.length==36) {
 
-                                dataCache.getSourceByID(col.dataSource,function(datalist){
-                                    //var itemsHtml="";
-                                    _.each(datalist,function(item){
-                                        var itemNum = Math.random().toString().replace(".", "");
-                                        control.append('<input type="radio"  name="'+_.uniqueId("rdName_")+'" id="wdf_tblist_radios' + itemNum + '" /><label for="wdf_tblist_radios' + itemNum + '">' + item.Text + '</label>');
-                                    });
+                            dataCache.getSourceByID(col.dataSource,function(datalist){
+                                //var itemsHtml="";
+                                _.each(datalist,function(item){
+                                    var itemNum = Math.random().toString().replace(".", "");
+                                    control.append('<input type="radio"  name="'+_.uniqueId("rdName_")+'" id="wdf_tblist_radios' + itemNum + '" /><label for="wdf_tblist_radios' + itemNum + '">' + item.Text + '</label>');
                                 });
+                            });
 
-                                /*var datasourcelist = opts.bindDataSource;
-                                 for (var k in datasourcelist) {
-                                 if (datasourcelist[k].id == col.dataSource) {
-                                 var itemlist = datasourcelist[k].list;
-                                 var itemNameNum = Math.random().toString().replace(".", "");
-                                 for (var j in itemlist) {
-                                 if (typeof itemlist[j] == "object") {
-                                 var itemNum = Math.random().toString().replace(".", "");
-                                 control.append('<input type="radio" name="n' + itemNameNum + '" id="wdf_tblist_radios' + itemNum + '" /><label for="wdf_tblist_radios' + itemNum + '">' + itemlist[j].Text + '</label>');
-                                 }
-                                 }
-                                 }
-                                 }*/
-
-                            }
-                        }
-                        control.getValue = function (isVal) {
-                            //ÑéÖ¤
-                            var size = $(this).find("input:checked").length;
-                            if (size == 0 && isVal) {
-                                var itemName = $(this).parents("li").find(".div_fieldtxt").text().replace(/[\*|:|£º]/ig, "");
-                                alert('ÇëÑ¡Ôñ' + itemName + "!");
-                                return false;
-                            }
-                            //È¡Öµ
-                            var checkedID = $(this).find("input:checked").attr("id");
-                            var txtvalue = $(this).find("label[for='" + checkedID + "']").text();
-                            return txtvalue;
-                        };
-                        control.setValue = function (value) {
-                            $(this).find("label").each(function () {
-                                if ($(this).text() == value) {
-                                    var checkid = $(this).attr("for");
-                                    $("#" + checkid).prop({ checked: true });
+                            /*var datasourcelist = opts.bindDataSource;
+                            for (var k in datasourcelist) {
+                                if (datasourcelist[k].id == col.dataSource) {
+                                    var itemlist = datasourcelist[k].list;
+                                    var itemNameNum = Math.random().toString().replace(".", "");
+                                    for (var j in itemlist) {
+                                        if (typeof itemlist[j] == "object") {
+                                            var itemNum = Math.random().toString().replace(".", "");
+                                            control.append('<input type="radio" name="n' + itemNameNum + '" id="wdf_tblist_radios' + itemNum + '" /><label for="wdf_tblist_radios' + itemNum + '">' + itemlist[j].Text + '</label>');
+                                        }
+                                    }
                                 }
-                            })
-                        };
-                        control.reset = function () {
-                            $(this).find(":radio").prop({ checked: false });
-                        };
-                        controlArr.push(control);
-                        fieldContainer.append($('<div class="div_field_control"></div>').append(control));
+                            }*/
+
+                        }
+                    }
+                    control.getValue = function (isVal) {
+                        //éªŒè¯
+                        var size = $(this).find("input:checked").length;
+                        if (size == 0 && isVal) {
+                            var itemName = $(this).parents("li").find(".div_fieldtxt").text().replace(/[\*|:|ï¼š]/ig, "");
+                            alert('è¯·é€‰æ‹©' + itemName + "!");
+                            return false;
+                        }
+                        //å–å€¼
+                        var checkedID = $(this).find("input:checked").attr("id");
+                        var txtvalue = $(this).find("label[for='" + checkedID + "']").text();
+                        return txtvalue;
+                    };
+                    control.setValue = function (value) {
+                        $(this).find("label").each(function () {
+                            if ($(this).text() == value) {
+                                var checkid = $(this).attr("for");
+                                $("#" + checkid).prop({ checked: true });
+                            }
+                        })
+                    };
+                    control.reset = function () {
+                        $(this).find(":radio").prop({ checked: false });
+                    };
+                    controlArr.push(control);
+                    fieldContainer.append($('<div class="div_field_control"></div>').append(control));
                     })(control);
                 }
-                //¶àÑ¡
+                    //å¤šé€‰
                 else if (col.colType == "Checkbox") {
-                    //ÓÃÓÚÌí¼Ó
+                    //ç”¨äºæ·»åŠ 
                     var control = $('<div class="wdf_tblist_checkbox" ismustinput="' + col.mustInput + '" ></div>');
                     (function(control) {
                         if (opts.bindDataSource) {
@@ -967,14 +964,14 @@ define(function (require) {
                             }
                         }
                         control.getValue = function (isVal) {
-                            //ÑéÖ¤
+                            //éªŒè¯
                             var size = $(this).find("input:checked").length;
                             if (size == 0 && isVal) {
-                                var itemName = $(this).parents("li").find(".div_fieldtxt").text().replace(/[\*|:|£º]/ig, "");
-                                alert('ÇëÑ¡Ôñ' + itemName + "!");
+                                var itemName = $(this).parents("li").find(".div_fieldtxt").text().replace(/[\*|:|ï¼š]/ig, "");
+                                alert('è¯·é€‰æ‹©' + itemName + "!");
                                 return false;
                             }
-                            //È¡Öµ
+                            //å–å€¼
                             var txt = "";
                             $(this).find("input:checked").each(function () {
                                 var checkedID = $(this).attr("id");
@@ -1010,8 +1007,8 @@ define(function (require) {
             }
 
             var btnContainer = $('<div class="editbtns"></div>');
-            var btnAddOrSave = $('<input type="button" class="btnsave" value="Ìí¼Ó" />');
-            var btnCancel = $('<a style="display:none;margin-left:5px" href="javascript:void(0)">È¡Ïû</a>'); //<input type="button" style="display:none;" value="È¡Ïû" />
+            var btnAddOrSave = $('<input type="button" class="btnsave" value="æ·»åŠ " />');
+            var btnCancel = $('<a style="display:none;margin-left:5px" href="javascript:void(0)">å–æ¶ˆ</a>'); //<input type="button" style="display:none;" value="å–æ¶ˆ" />
             btnAddOrSave.click(function () {
                 var rowdata = [[]];
                 for (var i = 0; i < controlArr.length; i++) {
@@ -1027,10 +1024,10 @@ define(function (require) {
                 for (var i = 0; i < controlArr.length; i++) {
                     controlArr[i].reset();
                 }
-                if ($(this).val() == "Ìí¼Ó") {
-                    //Ìí¼ÓĞĞÊı¾İ
+                if ($(this).val() == "æ·»åŠ ") {
+                    //æ·»åŠ è¡Œæ•°æ®
                     AddDataRows(tableContainer, rowdata);
-                } else if ($(this).val() == "±£´æ" && $(this).data("editRow") != null) {
+                } else if ($(this).val() == "ä¿å­˜" && $(this).data("editRow") != null) {
                     var modifyRow = $(this).data("editRow");
                     var cellArr = modifyRow.find("td");
                     for (var i = 0; i < cellArr.length; i++) {
@@ -1041,7 +1038,7 @@ define(function (require) {
                     ResetAddRowBtn();
                 }
                 CalculateGridTotalDesc(tableContainer, CalculateColIndex, calculateTotalObj);
-                //±£´æÊı¾İ
+                //ä¿å­˜æ•°æ®
                 SaveData();
             });
 
@@ -1055,7 +1052,7 @@ define(function (require) {
             var editbar = $('<div  class="editbar"></div>');
             editbar.append(EditContainer).append(btnContainer);
             $(this).append(editbar);
-            window["KSN_OBJECT"] = window["KSN_OBJECT"] || []; /*»º´æÑ¡ÈË¿Ø¼şÊµÀı¶ÔÏó*/
+            window["KSN_OBJECT"] = window["KSN_OBJECT"] || []; /*ç¼“å­˜é€‰äººæ§ä»¶å®ä¾‹å¯¹è±¡*/
             activeUserOrgControl(editbar);
         }
 
@@ -1066,26 +1063,26 @@ define(function (require) {
     $.fn.personInfo = function (options) { }
 
 
-    //¶ÁÈ¡×é¼şÉè¼ÆÄ£Ê½Html´úÂë
+    //è¯»å–ç»„ä»¶è®¾è®¡æ¨¡å¼Htmlä»£ç 
     $.fn.personInfo.initHtml = function (checkedBoxes, isparam, mustinput) {
-        //idÉú³É
+        //idç”Ÿæˆ
         var idCode = "personInfo_" + Math.random().toString().replace(".", "");
-        //Ö÷htmlcode
+        //ä¸»htmlcode
         var htmlContent = '<div id="' + idCode + '" class="personInfo" checkednames="' + checkedBoxes.join(',') + '" isparam="' + isparam + '" mustinput="' + mustinput + '" sourceid="">'
-            + '<table class="user_info_sel"><tr><td style="width:80px;text-align:right;">ĞÕÃû:</td><td style="width:200px;text-align:left;"><input type="text" id="' + idCode + '_input"/></td><td style="width:80px;text-align:right;">²¿ÃÅ:</td><td class="orgSel" style="width:200px;text-align:left;"><input type="text" id="' + idCode + '_input_org"/></td></tr>'
-            + '</table>'
-            + '<div class="user_info_container">'
-            + '</div>'
-            + '</div>';
+                                + '<table class="user_info_sel"><tr><td style="width:80px;text-align:right;">å§“å:</td><td style="width:200px;text-align:left;"><input type="text" id="' + idCode + '_input"/></td><td style="width:80px;text-align:right;">éƒ¨é—¨:</td><td class="orgSel" style="width:200px;text-align:left;"><input type="text" id="' + idCode + '_input_org"/></td></tr>'
+                                + '</table>'
+                                + '<div class="user_info_container">'
+                                + '</div>'
+                        + '</div>';
         return htmlContent;
     }
 
 
-    //¼¤»î×é¼ş
+    //æ¿€æ´»ç»„ä»¶
     $.fn.personInfo.initActive = function (divID, userID, orgID) {
         //
         if (userID != undefined && orgID != undefined) {
-            //Ìí¼Ó²¿ÃÅ
+            //æ·»åŠ éƒ¨é—¨
             var orgsel = KSNSelector({
                 model: "1", element: "#" + divID + "_input_org", width: '200px',
                 searchType: { "org": true, "user": false, "grp": false }
@@ -1094,21 +1091,21 @@ define(function (require) {
             var setData = [{ "type": "org" }];
             orgsel.setAllselectedData(setData);
         }
-        //ĞÅÏ¢ÈİÆ÷
+        //ä¿¡æ¯å®¹å™¨
         var container = $("#" + divID + " .user_info_container");
         //var containerTab = $("#" + divID + " .user_info_sel");
-        //Ñ¡ÈË¿Ø¼ş
+        //é€‰äººæ§ä»¶
         KSNSelector({
             model: "1", element: "#" + divID + "_input", width: '200px',
             searchType: { "org": false, "user": true, "grp": false },
             loadItem: {
                 items: (userID == undefined ? [i8_session.uid] : [userID]),
                 loadedCallBack: function () {
-                    // getData(userID == undefined ? i8_session.uid : userID);// alert();
+                   // getData(userID == undefined ? i8_session.uid : userID);// alert();
                 }
             },
             selectCallback: function (personID) {
-                //   getData(personID);
+             //   getData(personID);
             },
             deleteCallback: function (data, data2) {
                 $("#" + divID + " .orgSel .fw_ksninput_slted a").click();
@@ -1120,13 +1117,13 @@ define(function (require) {
 
     }
 
-    //--¿Õ¼äÍâ²¿·½·¨------------------------------------------------
+    //--ç©ºé—´å¤–éƒ¨æ–¹æ³•------------------------------------------------
 
-    //¸üĞÂÉú³ÉºÏ¼Æ¡¢Éú³É¹«Ê½¼ÆËã½á¹û
+    //æ›´æ–°ç”Ÿæˆåˆè®¡ã€ç”Ÿæˆå…¬å¼è®¡ç®—ç»“æœ
     var CalculateGridTotalDesc = function (tableContainer, colIndex, viewObj) {
-        //¹«Ê½¼ÆËã
+        //å…¬å¼è®¡ç®—
         $("th", tableContainer).each(function (i) {
-            var index = "";//ÔËËãµÄÁĞ
+            var index = "";//è¿ç®—çš„åˆ—
             var firstColIndex = "";
             var secColIndex = "";
             var formulaMark = "";
@@ -1154,7 +1151,7 @@ define(function (require) {
                             case "/":
                                 if (secval == 0) {
                                     var colname = $("th", tableContainer).eq(secColIndex).text();
-                                    alert(colname + "×÷Îª³ıÊı²»ÄÜÎª0");
+                                    alert(colname + "ä½œä¸ºé™¤æ•°ä¸èƒ½ä¸º0");
                                 } else {
                                     formulaResult = firstval / secval;
                                 }
@@ -1166,17 +1163,17 @@ define(function (require) {
                 });
             }
         });
-        //¡¢¡¢ºÏ¼Æ
+        //ã€ã€åˆè®¡
         $(".gridSummaryRow td", tableContainer).each(function (e) {
             var col_index = e;
             if ($(this).attr("class") == "td_summary_txt") {
-                if ($("th", tableContainer).eq(e).attr("issumformula") == "true") {//¶àÁĞ¼ÆËã
+                if ($("th", tableContainer).eq(e).attr("issumformula") == "true") {//å¤šåˆ—è®¡ç®—
                     var formula = $("th", tableContainer).eq(e).attr("formulasum").split(";");
                     var col_1_index = formula[0] - 1;
                     var col_2_index = formula[2] - 1;
                     var flag = formula[1];
 
-                    //ÔËËãÏî1µÄºÏ¼Æ
+                    //è¿ç®—é¡¹1çš„åˆè®¡
                     var _summary1 = 0;
                     tableContainer.find("tr:gt(0)").not(".gridSummaryRow").each(function () {
                         var num = parseFloat($(this).find("td:eq(" + (col_1_index) + ")").text());
@@ -1187,7 +1184,7 @@ define(function (require) {
                     })
                     //_summary1 = (_summary1 + 0.00).toFixed(2);
 
-                    //ÔËËãÏî2µÄºÏ¼Æ
+                    //è¿ç®—é¡¹2çš„åˆè®¡
                     var _summary2 = 0;
                     tableContainer.find("tr:gt(0)").not(".gridSummaryRow").each(function () {
                         var num = parseFloat($(this).find("td:eq(" + (col_2_index) + ")").text());
@@ -1198,7 +1195,7 @@ define(function (require) {
                     })
                     //_summary2 = (_summary2 + 0.00).toFixed(2);
 
-                    //ºÏ¼Æ
+                    //åˆè®¡
                     var _summary = 0;
                     switch (flag) {
                         case "+": _summary = _summary1 + _summary2; break;
@@ -1226,7 +1223,7 @@ define(function (require) {
 
             }
         });
-        //ºÏ¼Æ´óĞ´
+        //åˆè®¡å¤§å†™
         $(".gridSummaryRowChinese td", tableContainer).each(function (e) {
             var col_index = e;
             if ($(this).attr("class") == "td_summary_txt") {
@@ -1237,16 +1234,16 @@ define(function (require) {
 
     }
 
-    //³õÊ¼»¯ÁĞÍ·
+    //åˆå§‹åŒ–åˆ—å¤´
     var InitDataColumns = function (tableContainer, columns, opts, controlArr) {
         var isSetWidth = opts.isSetWidth;
         if (columns && columns.length > 0) {
             try {
                 var colRow = $("<tr></tr>");
                 if(!!configInfo.autoIndex){
-                    colRow.append('<th class="datalist-notsubmit">ĞòºÅ</th>');
+                    colRow.append('<th class="datalist-notsubmit">åºå·</th>');
                 }
-                //³õÊ¼»¯ÁĞ
+                //åˆå§‹åŒ–åˆ—
                 var _currentWidth = 0;
                 var _baseWidth = 750;
                 var _totalWidth = 0;
@@ -1257,7 +1254,7 @@ define(function (require) {
                         _width = (parseFloat(columns[i].colWidth, 10) || 10);
                         _totalWidth += _width;
                         _currentWidth = parseInt(_baseWidth * _width / 100);
-                        //Èç¹û²»×ã 100% £¬×îºóÒ»ÁĞÈ¡È«²¿Ê£ÏÂµÄ¿í¶È
+                        //å¦‚æœä¸è¶³ 100% ï¼Œæœ€åä¸€åˆ—å–å…¨éƒ¨å‰©ä¸‹çš„å®½åº¦
                         if (_totalWidth < 100 && i == columns.length - 1) {
                             _currentWidth += (100 - _totalWidth) * _baseWidth / 100;
                         }
@@ -1267,110 +1264,110 @@ define(function (require) {
                     }
                     colRow.append("<th style=\"width:" + _currentWidth + "\" formula='" + columns[i].formula + "' formulaSum='" + columns[i].formulaSum + "' isSumFormula='" + columns[i].isSumFormula + "'>" + columns[i].colText + "</th>");
                 }
-                colRow.append("<th style='width:60px'>²Ù×÷</th>");
+                colRow.append("<th style='width:60px'>æ“ä½œ</th>");
                 tableContainer.append(colRow);
             } catch (e) {
-                tableContainer.append("<tr><td>³õÊ¼»¯ÁĞÍ·Êı¾İÊ§°Ü!</td></tr>");
+                tableContainer.append("<tr><td>åˆå§‹åŒ–åˆ—å¤´æ•°æ®å¤±è´¥!</td></tr>");
             }
         }
 
     }
 
-    //´óĞ´
+    //å¤§å†™
     function numToChinese(money) {
         //debugger;
         var IntNum, PointNum, IntValue, PointValue, unit, moneyCNY;
-        var Number = "ÁãÒ¼·¡ÈşËÁÎéÂ½Æâ°Æ¾Á";
-        var NUMUnit = { LING: "Áã", SHI: "Ê°", BAI: "°Û", QIAN: "Çª", WAN: "Íò", YI: "ÒÚ" }
-        var CNYUnit = { YUAN: "Ôª", JIAO: "½Ç", FEN: "·Ö", ZHENG: "Õû" };
+        var Number = "é›¶å£¹è´°åè‚†ä¼é™†æŸ’æŒç–";
+        var NUMUnit = { LING: "é›¶", SHI: "æ‹¾", BAI: "ä½°", QIAN: "ä»Ÿ", WAN: "ä¸‡", YI: "äº¿" }
+        var CNYUnit = { YUAN: "å…ƒ", JIAO: "è§’", FEN: "åˆ†", ZHENG: "æ•´" };
         var beforeReplace =
-        {
-            Values:
-                [
-                    { Name: NUMUnit.LING + NUMUnit.YI },               // ÁãÒÚ
-                    { Name: NUMUnit.LING + NUMUnit.WAN },              // ÁãÍò
-                    { Name: NUMUnit.LING + NUMUnit.QIAN },             // ÁãÇ§
-                    { Name: NUMUnit.LING + NUMUnit.BAI },              // Áã°Ù
-                    { Name: NUMUnit.LING + NUMUnit.SHI },              // ÁãÊ®
-                    { Name: NUMUnit.LING + NUMUnit.LING },             // ÁãÁã
-                    { Name: NUMUnit.YI + NUMUnit.LING + NUMUnit.WAN }, // ÒÚÁãÍò
-                    { Name: NUMUnit.LING + NUMUnit.YI },               // ÁãÒÚ
-                    { Name: NUMUnit.LING + NUMUnit.WAN },              // ÁãÍò
-                    { Name: NUMUnit.LING + NUMUnit.LING }              // ÁãÁã
-                ]
-        };
+                {
+                    Values:
+                    [
+                        { Name: NUMUnit.LING + NUMUnit.YI },               // é›¶äº¿
+                        { Name: NUMUnit.LING + NUMUnit.WAN },              // é›¶ä¸‡
+                        { Name: NUMUnit.LING + NUMUnit.QIAN },             // é›¶åƒ
+                        { Name: NUMUnit.LING + NUMUnit.BAI },              // é›¶ç™¾
+                        { Name: NUMUnit.LING + NUMUnit.SHI },              // é›¶å
+                        { Name: NUMUnit.LING + NUMUnit.LING },             // é›¶é›¶
+                        { Name: NUMUnit.YI + NUMUnit.LING + NUMUnit.WAN }, // äº¿é›¶ä¸‡
+                        { Name: NUMUnit.LING + NUMUnit.YI },               // é›¶äº¿
+                        { Name: NUMUnit.LING + NUMUnit.WAN },              // é›¶ä¸‡
+                        { Name: NUMUnit.LING + NUMUnit.LING }              // é›¶é›¶
+                    ]
+                };
         var afterReplace =
-        {
-            Values:
-                [
-                    { Name: NUMUnit.YI + NUMUnit.LING }, //ÒÚÁã
-                    { Name: NUMUnit.WAN + NUMUnit.LING }, //ÍòÁã
-                    { Name: NUMUnit.LING },              //Áã
-                    { Name: NUMUnit.LING },              //Áã
-                    { Name: NUMUnit.LING },              //Áã
-                    { Name: NUMUnit.LING },              //Áã
-                    { Name: NUMUnit.YI + NUMUnit.LING }, //ÒÚÁã
-                    { Name: NUMUnit.YI },                //ÒÚ
-                    { Name: NUMUnit.WAN },               //Íò
-                    { Name: NUMUnit.LING }               //Áã
-                ]
-        };
+                {
+                    Values:
+                    [
+                        { Name: NUMUnit.YI + NUMUnit.LING }, //äº¿é›¶
+                        { Name: NUMUnit.WAN + NUMUnit.LING }, //ä¸‡é›¶
+                        { Name: NUMUnit.LING },              //é›¶
+                        { Name: NUMUnit.LING },              //é›¶
+                        { Name: NUMUnit.LING },              //é›¶
+                        { Name: NUMUnit.LING },              //é›¶
+                        { Name: NUMUnit.YI + NUMUnit.LING }, //äº¿é›¶
+                        { Name: NUMUnit.YI },                //äº¿
+                        { Name: NUMUnit.WAN },               //ä¸‡
+                        { Name: NUMUnit.LING }               //é›¶
+                    ]
+                };
         var pointBefore =
-        {
-            Values:
-                [
-                    { Name: NUMUnit.LING + CNYUnit.JIAO }, //Áã½Ç
-                    { Name: NUMUnit.LING + CNYUnit.FEN },  //Áã·Ö
-                    { Name: NUMUnit.LING + NUMUnit.LING }, //ÁãÁã
-                    { Name: CNYUnit.JIAO + NUMUnit.LING }  //½ÇÁã
-                ]
-        };
+                {
+                    Values:
+                    [
+                        { Name: NUMUnit.LING + CNYUnit.JIAO }, //é›¶è§’
+                        { Name: NUMUnit.LING + CNYUnit.FEN },  //é›¶åˆ†
+                        { Name: NUMUnit.LING + NUMUnit.LING }, //é›¶é›¶
+                        { Name: CNYUnit.JIAO + NUMUnit.LING }  //è§’é›¶
+                    ]
+                };
         var pointAfter =
-        {
-            Values:
-                [
-                    { Name: NUMUnit.LING }, //Áã
-                    { Name: NUMUnit.LING }, //Áã
-                    { Name: "" },
-                    { Name: CNYUnit.JIAO }  //½Ç
-                ]
-        };
+                {
+                    Values:
+                    [
+                        { Name: NUMUnit.LING }, //é›¶
+                        { Name: NUMUnit.LING }, //é›¶
+                        { Name: "" },
+                        { Name: CNYUnit.JIAO }  //è§’
+                    ]
+                };
 
-        /// µİ¹éÌæ»»
+        /// é€’å½’æ›¿æ¢
         var replaceAll = function (inputValue, beforeValue, afterValue) {
             while (inputValue.indexOf(beforeValue) > -1) {
                 inputValue = inputValue.replace(beforeValue, afterValue);
             }
             return inputValue;
         }
-        /// »ñÈ¡ÊäÈë½ğ¶îµÄÕûÊı²¿·Ö
+        /// è·å–è¾“å…¥é‡‘é¢çš„æ•´æ•°éƒ¨åˆ†
         IntNum = money.indexOf(".") > -1 ? money.substring(0, money.indexOf(".")) : money;
-        /// »ñÈ¡ÊäÈë½ğ¶îµÄĞ¡Êı²¿·Ö
+        /// è·å–è¾“å…¥é‡‘é¢çš„å°æ•°éƒ¨åˆ†
         PointNum = money.indexOf(".") > -1 ? money.substring(money.indexOf(".") + 1) : "";
         IntValue = PointValue = "";
 
-        /// ¼ÆËãÕûÊı²¿·Ö
+        /// è®¡ç®—æ•´æ•°éƒ¨åˆ†
         for (var i = 0; i < IntNum.length; i++) {
-            /// »ñÈ¡Êı×Öµ¥Î»
+            /// è·å–æ•°å­—å•ä½
             switch ((IntNum.length - i) % 8) {
                 case 5:
-                    unit = NUMUnit.WAN; //Íò
+                    unit = NUMUnit.WAN; //ä¸‡
                     break;
                 case 0:
                 case 4:
-                    unit = NUMUnit.QIAN; //Ç§
+                    unit = NUMUnit.QIAN; //åƒ
                     break;
                 case 7:
                 case 3:
-                    unit = NUMUnit.BAI; //°Ù
+                    unit = NUMUnit.BAI; //ç™¾
                     break;
                 case 6:
                 case 2:
-                    unit = NUMUnit.SHI; //Ê®
+                    unit = NUMUnit.SHI; //å
                     break;
                 case 1:
                     if ((IntNum.length - i) > 8) {
-                        unit = NUMUnit.YI; //ÒÚ
+                        unit = NUMUnit.YI; //äº¿    
                     }
                     else { unit = ""; }
                     break;
@@ -1378,20 +1375,20 @@ define(function (require) {
                     unit = "";
                     break;
             }
-            /// ×é³ÉÕûÊı²¿·Ö
+            /// ç»„æˆæ•´æ•°éƒ¨åˆ†
             IntValue += Number.substr(parseInt(IntNum.substr(i, 1)), 1) + unit;
         }
 
-        /// Ìæ»»Áã
+        /// æ›¿æ¢é›¶
         for (var i = 0; i < beforeReplace.Values.length; i++) {
             IntValue = replaceAll(IntValue, beforeReplace.Values[i].Name, afterReplace.Values[i].Name);
         }
-        // Ä©Î²ÊÇÁãÔòÈ¥³ı
+        // æœ«å°¾æ˜¯é›¶åˆ™å»é™¤
         if (IntValue.substr(IntValue.length - 1, 1) == NUMUnit.LING) IntValue = IntValue.substring(0, IntValue.length - 1);
-        // Ò»Ê®¿ªÍ·µÄÌæ»»ÎªÊ®¿ªÍ·
+        // ä¸€åå¼€å¤´çš„æ›¿æ¢ä¸ºåå¼€å¤´
         if (IntValue.substr(0, 2) == Number.substr(1, 1) + NUMUnit.SHI) IntValue = IntValue.substr(1, IntValue.length - 1);
 
-        /// ¼ÆËãĞ¡Êı²¿·Ö
+        /// è®¡ç®—å°æ•°éƒ¨åˆ†
         if (PointNum != "") {
             PointValue = Number.substr(PointNum.substr(0, 1), 1) + CNYUnit.JIAO;
             PointValue += Number.substr(PointNum.substr(1, 1), 1) + CNYUnit.FEN;
@@ -1409,40 +1406,40 @@ define(function (require) {
 
 
 
-    //---¼ÙÆÚ¿Ø¼ş---------
+    //---å‡æœŸæ§ä»¶---------
     $.fn.VacationSummary = function (options) {
-        //Ä¬ÈÏ³õÊ¼»¯×é¼ş²ÎÊı
+        //é»˜è®¤åˆå§‹åŒ–ç»„ä»¶å‚æ•°
         var defaults = {
             mode: 'edit',  //readonly,design,edit
             data: [],
             uid: '',
             instID: 0,
-            instStatus: ''  //Á÷³Ì×´Ì¬
+            instStatus: ''  //æµç¨‹çŠ¶æ€
         };
         var VacationComponent = $(this);
-        //ºÏ²¢³õÊ¼»¯ÅäÖÃ
+        //åˆå¹¶åˆå§‹åŒ–é…ç½®
         var opts = $.extend({}, defaults, options);
 
         if (opts.mode.toLowerCase() != "design") {
 
 
             if (opts.mode.toLowerCase() != "readonly") {
-                //³õÊ¼»¯¼ÙÆÚ²Ù×÷
+                //åˆå§‹åŒ–å‡æœŸæ“ä½œ
                 var summary_data = VacationComponent. find(".vacationsummary_data");
                 var bodyContainer = summary_data.find("tbody");
-                //Çå¿ÕÎŞÊı¾İĞĞ
+                //æ¸…ç©ºæ— æ•°æ®è¡Œ
                 bodyContainer.find("tr:eq(1)").remove();
 
                 var addRow = $("<tr class='operatrow'>" +
-                    "<td align='center'><select id='vacation_item' style='width:80px'></select></td>" +
-                    "<td><input id='vacation_begindate' type='text' class='Wdate' style='width:115px;' onfocus=\"WdatePicker({dateFmt:'yyyy-MM-dd HH:mm',maxDate:'#F{$dp.$D(\\'vacation_enddate\\')}',skin:'whyGreen'})\"/></td>" +
-                    "<td><input id='vacation_enddate' type='text' class='Wdate' style='width:115px;' onfocus=\"WdatePicker({dateFmt:'yyyy-MM-dd HH:mm',minDate:'#F{$dp.$D(\\'vacation_begindate\\')}',skin:'whyGreen'})\"/></td>" +
-                    "<td><input id='vacation_days' maxlength='10' type='text' style='width:40px;' /></td>" +
-                    "<td><input id='vacation_remark' maxlength='255' type='text' style='width:100px;' /></td>" +
-                    "<td style='width:60px;text-align:center;margin:0px;padding:0px;'><a id='btnAdd' href='javascript:void(0);'>Ìí¼Ó</a></td>" +
-                    "</tr>");
+                                    "<td align='center'><select id='vacation_item' style='width:80px'></select></td>" +
+                                    "<td><input id='vacation_begindate' type='text' class='Wdate' style='width:115px;' onfocus=\"WdatePicker({dateFmt:'yyyy-MM-dd HH:mm',maxDate:'#F{$dp.$D(\\'vacation_enddate\\')}',skin:'whyGreen'})\"/></td>" +
+                                    "<td><input id='vacation_enddate' type='text' class='Wdate' style='width:115px;' onfocus=\"WdatePicker({dateFmt:'yyyy-MM-dd HH:mm',minDate:'#F{$dp.$D(\\'vacation_begindate\\')}',skin:'whyGreen'})\"/></td>" +
+                                    "<td><input id='vacation_days' maxlength='10' type='text' style='width:40px;' /></td>" +
+                                    "<td><input id='vacation_remark' maxlength='255' type='text' style='width:100px;' /></td>" +
+                                    "<td style='width:60px;text-align:center;margin:0px;padding:0px;'><a id='btnAdd' href='javascript:void(0);'>æ·»åŠ </a></td>" +
+                                "</tr>");
                 var btnAdd = addRow.find("#btnAdd");
-                //²ÎÊıÏî
+                //å‚æ•°é¡¹
                 var vacation = addRow.find("#vacation_item");
                 var beginDate = addRow.find("#vacation_begindate");
                 var endDate = addRow.find("#vacation_enddate");
@@ -1452,7 +1449,7 @@ define(function (require) {
                     addVacationItem(vacation, beginDate, endDate, days, remark, addRow);
                 });
 
-                //Ö§³ÖeditÄ£Ê½ÉèÖÃ³õÊ¼»¯Êı¾İ
+                //æ”¯æŒeditæ¨¡å¼è®¾ç½®åˆå§‹åŒ–æ•°æ®
                 if (opts.data != null && opts.data.length > 0) {
                     var viewMode = "";
                     if (opts.instStatus.toLowerCase() == "stopped" || opts.instStatus.toLowerCase() == "reverted")
@@ -1469,7 +1466,7 @@ define(function (require) {
                         }
 
                         if (opts.mode.toLowerCase() == "edit")
-                            rowdata += "<td style='text-align:center;margin:0px;padding:0px;'><a class='itemDel' open='open' href='javascript:void(0);'>É¾³ı</a></td></tr>";
+                            rowdata += "<td style='text-align:center;margin:0px;padding:0px;'><a class='itemDel' open='open' href='javascript:void(0);'>åˆ é™¤</a></td></tr>";
 
                         var addNewRow = $(rowdata);
                         bodyContainer.append(addNewRow);
@@ -1486,10 +1483,10 @@ define(function (require) {
                 bodyContainer.append(addRow);
 
             } else if (opts.mode.toLowerCase() == "readonly" && opts.data != null && opts.data.length > 0) {
-                //³õÊ¼»¯¼ÙÆÚ²Ù×÷
+                //åˆå§‹åŒ–å‡æœŸæ“ä½œ
                 var summary_data = VacationComponent.find(".vacationsummary_data");
                 var bodyContainer = summary_data.find("tbody");
-                //Çå¿ÕÎŞÊı¾İĞĞ
+                //æ¸…ç©ºæ— æ•°æ®è¡Œ
                 bodyContainer.find("tr:eq(1)").remove();
 
                 var viewMode = "";
@@ -1516,19 +1513,19 @@ define(function (require) {
             }
         }
 
-        //ĞÂÔöÒ»ĞĞÊı¾İ
+        //æ–°å¢ä¸€è¡Œæ•°æ®
         function addVacationItem(vacation, beginDate, endDate, days, remark, pushID) {
             if ($.trim(beginDate.val()) == "") {
-                alert("ÇëÌîĞ´¿ªÊ¼Ê±¼ä!");
+                alert("è¯·å¡«å†™å¼€å§‹æ—¶é—´!");
                 return false;
             } else if ($.trim(endDate.val()) == "") {
-                alert("ÇëÌîĞ´½áÊøÊ±¼ä!");
+                alert("è¯·å¡«å†™ç»“æŸæ—¶é—´!");
                 return false;
             } else if ($.trim(days.val()) == "") {
-                alert("ÇëÌîĞ´¼ÙÆÚÊıÁ¿!");
+                alert("è¯·å¡«å†™å‡æœŸæ•°é‡!");
                 return false;
             } else if (isNaN(days.val())) {
-                alert("¼ÙÆÚÊıÁ¿Ö»ÄÜÌîĞ´Êı×Ö!");
+                alert("å‡æœŸæ•°é‡åªèƒ½å¡«å†™æ•°å­—!");
                 return false;
             }
             var addNewRow = $("<tr>" +
@@ -1537,7 +1534,7 @@ define(function (require) {
                 "<td>" + endDate.val() + "</td>" +
                 "<td>" + days.val() + "</td>" +
                 "<td>" + remark.val() + "</td>" +
-                "<td style='text-align:center;margin:0px;padding:0px;'><a class='itemDel' open='open' href='javascript:void(0);'>É¾³ı</a></td>" +
+                "<td style='text-align:center;margin:0px;padding:0px;'><a class='itemDel' open='open' href='javascript:void(0);'>åˆ é™¤</a></td>" +
                 "</tr>");
             addNewRow.find('.itemDel').click(function () {
                 var dataRow = $(this).parent().parent();
@@ -1546,7 +1543,7 @@ define(function (require) {
             });
             pushID.before(addNewRow);
 
-            //Çå¿Õ²ÎÊıÖµ
+            //æ¸…ç©ºå‚æ•°å€¼
             beginDate.val('');
             endDate.val('');
             days.val('');
@@ -1559,7 +1556,7 @@ define(function (require) {
     }
 
 
-    //---Ïû¼Ù¿Ø¼ş---------
+    //---æ¶ˆå‡æ§ä»¶---------
     $.fn.CancelVacationSummary = function (options) {
 
 
@@ -1568,53 +1565,53 @@ define(function (require) {
 
 
 
-    //---Ïû¼Ù¿Ø¼ş---------
+    //---æ¶ˆå‡æ§ä»¶---------
     $.fn.OvertimeSummary = function (options) {
 
 
     }
-    //¶ÁÈ¡×é¼şÉè¼ÆÄ£Ê½Html´úÂë
+    //è¯»å–ç»„ä»¶è®¾è®¡æ¨¡å¼Htmlä»£ç 
 
     $.fn.CancelVacationSummary.GetInitHtml = function (m,mode,option) {
 
         var _option = option || {};
         var _tagName = _option.tagName || '';
-        //<tr><td>µ÷Ğİ</td><td>2013-02-05 18:43:11</td><td>2013-02-06 18:43:11</td><td>18Ğ¡Ê±</td><td>18Ğ¡Ê±</td><td>ÏÔÊ¾ÏêÇë</td><td><span class="control-vacation-tip-red">ÎŞ¿ÉÓÃ¼ÙÆÚ</span></td><td><a href="javascript:void 0" class="example_bg_icon1 btn-delete">É¾³ı</a></td></tr>\
+        //<tr><td>è°ƒä¼‘</td><td>2013-02-05 18:43:11</td><td>2013-02-06 18:43:11</td><td>18å°æ—¶</td><td>18å°æ—¶</td><td>æ˜¾ç¤ºè¯¦è¯·</td><td><span class="control-vacation-tip-red">æ— å¯ç”¨å‡æœŸ</span></td><td><a href="javascript:void 0" class="example_bg_icon1 btn-delete">åˆ é™¤</a></td></tr>\
         var htmlContent = ' <div class="control-vacation-container">\
         <div class="control-vacation-header">\
-        <div class="fw_left control-vacation-title">´Ë´ÎÏú¼ÙÃ÷Ï¸</div> <div class="fw_left">&nbsp;&nbsp;<a class="control-vacation-view-existvacation" href="javascript:void 0">²é¿´È«²¿¿ÉÓÃ¼ÙÆÚ</a></div>\
-        <div class="fw_right"> <span class="control-vacation-unit">µ¥Î»&nbsp;</span>\
+        <div class="fw_left control-vacation-title">æ­¤æ¬¡é”€å‡æ˜ç»†</div> <div class="fw_left">&nbsp;&nbsp;<a class="control-vacation-view-existvacation" href="javascript:void 0">æŸ¥çœ‹å…¨éƒ¨å¯ç”¨å‡æœŸ</a></div>\
+        <div class="fw_right"> <span class="control-vacation-unit">å•ä½&nbsp;</span>\
         <div class="timeset fw_right m-l20">\
-        <a class="a1 selected">Ğ¡Ê±</a><a class="a2">Ìì</a>\
+        <a class="a1 selected">å°æ—¶</a><a class="a2">å¤©</a>\
         </div>\
         </div>\
         </div>\
         <div class="fw_clear"></div>\
         <div class="control-vacation-body control-vacation-cancelvacation">\
         <table class="control-vacation-detail vacationsummary_cancelvacation">\
-        <thead><tr><th class="vacation-header-type">¼ÙÆÚÀàĞÍ</th><th class="vacation-header-time">Ïú¼Ù¿ªÊ¼Ê±¼ä</th><th class="vacation-header-time">Ïú¼Ù½áÊøÊ±¼ä</th><th class="vacation-header-time">Ïú¼ÙÊ±³¤</th><th class="vacation-header-amount">ÉóÅúºó¿ÉÓÃ</th><th class="vacation-header-applytime">ÉóÅúºóÒÑÓÃ</th><th class="vacation-header-available">Á÷³ÌºÅ</th><th class="vacation-header-remark">±¸×¢</th><th class="vacation-header-operate">²Ù×÷</th></tr></thead>\
+        <thead><tr><th class="vacation-header-type">å‡æœŸç±»å‹</th><th class="vacation-header-time">é”€å‡å¼€å§‹æ—¶é—´</th><th class="vacation-header-time">é”€å‡ç»“æŸæ—¶é—´</th><th class="vacation-header-time">é”€å‡æ—¶é•¿</th><th class="vacation-header-amount">å®¡æ‰¹åå¯ç”¨</th><th class="vacation-header-applytime">å®¡æ‰¹åå·²ç”¨</th><th class="vacation-header-available">æµç¨‹å·</th><th class="vacation-header-remark">å¤‡æ³¨</th><th class="vacation-header-operate">æ“ä½œ</th></tr></thead>\
         <tbody class="control-vacation-list">\
         </tbody>\
           <tbody class="control-vacation-total">\
-            <tr><td colspan="2"></td><td class="vacation-row-amount" colspan="6"><span class="vacation-total-title">ºÏ¼Æ£º</span><span class="vacation-datatype-amount vacation-sum-total-amount">0</span></td></tr>\
+            <tr><td colspan="2"></td><td class="vacation-row-amount" colspan="6"><span class="vacation-total-title">åˆè®¡ï¼š</span><span class="vacation-datatype-amount vacation-sum-total-amount">0</span></td></tr>\
             </tbody>\
         </table>\
         <table class="control-vacation-operate">\
             <tr class="operatrow">\
-        <td class="vacation-operation-title">Ïú¼ÙÀàĞÍ</td>\
+        <td class="vacation-operation-title">é”€å‡ç±»å‹</td>\
         <td class="vacation-operation-date"><select id="vacation_item"></select></td>\
-        <td class="vacation-operation-title"  >Ïú¼Ù¿ªÊ¼Ê±¼ä</td>\
+        <td class="vacation-operation-title"  >é”€å‡å¼€å§‹æ—¶é—´</td>\
         <td class="control-operation-time" > <input type="text" class="vacation-begindate vacation-begindate-cancelvacation"  onfocus="WdatePicker({dateFmt:\'yyyy-MM-dd  HH:mm\'})" /></td> \
-          <td class="vacation-operation-title"  >Ïú¼Ù½áÊøÊ±¼ä</td>\
+          <td class="vacation-operation-title"  >é”€å‡ç»“æŸæ—¶é—´</td>\
         <td class="control-operation-time" > <input type="text" class="vacation-enddate vacation-enddate-cancelvacation"  onfocus="WdatePicker({dateFmt:\'yyyy-MM-dd  HH:mm\'})" /></td> \
                     </tr></table>\
                     <table class="control-vacation-operate"><tr class="operatrow">\
-                   <td class="vacation-operation-title">Ïú¼ÙÊ±³¤</td>\
-                   <td class="vacation-operation-data"><input type="text"  class="vacation-detail-duration" />&nbsp;<span class="vacation-control-vacationtype">Ğ¡Ê±</span></td>\
-                   <td  class="vacation-operation-remark">±¸×¢</td>\
+                   <td class="vacation-operation-title">é”€å‡æ—¶é•¿</td>\
+                   <td class="vacation-operation-data"><input type="text"  class="vacation-detail-duration" />&nbsp;<span class="vacation-control-vacationtype">å°æ—¶</span></td>\
+                   <td  class="vacation-operation-remark">å¤‡æ³¨</td>\
             <td ><input type="text" class="vacation-detail-remark"  /></td>\
-            <td class="vacation-operation-relation"><a class="vacation-relation-proc" href="javascript:void 0">¹ØÁªÇë¼ÙÊı¾İ</a></td>\
-            <td class="vacation-operation-save"><a class="vacation-addnewrow">Ôö¼Ó</a>  <span type="text" calc_class="vacation-total-amount" class="vacationsummary_total_inputvalue" isparam="false" valuetype="4" tagctrl="text" tagname="listSUMcol_2_amount_'+_tagName+'"  tagtitle="ÉêÇëºÏ¼Æ" formdata="true" value="0"></span></td>\
+            <td class="vacation-operation-relation"><a class="vacation-relation-proc" href="javascript:void 0">å…³è”è¯·å‡æ•°æ®</a></td>\
+            <td class="vacation-operation-save"><a class="vacation-addnewrow">å¢åŠ </a>  <span type="text" calc_class="vacation-total-amount" class="vacationsummary_total_inputvalue" isparam="false" valuetype="4" tagctrl="text" tagname="listSUMcol_2_amount_'+_tagName+'"  tagtitle="ç”³è¯·åˆè®¡" formdata="true" value="0"></span></td>\
                     </tr>\
                     </table>\
                     </div>\
@@ -1623,44 +1620,44 @@ define(function (require) {
         return htmlContent;
     }
 
-    // ¼Ó°à¿Ø¼ş
+    // åŠ ç­æ§ä»¶
     $.fn.OvertimeSummary.GetInitHtml =  function (m,mode,option) {
 
         var _option = option || {};
         var _tagName = _option.tagName || '';
-        //<tr><td>µ÷Ğİ</td><td>2013-02-05 18:43:11</td><td>2013-02-06 18:43:11</td><td>18Ğ¡Ê±</td><td>18Ğ¡Ê±</td><td>ÏÔÊ¾ÏêÇë</td><td><span class="control-vacation-tip-red">ÎŞ¿ÉÓÃ¼ÙÆÚ</span></td><td><a href="javascript:void 0" class="example_bg_icon1 btn-delete">É¾³ı</a></td></tr>\
-        var htmlContent = ' <div class="control-vacation-container">\
+            //<tr><td>è°ƒä¼‘</td><td>2013-02-05 18:43:11</td><td>2013-02-06 18:43:11</td><td>18å°æ—¶</td><td>18å°æ—¶</td><td>æ˜¾ç¤ºè¯¦è¯·</td><td><span class="control-vacation-tip-red">æ— å¯ç”¨å‡æœŸ</span></td><td><a href="javascript:void 0" class="example_bg_icon1 btn-delete">åˆ é™¤</a></td></tr>\
+            var htmlContent = ' <div class="control-vacation-container">\
         <div class="control-vacation-header">\
-        <div class="fw_left control-vacation-title">´Ë´Î¼Ó°àÃ÷Ï¸</div> <div class="fw_left">&nbsp;&nbsp;<a class="control-vacation-view-existvacation" href="javascript:void 0">²é¿´È«²¿¿ÉÓÃ¼ÙÆÚ</a></div>\
-        <div class="fw_right"> <span class="control-vacation-unit">µ¥Î»&nbsp;</span>\
+        <div class="fw_left control-vacation-title">æ­¤æ¬¡åŠ ç­æ˜ç»†</div> <div class="fw_left">&nbsp;&nbsp;<a class="control-vacation-view-existvacation" href="javascript:void 0">æŸ¥çœ‹å…¨éƒ¨å¯ç”¨å‡æœŸ</a></div>\
+        <div class="fw_right"> <span class="control-vacation-unit">å•ä½&nbsp;</span>\
         <div class="timeset fw_right m-l20">\
-        <a class="a1 selected">Ğ¡Ê±</a><a class="a2">Ìì</a>\
+        <a class="a1 selected">å°æ—¶</a><a class="a2">å¤©</a>\
         </div>\
         </div>\
         </div>\
         <div class="fw_clear"></div>\
         <div class="control-vacation-body control-vacation-overtime">\
         <table class="control-vacation-detail  vacationsummary_overtime">\
-        <thead><tr><th class="vacation-header-type">¼ÙÆÚÀàĞÍ</th><th class="vacation-header-time">¿ªÊ¼Ê±¼ä</th><th class="vacation-header-time">½áÊøÊ±¼ä</th><th class="vacation-header-amount">¿ÉÓÃÊıÁ¿</th><th class="vacation-header-applytime">¼Ó°àÊ±³¤</th><th class="vacation-header-available">ÉóÅúºó¿ÉÓÃ</th><th class="vacation-header-remark">±¸×¢</th><th class="vacation-header-operate">²Ù×÷</th></tr></thead>\
+        <thead><tr><th class="vacation-header-type">å‡æœŸç±»å‹</th><th class="vacation-header-time">å¼€å§‹æ—¶é—´</th><th class="vacation-header-time">ç»“æŸæ—¶é—´</th><th class="vacation-header-amount">å¯ç”¨æ•°é‡</th><th class="vacation-header-applytime">åŠ ç­æ—¶é•¿</th><th class="vacation-header-available">å®¡æ‰¹åå¯ç”¨</th><th class="vacation-header-remark">å¤‡æ³¨</th><th class="vacation-header-operate">æ“ä½œ</th></tr></thead>\
         <tbody class="control-vacation-list">\
         </tbody>\
             <tbody class="control-vacation-total">\
-            <tr><td colspan="3"></td><td class="vacation-row-amount" colspan="5"><span class="vacation-total-title">ºÏ¼Æ£º</span><span class="vacation-datatype-amount vacation-sum-total-amount">0</span></td></tr>\
+            <tr><td colspan="3"></td><td class="vacation-row-amount" colspan="5"><span class="vacation-total-title">åˆè®¡ï¼š</span><span class="vacation-datatype-amount vacation-sum-total-amount">0</span></td></tr>\
             </tbody>\
         </table>\
         <table class="control-vacation-operate">\
             <tr class="operatrow">\
-        <td>¼Ó°àÀàĞÍ</td><td><select id="vacation_item"></select></td><td >¿ªÊ¼Ê±¼ä</td><td colspan="2" class="vacation-control-begin-container"><input type="text" class="vacation-begindate"  onfocus="WdatePicker({dateFmt:\'yyyy-MM-dd  HH:mm\'})" /></td><td>½áÊøÊ±¼ä</td><td class="vacation-control-end-container" colspan="2"><input type="text"  class="vacation-enddate"  onfocus="WdatePicker({dateFmt:\'yyyy-MM-dd  HH:mm\'})" /></td>\
+        <td>åŠ ç­ç±»å‹</td><td><select id="vacation_item"></select></td><td >å¼€å§‹æ—¶é—´</td><td colspan="2" class="vacation-control-begin-container"><input type="text" class="vacation-begindate"  onfocus="WdatePicker({dateFmt:\'yyyy-MM-dd  HH:mm\'})" /></td><td>ç»“æŸæ—¶é—´</td><td class="vacation-control-end-container" colspan="2"><input type="text"  class="vacation-enddate"  onfocus="WdatePicker({dateFmt:\'yyyy-MM-dd  HH:mm\'})" /></td>\
                     </tr>\
                     <tr class="operatrow">\
-                    <td>¼Ó°àÊ±³¤</td><td><input type="text"  class="vacation-detail-duration" />&nbsp;<span class="vacation-control-vacationtype">Ğ¡Ê±</span></td><td class="vacation-operation-remark">±¸×¢</td><td colspan="4"><input type="text" class="vacation-detail-remark"  /></td><td  class="vacation-operation-save"><a class=" vacation-addnewrow">Ôö¼Ó</a>    <span type="text" calc_class="vacation-total-amount" class="vacationsummary_total_inputvalue" isparam="false" valuetype="4" tagctrl="text" tagname="listSUMcol_4_applytime_'+_tagName+'"  tagtitle="ÉêÇëºÏ¼Æ" formdata="true" value="0"></span></td>\
+                    <td>åŠ ç­æ—¶é•¿</td><td><input type="text"  class="vacation-detail-duration" />&nbsp;<span class="vacation-control-vacationtype">å°æ—¶</span></td><td class="vacation-operation-remark">å¤‡æ³¨</td><td colspan="4"><input type="text" class="vacation-detail-remark"  /></td><td  class="vacation-operation-save"><a class=" vacation-addnewrow">å¢åŠ </a>    <span type="text" calc_class="vacation-total-amount" class="vacationsummary_total_inputvalue" isparam="false" valuetype="4" tagctrl="text" tagname="listSUMcol_4_applytime_'+_tagName+'"  tagtitle="ç”³è¯·åˆè®¡" formdata="true" value="0"></span></td>\
                     </tr>\
                     </table>\
                     </div>\
                     </div>';
 
-        return htmlContent;
-    }
+            return htmlContent;
+        }
 
     $.fn.VacationSummary.GetInitHtml =  function (m,mode,option) {
 
@@ -1668,32 +1665,32 @@ define(function (require) {
         var _tagName = _option.tagName || '';
         var _controlVersion = _option.controlVersion || 2;
         if(_controlVersion == 2) {
-            //<tr><td>µ÷Ğİ</td><td>2013-02-05 18:43:11</td><td>2013-02-06 18:43:11</td><td>18Ğ¡Ê±</td><td>18Ğ¡Ê±</td><td>ÏÔÊ¾ÏêÇë</td><td><span class="control-vacation-tip-red">ÎŞ¿ÉÓÃ¼ÙÆÚ</span></td><td><a href="javascript:void 0" class="example_bg_icon1 btn-delete">É¾³ı</a></td></tr>\
+            //<tr><td>è°ƒä¼‘</td><td>2013-02-05 18:43:11</td><td>2013-02-06 18:43:11</td><td>18å°æ—¶</td><td>18å°æ—¶</td><td>æ˜¾ç¤ºè¯¦è¯·</td><td><span class="control-vacation-tip-red">æ— å¯ç”¨å‡æœŸ</span></td><td><a href="javascript:void 0" class="example_bg_icon1 btn-delete">åˆ é™¤</a></td></tr>\
             var htmlContent = ' <div class="control-vacation-container">\
         <div class="control-vacation-header">\
-        <div class="fw_left control-vacation-title">´Ë´ÎÇë¼ÙÃ÷Ï¸</div> <div class="fw_left">&nbsp;&nbsp;<a class="control-vacation-view-existvacation" href="javascript:void 0">²é¿´È«²¿¿ÉÓÃ¼ÙÆÚ</a></div>\
-        <div class="fw_right"> <span class="control-vacation-unit">µ¥Î»&nbsp;</span>\
+        <div class="fw_left control-vacation-title">æ­¤æ¬¡è¯·å‡æ˜ç»†</div> <div class="fw_left">&nbsp;&nbsp;<a class="control-vacation-view-existvacation" href="javascript:void 0">æŸ¥çœ‹å…¨éƒ¨å¯ç”¨å‡æœŸ</a></div>\
+        <div class="fw_right"> <span class="control-vacation-unit">å•ä½&nbsp;</span>\
         <div class="timeset fw_right m-l20">\
-        <a class="a1 selected">Ğ¡Ê±</a><a class="a2">Ìì</a>\
+        <a class="a1 selected">å°æ—¶</a><a class="a2">å¤©</a>\
         </div>\
         </div>\
         </div>\
         <div class="fw_clear"></div>\
         <div class="control-vacation-body control-vacation-summary">\
         <table class="control-vacation-detail vacationSummary vacationsummary_data">\
-        <thead><tr><th class="vacation-header-type">¼ÙÆÚÀàĞÍ</th><th class="vacation-header-time">¿ªÊ¼Ê±¼ä</th><th class="vacation-header-time">½áÊøÊ±¼ä</th><th class="vacation-header-amount">¿ÉÓÃÊıÁ¿</th><th class="vacation-header-applytime">ÉêÇëÊ±³¤</th><th class="vacation-header-remark">±¸×¢</th><th class="vacation-header-available">¿ÉÓÃ</th><th class="vacation-header-operate">²Ù×÷</th></tr></thead>\
+        <thead><tr><th class="vacation-header-type">å‡æœŸç±»å‹</th><th class="vacation-header-time">å¼€å§‹æ—¶é—´</th><th class="vacation-header-time">ç»“æŸæ—¶é—´</th><th class="vacation-header-amount">å¯ç”¨æ•°é‡</th><th class="vacation-header-applytime">ç”³è¯·æ—¶é•¿</th><th class="vacation-header-remark">å¤‡æ³¨</th><th class="vacation-header-available">å¯ç”¨</th><th class="vacation-header-operate">æ“ä½œ</th></tr></thead>\
         <tbody class="control-vacation-list">\
         </tbody>\
            <tbody class="control-vacation-total">\
-            <tr><td colspan="3"></td><td class="vacation-row-amount" colspan="5"><span class="vacation-total-title">ºÏ¼Æ£º</span><span class="vacation-datatype-amount vacation-sum-total-amount">0</span></td></tr>\
+            <tr><td colspan="3"></td><td class="vacation-row-amount" colspan="5"><span class="vacation-total-title">åˆè®¡ï¼š</span><span class="vacation-datatype-amount vacation-sum-total-amount">0</span></td></tr>\
             </tbody>\
         </table>\
         <table class="control-vacation-operate">\
             <tr class="operatrow">\
-        <td>Çë¼ÙÀàĞÍ</td><td><select id="vacation_item"></select></td><td>¿ªÊ¼Ê±¼ä</td><td colspan="2" class="vacation-control-begin-container"><input type="text" class="vacation-begindate"  onfocus="WdatePicker({dateFmt:\'yyyy-MM-dd  HH:mm\'})" /></td><td>½áÊøÊ±¼ä</td><td class="vacation-control-end-container" colspan="2"><input type="text"  class="vacation-enddate"  onfocus="WdatePicker({dateFmt:\'yyyy-MM-dd  HH:mm\'})" /></td>\
+        <td>è¯·å‡ç±»å‹</td><td><select id="vacation_item"></select></td><td>å¼€å§‹æ—¶é—´</td><td colspan="2" class="vacation-control-begin-container"><input type="text" class="vacation-begindate"  onfocus="WdatePicker({dateFmt:\'yyyy-MM-dd  HH:mm\'})" /></td><td>ç»“æŸæ—¶é—´</td><td class="vacation-control-end-container" colspan="2"><input type="text"  class="vacation-enddate"  onfocus="WdatePicker({dateFmt:\'yyyy-MM-dd  HH:mm\'})" /></td>\
                     </tr>\
                     <tr class="operatrow">\
-                    <td>ÉêÇëÊ±³¤</td><td><input type="text"  class="vacation-detail-duration" />&nbsp;<span class="vacation-control-vacationtype">Ğ¡Ê±</span></td><td class="vacation-operation-remark">±¸×¢</td><td colspan="4"><input type="text" class="vacation-detail-remark"  /></td><td  class="vacation-operation-save"><a class="vacation-addnewrow">Ôö¼Ó</a> <span type="text" calc_class="vacation-total-amount" class="vacationsummary_total_inputvalue" isparam="false" valuetype="4" tagctrl="text" tagname="listSUMcol_4_applytime_'+_tagName+'"  tagtitle="ÉêÇëºÏ¼Æ" formdata="true" value="0"></span></td>\
+                    <td>ç”³è¯·æ—¶é•¿</td><td><input type="text"  class="vacation-detail-duration" />&nbsp;<span class="vacation-control-vacationtype">å°æ—¶</span></td><td class="vacation-operation-remark">å¤‡æ³¨</td><td colspan="4"><input type="text" class="vacation-detail-remark"  /></td><td  class="vacation-operation-save"><a class="vacation-addnewrow">å¢åŠ </a> <span type="text" calc_class="vacation-total-amount" class="vacationsummary_total_inputvalue" isparam="false" valuetype="4" tagctrl="text" tagname="listSUMcol_4_applytime_'+_tagName+'"  tagtitle="ç”³è¯·åˆè®¡" formdata="true" value="0"></span></td>\
                     </tr>\
                     </table>\
                     </div>\
@@ -1706,19 +1703,19 @@ define(function (require) {
         {
             mode=0;
         }
-        var title="Çë¼Ù";
+        var title="è¯·å‡";
         var dsp="";
         if(mode==0)
         {
-            title="¼Ó°à";
+            title="åŠ ç­";
             dsp=";display:none";
         }
 
         var htmlContent = '<div class="vacationSummary" isparam="false" mustinput="' + m + '" sourceid="">';
-        htmlContent += '<div class="item_title" style="padding-left:10px;">¿ÉÓÃ¼ÙÆÚÊı¾İ(<span id="vacationsummary_unit">Ìì</span>)</div>';
-        htmlContent += '<table width="100%" class="datagrid vacationsummary_detailMsg" border="1" cellpadding="0" cellspacing="0"><tbody><tr><th style="width:auto">¼ÙÆÚÄê</th><th style="width:auto">¼ÙÆÚÀàĞÍ</th><th style="width:auto">¼ÙÆÚ×ÜÊı</th><th style="width:auto">¿ÉÓÃÊıÁ¿</th><th style="width:auto">ÉêÇëÊıÁ¿</th><th style="width:auto'+dsp+'">Ô¤Ëã¿ØÖÆ</th></tr><tr><td colspan="6" align="center">ÔİÎŞÊı¾İ</td></tr></tbody></table>'
-        htmlContent += '<div><div class="item_title" style="border-top:none;padding-left:10px;">´Ë´Î'+title+'Ã÷Ï¸</div>';
-        htmlContent += '<table width="100%" mode="'+mode+'" class="datagrid vacationsummary_data" border="1" cellpadding="0" cellspacing="0"><tbody><tr><th style="width:100px">¼ÙÆÚÀàĞÍ</th><th style="width:110px">¿ªÊ¼Ê±¼ä</th><th style="width:110px">½áÊøÊ±¼ä</th><th style="width:80px">'+title+'<span id="vacationsummary_rowdata_unit">Ìì</span>Êı</th><th style="width:auto">±¸×¢</th><th style="width:60px">²Ù×÷</th></tr><tr><td colspan="6" align="center">ÔİÎŞÊı¾İ</td></tr></tbody></table>'
+        htmlContent += '<div class="item_title" style="padding-left:10px;">å¯ç”¨å‡æœŸæ•°æ®(<span id="vacationsummary_unit">å¤©</span>)</div>';
+        htmlContent += '<table width="100%" class="datagrid vacationsummary_detailMsg" border="1" cellpadding="0" cellspacing="0"><tbody><tr><th style="width:auto">å‡æœŸå¹´</th><th style="width:auto">å‡æœŸç±»å‹</th><th style="width:auto">å‡æœŸæ€»æ•°</th><th style="width:auto">å¯ç”¨æ•°é‡</th><th style="width:auto">ç”³è¯·æ•°é‡</th><th style="width:auto'+dsp+'">é¢„ç®—æ§åˆ¶</th></tr><tr><td colspan="6" align="center">æš‚æ— æ•°æ®</td></tr></tbody></table>'
+        htmlContent += '<div><div class="item_title" style="border-top:none;padding-left:10px;">æ­¤æ¬¡'+title+'æ˜ç»†</div>';
+        htmlContent += '<table width="100%" mode="'+mode+'" class="datagrid vacationsummary_data" border="1" cellpadding="0" cellspacing="0"><tbody><tr><th style="width:100px">å‡æœŸç±»å‹</th><th style="width:110px">å¼€å§‹æ—¶é—´</th><th style="width:110px">ç»“æŸæ—¶é—´</th><th style="width:80px">'+title+'<span id="vacationsummary_rowdata_unit">å¤©</span>æ•°</th><th style="width:auto">å¤‡æ³¨</th><th style="width:60px">æ“ä½œ</th></tr><tr><td colspan="6" align="center">æš‚æ— æ•°æ®</td></tr></tbody></table>'
         htmlContent += '</div>';
         return htmlContent;
         /**/
@@ -1726,31 +1723,31 @@ define(function (require) {
 
 
 
-    //---Ñ¡ÈËĞÅÏ¢¿Ø¼ş-------
+    //---é€‰äººä¿¡æ¯æ§ä»¶-------
 
     $.fn.personInfo = function (options) { }
 
 
-    //¶ÁÈ¡×é¼şÉè¼ÆÄ£Ê½Html´úÂë
+    //è¯»å–ç»„ä»¶è®¾è®¡æ¨¡å¼Htmlä»£ç 
     $.fn.personInfo.initHtml = function (checkedBoxes, isparam, mustinput) {
-        //idÉú³É
+        //idç”Ÿæˆ
         var idCode = "personInfo_" + Math.random().toString().replace(".", "");
-        //Ö÷htmlcode
+        //ä¸»htmlcode
         var htmlContent = '<div id="' + idCode + '" class="personInfo" checkednames="' + checkedBoxes.join(',') + '" isparam="' + isparam + '" mustinput="' + mustinput + '" sourceid="">'
-            + '<table class="user_info_sel"><tr><td style="width:80px;text-align:right;">ĞÕÃû:</td><td style="width:200px;text-align:left;"><input type="text" id="' + idCode + '_input"/></td><td style="width:80px;text-align:right;">²¿ÃÅ:</td><td class="orgSel" style="width:200px;text-align:left;"><input type="text" id="' + idCode + '_input_org"/></td></tr>'
-            + '</table>'
-            + '<div class="user_info_container">'
-            + '</div>'
-            + '</div>';
+                                + '<table class="user_info_sel"><tr><td style="width:80px;text-align:right;">å§“å:</td><td style="width:200px;text-align:left;"><input type="text" id="' + idCode + '_input"/></td><td style="width:80px;text-align:right;">éƒ¨é—¨:</td><td class="orgSel" style="width:200px;text-align:left;"><input type="text" id="' + idCode + '_input_org"/></td></tr>'
+                                + '</table>'
+                                + '<div class="user_info_container">'
+                                + '</div>'
+                        + '</div>';
         return htmlContent;
     }
 
 
-    //¼¤»î×é¼ş
+    //æ¿€æ´»ç»„ä»¶
     $.fn.personInfo.initActive = function (divID, userID, orgID) {
         //
         if (userID != undefined && orgID != undefined) {
-            //Ìí¼Ó²¿ÃÅ
+            //æ·»åŠ éƒ¨é—¨
             var orgsel = KSNSelector({
                 model: "1", element: "#" + divID + "_input_org", width: '200px',
                 searchType: { "org": true, "user": false, "grp": false }
@@ -1759,10 +1756,10 @@ define(function (require) {
             var setData = [{ "type": "org" }];
             orgsel.setAllselectedData(setData);
         }
-        //ĞÅÏ¢ÈİÆ÷
+        //ä¿¡æ¯å®¹å™¨
         var container = $("#" + divID + " .user_info_container");
         //var containerTab = $("#" + divID + " .user_info_sel");
-        //Ñ¡ÈË¿Ø¼ş
+        //é€‰äººæ§ä»¶
         KSNSelector({
             model: "1", element: "#" + divID + "_input", width: '200px',
             searchType: { "org": false, "user": true, "grp": false },
@@ -1773,7 +1770,7 @@ define(function (require) {
                 }
             },
             selectCallback: function (personID) {
-                // getData(personID);
+               // getData(personID);
             },
             deleteCallback: function (data, data2) {
                 $("#" + divID + " .orgSel .fw_ksninput_slted a").click();

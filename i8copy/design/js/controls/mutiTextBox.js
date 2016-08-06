@@ -3,13 +3,13 @@
  */
 define(function (require) {
     var utilModel = require('../util.js');
-    //°×Ãûµ¥
+    //ç™½åå•
     var white_list = utilModel.workflowWhiteList;
     var control_prototype = {
         ctype: 'mutiTextBox',
         ipos: '0px -40px',
-        name: '¶àĞĞÎÄ±¾¿ò',
-        //box: ['<div class="boxrow"><div class="brtt"><span class="span_bfieldTxt">Ä¬ÈÏÖµ£º</span></div><div class="brbx"><input type="text" id="txt_defaulttxt" class="txtboxcs" value=""/></div></div>'],
+        name: 'å¤šè¡Œæ–‡æœ¬æ¡†',
+        //box: ['<div class="boxrow"><div class="brtt"><span class="span_bfieldTxt">é»˜è®¤å€¼ï¼š</span></div><div class="brbx"><input type="text" id="txt_defaulttxt" class="txtboxcs" value=""/></div></div>'],
         propertyHtml: function () {
             return require('../template/property-mutiTextBox.tpl');
         },
@@ -29,7 +29,7 @@ define(function (require) {
             if (_defaultValue.length > 0) {
                 white_list.lastIndex = 0;
                 if (!white_list.test(_defaultValue)) {
-                    alert('Ä¬ÈÏÖµ²»·ûºÏ¹æÔò£¡');
+                    alert('é»˜è®¤å€¼ä¸ç¬¦åˆè§„åˆ™ï¼');
                     return false;
                 }
             }
@@ -40,7 +40,7 @@ define(function (require) {
             var render = template(ctrl_tpl);
             var config = {
                 ctype: arguments[0],
-                FieldType: 1,//ÎÄ±¾Óò
+                FieldType: 1,//æ–‡æœ¬åŸŸ
                 FieldID: this.fieldID(),
                 FieldName: this.title,
                 DefaultValue: (this.defaultvalue||''),
@@ -60,7 +60,7 @@ define(function (require) {
             };
             config.str_config = $.JSONString(config);
             return render(config);
-            //return $('<div class="ctrlbox" ctype="' + arguments[0] + '" rowtype="0"><div class="ctrltitle"><span class="span_mustinputtag" style="visibility:' + (this.mustinput ? "visible" : "hidden") + '">*</span><span class="ctitletxt">' + this.title + '</span>£º</div><div class="ctrltxt"><textarea rows="5" cols="5" class="tbox_mutiLineBox" maxlength="' + this.maxLength + '" minlength="' + this.minLength + '" isparam="' + this.isparam + '" mustinput="' + this.mustinput + '" >' + this.defaultvalue + '</textarea></div></div>');
+            //return $('<div class="ctrlbox" ctype="' + arguments[0] + '" rowtype="0"><div class="ctrltitle"><span class="span_mustinputtag" style="visibility:' + (this.mustinput ? "visible" : "hidden") + '">*</span><span class="ctitletxt">' + this.title + '</span>ï¼š</div><div class="ctrltxt"><textarea rows="5" cols="5" class="tbox_mutiLineBox" maxlength="' + this.maxLength + '" minlength="' + this.minLength + '" isparam="' + this.isparam + '" mustinput="' + this.mustinput + '" >' + this.defaultvalue + '</textarea></div></div>');
         },
         getUpdateBox: function (_ctype, _ctrlobj, builder) {
             var updateBox = $((new builder(_ctype)).toBoxString());

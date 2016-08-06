@@ -5,8 +5,8 @@ define(function (require) {
     var control_prototype = {
         ctype: 'dateTime',
         ipos: '0px -286px',
-        name: 'ÈÕÆÚ¿Ø¼ş',
-        //box: ['<div class="boxrow"><div class="brtt"><span class="span_bfieldTxt">Ê±¼äÉè¶¨£º</span></div><div class="brbx"><input type="radio" id="date_format_1" name="rd_date_format" checked="checked" value="yyyy-MM-dd"/><label for="date_format_1">Äê-ÔÂ-ÈÕ</label><br/><input type="radio" id="date_format_2" name="rd_date_format" value="yyyy-MM-dd HH"/><label for="date_format_2">Äê-ÔÂ-ÈÕ Ğ¡Ê±:00:00</label><br/><input type="radio" id="date_format_3" name="rd_date_format" value="yyyy-MM-dd HH:mm"/><label for="date_format_3">Äê-ÔÂ-ÈÕ Ğ¡Ê±:·ÖÖÓ:00</label><br/><input type="radio" id="date_format_4" name="rd_date_format" value="yyyy-MM-dd HH:mm:ss"/><label for="date_format_4">Äê-ÔÂ-ÈÕ Ğ¡Ê±:·ÖÖÓ:Ãë</label></div></div><div class="boxrow" style="display:none"><div class="brtt"><span class="span_bfieldTxt">Ê±¼ä¹ØÏµ£º</span></div><div class="brbx"><select id="ctr_dateRelation_1"><option>ÔçÓÚ</option><option>ÍíÓÚ</option></select><select><option>ÉóÅúÊ±¼ä</option></select><br/><select id="ctr_dateRelation_2"><option>ÔçÓÚ</option><option>ÍíÓÚ</option></select><select><option>·¢ÆğÊ±¼ä</option></select></div></div>'],
+        name: 'æ—¥æœŸæ§ä»¶',
+        //box: ['<div class="boxrow"><div class="brtt"><span class="span_bfieldTxt">æ—¶é—´è®¾å®šï¼š</span></div><div class="brbx"><input type="radio" id="date_format_1" name="rd_date_format" checked="checked" value="yyyy-MM-dd"/><label for="date_format_1">å¹´-æœˆ-æ—¥</label><br/><input type="radio" id="date_format_2" name="rd_date_format" value="yyyy-MM-dd HH"/><label for="date_format_2">å¹´-æœˆ-æ—¥ å°æ—¶:00:00</label><br/><input type="radio" id="date_format_3" name="rd_date_format" value="yyyy-MM-dd HH:mm"/><label for="date_format_3">å¹´-æœˆ-æ—¥ å°æ—¶:åˆ†é’Ÿ:00</label><br/><input type="radio" id="date_format_4" name="rd_date_format" value="yyyy-MM-dd HH:mm:ss"/><label for="date_format_4">å¹´-æœˆ-æ—¥ å°æ—¶:åˆ†é’Ÿ:ç§’</label></div></div><div class="boxrow" style="display:none"><div class="brtt"><span class="span_bfieldTxt">æ—¶é—´å…³ç³»ï¼š</span></div><div class="brbx"><select id="ctr_dateRelation_1"><option>æ—©äº</option><option>æ™šäº</option></select><select><option>å®¡æ‰¹æ—¶é—´</option></select><br/><select id="ctr_dateRelation_2"><option>æ—©äº</option><option>æ™šäº</option></select><select><option>å‘èµ·æ—¶é—´</option></select></div></div>'],
         propertyHtml: function () {
             return require('../template/property-dateTime.tpl');
         },
@@ -26,7 +26,7 @@ define(function (require) {
             var render = template(ctrl_tpl);
             var config = {
                 ctype: arguments[0],
-                FieldType: 8,//ÈÕÀú¿Ø¼ş
+                FieldType: 8,//æ—¥å†æ§ä»¶
                 FieldID: this.fieldID(),
                 FieldName: this.title,
                 DefaultValue: '',
@@ -45,7 +45,7 @@ define(function (require) {
             };
             config.str_config = $.JSONString(config);
             return render(config);
-            //return $('<div class="ctrlbox" ctype="' + arguments[0] + '" rowtype="1"><div class="ctrltitle"><span class="span_mustinputtag" style="visibility:' + (this.mustinput ? "visible" : "hidden") + '">*</span><span class="ctitletxt">' + this.title + '</span>£º</div><div class="ctrltxt"><input type="text" class="wfd_ctrl_datepiker" isparam="' + this.isparam + '" mustinput="' + this.mustinput + '" dateformat="' + this.dateformate + '" onFocus="WdatePicker({dateFmt:\'' + this.dateformate + '\'})" valuetype="50"/></div></div>');
+            //return $('<div class="ctrlbox" ctype="' + arguments[0] + '" rowtype="1"><div class="ctrltitle"><span class="span_mustinputtag" style="visibility:' + (this.mustinput ? "visible" : "hidden") + '">*</span><span class="ctitletxt">' + this.title + '</span>ï¼š</div><div class="ctrltxt"><input type="text" class="wfd_ctrl_datepiker" isparam="' + this.isparam + '" mustinput="' + this.mustinput + '" dateformat="' + this.dateformate + '" onFocus="WdatePicker({dateFmt:\'' + this.dateformate + '\'})" valuetype="50"/></div></div>');
         },
         getUpdateBox: function (_ctype, _ctrlobj, builder) {
             var updateBox = $((new builder(_ctype)).toBoxString());

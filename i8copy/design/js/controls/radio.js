@@ -3,14 +3,14 @@
  */
 define(function (require) {
     //var white_list = /^[\u4e00-\u9fa5_a-zA-Z0-9\s]+$/ig;
-    // var white_list = /^[£¨£©£¬¡£¡®¡°£¡'"=@#%_\!\$\^\*\(\)\+\|\-\\\u4e00-\u9fa5a-zA-Z0-9\s]+$/ig;
+    // var white_list = /^[ï¼ˆï¼‰ï¼Œã€‚â€˜â€œï¼'"=@#%_\!\$\^\*\(\)\+\|\-\\\u4e00-\u9fa5a-zA-Z0-9\s]+$/ig;
     var utilModel = require('../util.js');
-    //°×Ãûµ¥
+    //ç™½åå•
     var white_list = utilModel.workflowWhiteList;
     var dataCache=require('../sourceCache');
     var control_prototype = {
-        ctype: 'radio', ipos: '0px -204px', name: 'µ¥Ñ¡¿ò¿Ø¼ş',
-        //box: ['<div class="boxrow"><div class="brtt"><span class="span_bfieldTxt">Êı¾İÔ´£º</span></div><div class="brbx"><select id="slt_selectdatasource"><option value="0">×Ô¶¨ÒåÊı¾İ</option></select> <a id="a_link_newdatasource" style="display:none;">ĞÂÔöÊı¾İÔ´</a></div></div><div class="boxrow customItemsettingsdiv"><div class="brtt"><span class="span_bfieldTxt">Ñ¡ÏîÉèÖÃ£º</span></div><div class="brbx"><textarea class="areaselectitemset" id="txt_mutiselectitemset" rows="5" cols="5">Ñ¡Ïî1\nÑ¡Ïî2\nÑ¡Ôñ3</textarea></div></div>'],
+        ctype: 'radio', ipos: '0px -204px', name: 'å•é€‰æ¡†æ§ä»¶',
+        //box: ['<div class="boxrow"><div class="brtt"><span class="span_bfieldTxt">æ•°æ®æºï¼š</span></div><div class="brbx"><select id="slt_selectdatasource"><option value="0">è‡ªå®šä¹‰æ•°æ®</option></select> <a id="a_link_newdatasource" style="display:none;">æ–°å¢æ•°æ®æº</a></div></div><div class="boxrow customItemsettingsdiv"><div class="brtt"><span class="span_bfieldTxt">é€‰é¡¹è®¾ç½®ï¼š</span></div><div class="brbx"><textarea class="areaselectitemset" id="txt_mutiselectitemset" rows="5" cols="5">é€‰é¡¹1\né€‰é¡¹2\né€‰æ‹©3</textarea></div></div>'],
         propertyHtml: function () {
             return require('../template/property-radio.tpl');
         },
@@ -20,7 +20,7 @@ define(function (require) {
                 _.each(datasource,function(item){
                     optionCode += '<option value="' + item.ID + '">' + item.Name + '</option>';
                 });
-                $("#txt_singleselectitemset").val("Ñ¡Ïî1\nÑ¡Ïî2\nÑ¡Ïî3");
+                $("#txt_singleselectitemset").val("é€‰é¡¹1\né€‰é¡¹2\né€‰é¡¹3");
                 $("#slt_selectdatasource").append(optionCode).change(function () {
                     var selValue = $(this).val();
                     if (selValue == "0") {
@@ -37,7 +37,7 @@ define(function (require) {
              optionCode += '<option value="' + datasource[i].sourceid + '">' + datasource[i].sourceName + '</option>';
              }
              }
-             $("#txt_singleselectitemset").val("Ñ¡Ïî1\nÑ¡Ïî2\nÑ¡Ïî3");
+             $("#txt_singleselectitemset").val("é€‰é¡¹1\né€‰é¡¹2\né€‰é¡¹3");
              $("#slt_selectdatasource").append(optionCode).change(function () {
              var selValue = $(this).val();
              if (selValue == "0") {
@@ -61,7 +61,7 @@ define(function (require) {
             var _itemsValue = $.trim($("#txt_singleselectitemset").val() || '');
             white_list.lastIndex = 0;
             if (!white_list.test(_itemsValue) && _itemsValue.length>0) {
-                alert('Ñ¡ÏîÉèÖÃÖĞ°üº¬·Ç·¨×Ö·û£¡');
+                alert('é€‰é¡¹è®¾ç½®ä¸­åŒ…å«éæ³•å­—ç¬¦ï¼');
                 return false;
             }
             return true;
@@ -72,7 +72,7 @@ define(function (require) {
             var render = template(ctrl_tpl);
             var config = {
                 ctype: arguments[0],
-                FieldType: 4,//µ¥Ñ¡°´Å¥
+                FieldType: 4,//å•é€‰æŒ‰é’®
                 FieldID: this.fieldID(),
                 FieldName: this.title,
                 DefaultValue: '',
@@ -161,11 +161,11 @@ define(function (require) {
                 _.each(datasource,function(item){
                     optionCode += '<option value="' + item.ID + '">' + item.Name + '</option>';
                 });
-                //$("#txt_singleselectitemset").val("Ñ¡Ïî1\nÑ¡Ïî2\nÑ¡Ïî3");
+                //$("#txt_singleselectitemset").val("é€‰é¡¹1\né€‰é¡¹2\né€‰é¡¹3");
                 $("#slt_selectdatasource").append(optionCode).change(function () {
                     var selValue = $(this).val();
                     if (selValue == "0") {
-                        $("#txt_singleselectitemset").val("Ñ¡Ïî1\nÑ¡Ïî2\nÑ¡Ïî3");
+                        $("#txt_singleselectitemset").val("é€‰é¡¹1\né€‰é¡¹2\né€‰é¡¹3");
                         $(".customItemsettingsdiv").show();
                     } else {
                         $(".customItemsettingsdiv").hide();

@@ -1,5 +1,5 @@
 define(function (require) {
-    var selector = require("default/javascripts/plugins/i8selector/fw_selector");
+    var selector = require("./fw_selector");
     var dataCache=require('./sourceCache');
     var util = require('../util.js');
     var configInfo = {};

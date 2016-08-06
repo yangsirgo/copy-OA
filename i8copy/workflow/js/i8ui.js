@@ -6,7 +6,7 @@
  */
 define(function(require,exports){
     var maskArr=[];
-    //显示遮罩�?
+    //鏄剧ず閬僵灞?
     var showMask = function(){
         var jsMsk = "js_msk"+new Date().valueOf();
         var domMsk = document.createElement('div');
@@ -25,12 +25,12 @@ define(function(require,exports){
 
     }
     /*
-     *基本弹出层方�?
-     *参数格式为json
-     * title 弹出层标�?
-     * cont 弹出层内�?
-     * btnDom 控制显示弹出层显示位置的 $对象按钮�?
-     * noMask 不现实弹出层 默认为false
+     *鍩烘湰寮瑰嚭灞傛柟娉?
+     *鍙傛暟鏍煎紡涓簀son
+     * title 寮瑰嚭灞傛爣棰?
+     * cont 寮瑰嚭灞傚唴瀹?
+     * btnDom 鎺у埗鏄剧ず寮瑰嚭灞傛樉绀轰綅缃殑 $瀵硅薄鎸夐挳銆?
+     * noMask 涓嶇幇瀹炲脊鍑哄眰 榛樿涓篺alse
      */
     var expendUI=function($id,opt){
         if($id.length>1){
@@ -49,17 +49,17 @@ define(function(require,exports){
         var _height=$id.height();
         if(_height>opt.height){
             $id.css('height',opt.max_height+'px');
-            $id.append($('<span class="expend-content-line" style="display:block;bottom:'+opt.bottom+'px;right:'+opt.right+'px"><a class="expend-switch es-close" style="display: inline;"><span>展开</span><i></i></a></span>'))
+            $id.append($('<span class="expend-content-line" style="display:block;bottom:'+opt.bottom+'px;right:'+opt.right+'px"><a class="expend-switch es-close" style="display: inline;"><span>灞曞紑</span><i></i></a></span>'))
                 .on('click','.expend-switch',function(){
                     var _this=$(this);
                     if(_this.hasClass('es-close')){
                         $id.css('overflow','visible');
                         $id.animate({'height':_height+'px','padding-bottom':'20px'});
-                        _this.removeClass('es-close').html('<span>收起</span><i></i>');
+                        _this.removeClass('es-close').html('<span>鏀惰捣</span><i></i>');
                     }else{
                         $id.css('overflow','hidden');
                         $id.animate({'height':opt.max_height+'px','padding-bottom':'0px'});
-                        _this.addClass('es-close').html('<span>展开</span><i></i>');
+                        _this.addClass('es-close').html('<span>灞曞紑</span><i></i>');
                     }
 
                 });
@@ -67,7 +67,7 @@ define(function(require,exports){
     }
     exports.expendUI=expendUI;
     /*
-     * 拖拽
+     * 鎷栨嫿
      *
      * */
     var _drag=function(divDom,target,setting){
@@ -126,7 +126,7 @@ define(function(require,exports){
         var titleStr = '';
         var isalert = '';
         if(json.title){
-            titleStr = '<span class="ct-close">×</span><div class="ct-ly-h1">'+json.title+'</div>';
+            titleStr = '<span class="ct-close">脳</span><div class="ct-ly-h1">'+json.title+'</div>';
         }
         if(json.isalert){
             isalert = ' is-alert'
@@ -135,7 +135,7 @@ define(function(require,exports){
         var js_fj_id_index=$('#js_fj_id').css('z-index')||0;
         divDom.style.zIndex = json.zIndex || 1000+maskArr.length;
         divDom.style.zIndex=parseInt(js_fj_id_index)+parseInt(divDom.style.zIndex);
-        divDom.id = new Date().valueOf(); //初始化弹出层的ID
+        divDom.id = new Date().valueOf(); //鍒濆鍖栧脊鍑哄眰鐨処D
         divDom.className = 'ct-ly' + isalert;
         divDom.innerHTML = titleStr + json.cont;
         document.body.appendChild(divDom);
@@ -153,11 +153,11 @@ define(function(require,exports){
         if(typeof json.error === 'function') {
             json.error();
         }
-        //关闭方法
+        //鍏抽棴鏂规硶
         divDom.close = function(){
             //divDom.parentNode.removeChild(divDom);
-            if(navigator.userAgent.indexOf("MSIE")>=0||navigator.userAgent.indexOf("Mozilla")>=0) {//判断当前浏览器是否为IE
-                $(divDom).find("iframe").remove();//先移除iframe
+            if(navigator.userAgent.indexOf("MSIE")>=0||navigator.userAgent.indexOf("Mozilla")>=0) {//鍒ゆ柇褰撳墠娴忚鍣ㄦ槸鍚︿负IE
+                $(divDom).find("iframe").remove();//鍏堢Щ闄frame
             }
             $(divDom).remove();
             if(!json.noMask){
@@ -171,7 +171,7 @@ define(function(require,exports){
             var n_top = $(window).height() / 2 - $box.height() / 2;
             $box.css({ top: n_top, left: n_left, margin: 0, position: "fixed" });
         };
-        //定位方法
+        //瀹氫綅鏂规硶
         divDom.position = function(){
             var $divDom = $(divDom);
             var winWidth = $(window).width();
@@ -181,7 +181,7 @@ define(function(require,exports){
                 winHeight = $(window.parent).height();
                 winScrollTop = $(window.parent).scrollTop();
             }
-            //控制弹出层的位置
+            //鎺у埗寮瑰嚭灞傜殑浣嶇疆
             var leftNum = winWidth / 2 - $divDom.width() / 2;
             var topNum = (winHeight / 2 - $divDom.height() / 2) + winScrollTop;
             if(json.btnDom){
@@ -203,9 +203,9 @@ define(function(require,exports){
             $divDom.css({left: parseInt(leftNum), top: parseInt(topNum)});
         }
         divDom.position();
-        //关闭事件
+        //鍏抽棴浜嬩欢
         $(divDom).on('click','.ct-close,.gray96x32,.gray94x32,.btn-gray96x32',function(){
-            //by善练
+            //by鍠勭粌
             if(!$(this).hasClass('confirm')){
                 divDom.close();
             }
@@ -215,21 +215,21 @@ define(function(require,exports){
         _drag(divDom,'.ct-ly-h1')
         return	divDom;
     };
-    //确定提示�?
+    //纭畾鎻愮ず妗?
     var i8Confirm = function(json,cbk,cancelcbk){
-        //json.body谁加�? 我表示不知道干嘛�? 先处理一�?
+        //json.body璋佸姞鐨? 鎴戣〃绀轰笉鐭ラ亾骞插槢鐨? 鍏堝鐞嗕竴涓?
         var confirmHtml = (json.body? json.body : "")+'<div class="ct-ly-msg">'+ json.title +'</div>'+
             '<div class="tcenter">' +
-            '<span class="ct-confirm ct-ly-btn col-blue">确定</span>'+
-            '<span class="ct-cancel ct-ly-btn col-f1">取消</span>'+
+            '<span class="ct-confirm ct-ly-btn col-blue">纭畾</span>'+
+            '<span class="ct-cancel ct-ly-btn col-f1">鍙栨秷</span>'+
             '</div>';
         var divDom = showbox({ cont: confirmHtml,btnDom:json.btnDom?json.btnDom: null,title:json.bodytitle ? json.bodytitle : null});
-        //确定事件
+        //纭畾浜嬩欢
         $(divDom).delegate('.ct-confirm','click',function(){
             cbk(divDom);
             divDom.close();
         });
-        //取消事件
+        //鍙栨秷浜嬩欢
         $(divDom).delegate('.ct-cancel','click',function(){
             cancelcbk && cancelcbk();
             divDom.close();
@@ -263,9 +263,9 @@ define(function(require,exports){
         },json.time || 2000);
     }
     /*
-     title: 提示内容�?
-     type: 1 or 2 or 3 显示颜色 默认1 红色 2 绿色 3 黑色
-     stype: 是否自动关闭
+     title: 鎻愮ず鍐呭锛?
+     type: 1 or 2 or 3 鏄剧ず棰滆壊 榛樿1 绾㈣壊 2 缁胯壊 3 榛戣壊
+     stype: 鏄惁鑷姩鍏抽棴
      */
     var i9alert = function (json) {
         var time = 2000;
@@ -274,11 +274,11 @@ define(function(require,exports){
         if (!json.type) {
             json.type = 1;
         }
-        //提示内容类型
+        //鎻愮ず鍐呭绫诲瀷
         if (json.type != 1) {
             _color = " #717276";
         }
-        //显示方式
+        //鏄剧ず鏂瑰紡
         if (json.stype) {
             stypehtml = '<span class="lg_fm_close"></span>';
         }
@@ -333,11 +333,11 @@ define(function(require,exports){
         if (!json.type) {
             json.type = 1;
         }
-        //提示内容类型
+        //鎻愮ず鍐呭绫诲瀷
         if (json.type != 1) {
             _color = " #717276";
         }
-        //显示方式
+        //鏄剧ず鏂瑰紡
         if (json.stype) {
             stypehtml = '<span class="lg_fm_close"></span>';
         }
@@ -386,13 +386,13 @@ define(function(require,exports){
         }, time);
     };
     var listLoading = function(dom){
-        dom.html('<span style="line-height: 30px; text-align: center; display: block;">加载�?...</span>');
+        dom.html('<span style="line-height: 30px; text-align: center; display: block;">鍔犺浇涓?...</span>');
     }
 
-    //浮层拖动功能
+    //娴眰鎷栧姩鍔熻兘
     var Ileft = 0;
     var Itop = 0;
-    //禁用文字选择
+    //绂佺敤鏂囧瓧閫夋嫨
     function disabledcheck() {
         document.unselectable = "on";
         document.onselectstart = function () {
@@ -400,7 +400,7 @@ define(function(require,exports){
         }
         $("body").css("-moz-user-select", "none");
     }
-    //恢复文字选中
+    //鎭㈠鏂囧瓧閫変腑
     function huifucheck() {
         document.unselectable = "off";
         document.onselectstart = null;
@@ -417,11 +417,11 @@ define(function(require,exports){
             var thisInnerHTML = $(this).html();
             var _width = json.width || $(this).width();
             var _defaultValue = '';
-            var _defualtHtml = '--请��择--';
+            var _defualtHtml = '--璇烽€夋嫨--';
             var selectedId = '';
             var selOption = $(this).find("option:selected");
 
-            if(!json.showdef){//是否强制设置请��择
+            if(!json.showdef){//鏄惁寮哄埗璁剧疆璇烽€夋嫨
                 if(selOption.length > 0){
                     _defualtHtml = selOption.html();
                     _defaultValue = $(this).val();
@@ -524,7 +524,7 @@ define(function(require,exports){
                 value=opts.value,
                 _html='<i class="i8-select-drop newselecti"></i>';
             if(showdef){
-                _html+='<span class="i8-select-cked '+(opts.ckedstyle || '')+'" value="">--请��择--</span>'
+                _html+='<span class="i8-select-cked '+(opts.ckedstyle || '')+'" value="">--璇烽€夋嫨--</span>'
             }
             _html+='<span class="i8-sel-options">';
             if(!value){
@@ -564,7 +564,7 @@ define(function(require,exports){
                  _this.addClass('checked');
                  }*/
                 var _t=_this.val();
-                _this.val('').val(_t);//解决ie8光标兼容�?
+                _this.val('').val(_t);//瑙ｅ喅ie8鍏夋爣鍏煎鎬?
 
             });
             this.on('keydown',function(){
@@ -597,7 +597,7 @@ define(function(require,exports){
     })(jQuery);
 
 
-    //处理低版本placeHolder
+    //澶勭悊浣庣増鏈琾laceHolder
     (function($){
         $.fn.placeholder=function(all){
             if(all){
@@ -625,7 +625,7 @@ define(function(require,exports){
             return this;
         }
     })(jQuery);
-    //注册添加删除事件
+    //娉ㄥ唽娣诲姞鍒犻櫎浜嬩欢
     (function($){
         $.fn.initAddAndDel=function(options){
             var tpl=options.tpl,
@@ -660,7 +660,7 @@ define(function(require,exports){
             })
         }
     })(jQuery);
-    //滚动时固定元�?
+    //婊氬姩鏃跺浐瀹氬厓绱?
     (function($){
         $.fn.scrollFixed=function(dofixcallback,undofixcallback){
             var $this=$(this);
@@ -686,15 +686,15 @@ define(function(require,exports){
         }
     })(jQuery);
 
-    //添加addinputclear
+    //娣诲姞addinputclear
     (function($){
         $.fn.i8searchEvent=function(ops){
             ops=ops || {};
-            //自定义事件列�?
+            //鑷畾涔変簨浠跺垪琛?
             /*
              * DelayKeyUp
              * */
-            //初始化参�?
+            //鍒濆鍖栧弬鏁?
             ops= $.extend({
                 init:function(){},
                 content:'body',
@@ -710,27 +710,27 @@ define(function(require,exports){
                     onEmptyInput:function(){}
                 },
                 htmls:{
-                    nodata:'<li class="nodata">未找到匹配的信息</li>'
+                    nodata:'<li class="nodata">鏈壘鍒板尮閰嶇殑淇℃伅</li>'
                 },
                 keydownDelay:60
             },ops)
 
-            //合并
+            //鍚堝苟
             var _cbks =  ops.callbacks,
                 _input =  this,
                 _doms = ops.doms,
                 _htmls = ops.htmls,
                 _times= ops.times,
                 _clearbtn  =  $(ops.content).find(ops.clearbtn);
-            //限定doms
+            //闄愬畾doms
             for(var domskey in _doms){
                 _doms[domskey]=$(ops.content).find(_doms[domskey]);
             }
             _doms.searchdd.noItem = false;
-            //初始�?
+            //鍒濆鍖?
             _htmls.nodata && _doms.searchdd.append(_htmls.nodata);
             ops.init();
-            //input绑定keyup
+            //input缁戝畾keyup
             _input.keydown(function(){
                 _input.keyDownVal=_input.val();
             })
@@ -738,7 +738,7 @@ define(function(require,exports){
                     var _keycode=ev.keyCode;
                     clearTimeout(_input.timer);
                     _input.timer=setTimeout(function(){
-                        _doms.searchdd.noItem =false;//是否触发_cbks.onNoDate�?
+                        _doms.searchdd.noItem =false;//鏄惁瑙﹀彂_cbks.onNoDate锛?
                         _doms.items.show();
                         _input.keyUpVal=_input.val();
                         if(_input.keyUpVal==''){
@@ -756,7 +756,7 @@ define(function(require,exports){
         }
     })(jQuery);
 
-    //输入错误提示 闪动背景颜色效果
+    //杈撳叆閿欒鎻愮ず 闂姩鑳屾櫙棰滆壊鏁堟灉
     var TxtBoxWarn = function (txtobj) {
         var colors = ["rgb(255,255,255)", "rgb(255,238,238)", "rgb(255,221,221)", "rgb(255,204,204)", "rgb(255,187,187)", "rgb(255,255,255)", "rgb(255,238,238)", "rgb(255,221,221)", "rgb(255,204,204)", "rgb(255,187,187)", "rgb(255,255,255)"];
         var colorAnimate = function (cls) {
@@ -783,7 +783,7 @@ define(function(require,exports){
     }
     var render_loading=function(box,type){
         var _class='';
-        if(type && (type!='write' && type!='gray')){//如果不是write和gray直接赋��class;
+        if(type && (type!='write' && type!='gray')){//濡傛灉涓嶆槸write鍜実ray鐩存帴璧嬪€糲lass;
             _class=type;
         }else{
             type=type || 'write';
@@ -799,8 +799,8 @@ define(function(require,exports){
         return;
     }
     var render_no_data=function(box,txt,colspan){
-        //没有数据
-        var txt=txt || "没有找到任何数据~";
+        //娌℃湁鏁版嵁
+        var txt=txt || "娌℃湁鎵惧埌浠讳綍鏁版嵁~";
         var colspan=colspan || 999;
         var $box=$(box)
         if($box.get(0).tagName.toLowerCase()=='tbody'){
@@ -842,7 +842,7 @@ define(function(require,exports){
         try{r2=arg2.toString().split(".")[1].length}catch(e){r2=0}
         m=Math.pow(10,Math.max(r1,r2));
         //last modify by deeka
-        //动��控制精度长�?
+        //鍔ㄦ€佹帶鍒剁簿搴﹂暱搴?
         n=(r1>=r2)?r1:r2;
         return ((arg1*m-arg2*m)/m).toFixed(n);
     }
@@ -853,7 +853,7 @@ define(function(require,exports){
         try{m+=s2.split(".")[1].length}catch(e){}
         return Number(s1.replace(".",""))*Number(s2.replace(".",""))/Math.pow(10,m)
     }
-    function accDivide(arg1,arg2){//除法
+    function accDivide(arg1,arg2){//闄ゆ硶
         var t1=0,t2=0,r1,r2;
         try{t1=arg1.toString().split(".")[1].length}catch(e){}
         try{t2=arg2.toString().split(".")[1].length}catch(e){}

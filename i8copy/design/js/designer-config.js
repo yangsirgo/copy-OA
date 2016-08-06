@@ -3,7 +3,7 @@
  */
 define(function () {
     var CtrlDict = {
-        'simpleTextBox': './controls/simpleTextBox',/*'¿Ø¼şÃû':'¶ÔÓ¦¿Ø¼şjsÏà¶ÔÂ·¾¶'*/
+        'simpleTextBox': './controls/simpleTextBox',/*'æ§ä»¶å':'å¯¹åº”æ§ä»¶jsç›¸å¯¹è·¯å¾„'*/
         'mutiTextBox': './controls/mutiTextBox',
         'dateTime': './controls/dateTime',
         'subsetoption': './controls/subsetoption',

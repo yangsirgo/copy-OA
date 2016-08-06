@@ -4,7 +4,7 @@
 define(function (require) {
     var bindEvent = function (container) {
         container.find("#slt_moneyType").change(function () {
-            if ($(this).val() == 'ÃÀÔª') {
+            if ($(this).val() == 'ç¾å…ƒ') {
                 $(this).parents('.boxrow').prev().hide();
             } else {
                 $(this).parents('.boxrow').prev().show();
@@ -14,7 +14,7 @@ define(function (require) {
     var control_prototype = {
         ctype: 'moneyTextBox',
         ipos: '0px -490px',
-        name: '½ğ¶î¿Ø¼ş',
+        name: 'é‡‘é¢æ§ä»¶',
         propertyHtml: function () {
             return require('../template/property-moneyTextBox.tpl');
         },
@@ -25,8 +25,8 @@ define(function (require) {
             var config = $.parseJSON($.trim($("pre", ctrl).text()));
             // require('/resource/default/common/js/workflow/changeCNAMoney.js');
             var toChineseHtml = "";
-            if (config.FieldConfig.toChinese && config.FieldConfig.moneyType == 'ÈËÃñ±Ò') {
-                toChineseHtml = "<span  class='span_ChineseNum'><span>&nbsp;´óĞ´£º</span><span class='ChinesNum'></span></div>";
+            if (config.FieldConfig.toChinese && config.FieldConfig.moneyType == 'äººæ°‘å¸') {
+                toChineseHtml = "<span  class='span_ChineseNum'><span>&nbsp;å¤§å†™ï¼š</span><span class='ChinesNum'></span></div>";
             }
             var moneyTypeHtml = ""
             moneyTypeHtml = "&nbsp;<span class='span_money' moneyType='" + config.FieldConfig.moneyType + "'>(&nbsp;" + config.FieldConfig.moneyType + "&nbsp;)</span>&nbsp;&nbsp;&nbsp;&nbsp;";
@@ -46,7 +46,7 @@ define(function (require) {
             var render = template(ctrl_tpl);
             var config = {
                 ctype: arguments[0],
-                FieldType: 11,//½ğ¶î¿Ø¼ş
+                FieldType: 11,//é‡‘é¢æ§ä»¶
                 FieldID: this.fieldID(),
                 FieldName: this.title,
                 DefaultValue: '',
@@ -77,8 +77,8 @@ define(function (require) {
                     $("#toChinese", updateBox).prop({ checked: true });
                 }
                 $("#slt_moneyType option[value=" + _original_config.FieldConfig.moneyType + "]", updateBox).prop({ selected: true });
-                //ÃÀÔªÊ±Òş²ØÏÔÊ¾´óĞ´Ñ¡Ïî
-                if(_original_config.FieldConfig.moneyType == 'ÃÀÔª')
+                //ç¾å…ƒæ—¶éšè—æ˜¾ç¤ºå¤§å†™é€‰é¡¹
+                if(_original_config.FieldConfig.moneyType == 'ç¾å…ƒ')
                 {
                     $("#toChinese", updateBox).parents('.boxrow').hide();
                 }

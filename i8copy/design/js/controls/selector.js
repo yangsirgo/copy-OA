@@ -6,7 +6,7 @@ define(function (require) {
     var control_prototype = {
         ctype: 'selector',
         ipos: '0px -122px',
-        name: '选人控件',
+        name: '閫変汉鎺т欢',
         propertyHtml: function () {
             return require('../template/property-selector.tpl');
         },
@@ -27,7 +27,7 @@ define(function (require) {
             var MultiSelect = (this.sType == 2) ? true : false;
             var config = {
                 ctype: arguments[0],
-                FieldType: 6,//选人控件
+                FieldType: 6,//閫変汉鎺т欢
                 FieldID: this.fieldID(),
                 FieldName: this.title,
                 DefaultValue: '',

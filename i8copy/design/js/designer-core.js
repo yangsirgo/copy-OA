@@ -1,6 +1,3 @@
-/**
- * Created by ryf on 2016/8/4.
- */
 define(function (require, exports) {
     require('./base-plugin.js');
     var dataCache = require('./sourceCache');
@@ -13,8 +10,8 @@ define(function (require, exports) {
     // require('../../common/underscore-min-cmd');
     var dep_ctrls = [], control_Lib = {};
     window['sourceLib'] = {};
-    /*¹«¹²·½·¨*/
-    /*Ìá½»¶ÔÏóÉèÖÃ*/
+    /*å…¬å…±æ–¹æ³•*/
+    /*æäº¤å¯¹è±¡è®¾ç½®*/
     var contains = function (parentNode, childNode) {
         if (parentNode.contains) {
             return parentNode != childNode && parentNode.contains(childNode);
@@ -30,65 +27,65 @@ define(function (require, exports) {
             var _title = $(".titlewords", this).text();
             var _ctype = $(_this).attr("ctype");
             var _rowType = $(".ctrlbox", _this).attr("rowtype") || "0";
-            /*0£º²»¿Éµ÷Õû¿í¶È£»1£º¿Éµ÷Õû¿í¶È*/
+            /*0ï¼šä¸å¯è°ƒæ•´å®½åº¦ï¼›1ï¼šå¯è°ƒæ•´å®½åº¦*/
             if (!contains(this, e.relatedTarget || e.fromElement) && !((e.relatedTarget || e.fromElement) === this)) {
-                var _title = '';//$(this).hasClass('cb_col_1')?'µ÷Õ­':'µ÷¿í';
-                $(this).append('<div class="options' + _rowType + '"><a class="a_btn_update" title="ĞŞ¸Ä"></a><a class="a_btn_delete" title="É¾³ı"></a>' + (_rowType == "1" ? '<a class="a_btn_ajustwidth" title="' + _title + '"></a>' : '') + '</div>');
+                var _title = '';//$(this).hasClass('cb_col_1')?'è°ƒçª„':'è°ƒå®½';
+                $(this).append('<div class="options' + _rowType + '"><a class="a_btn_update" title="ä¿®æ”¹"></a><a class="a_btn_delete" title="åˆ é™¤"></a>' + (_rowType == "1" ? '<a class="a_btn_ajustwidth" title="' + _title + '"></a>' : '') + '</div>');
                 $(".a_btn_update", this).click(function () {
                     if (_ctype == "customForm") {
                         _ctype = "customFormNew";
                     }
                     var box = control_Lib[_ctype].getUpdateBox(_ctype, _this, builderCtrlDlgBox);
                     $(this).parents(".fdctrl").find(".ctitletxt").addClass("ctrl-is-edit");
-                    /*±ê¼Çµ±Ç°¿Ø¼şÎªÕıÔÚ±à¼­*/
+                    /*æ ‡è®°å½“å‰æ§ä»¶ä¸ºæ­£åœ¨ç¼–è¾‘*/
                     $('.ctrl-editing').removeClass('ctrl-editing');
                     $(this).parents(".fdctrl").find(".ctrlbox").addClass("ctrl-editing");
-                    showUpdateDialogBox({title: _title + "ĞŞ¸Ä", content: box, updateCtrl: _this, ctype: _ctype});
+                    showUpdateDialogBox({title: _title + "ä¿®æ”¹", content: box, updateCtrl: _this, ctype: _ctype});
                 });
                 var _topthis = this;
                 $(".a_btn_delete", this).click(function () {
 
                     var box = $.MsgBox({
-                        title: "È·¶¨É¾³ı",
-                        content: "<p  style=\"font-size:14px;padding-bottom: 10px;\">ÄúÈ·¶¨É¾³ı¸Ã" + _title + "¿Ø¼ş£¿</p>",
+                        title: "ç¡®å®šåˆ é™¤",
+                        content: "<p  style=\"font-size:14px;padding-bottom: 10px;\">æ‚¨ç¡®å®šåˆ é™¤è¯¥" + _title + "æ§ä»¶ï¼Ÿ</p>",
                         isdrag: true,
                         showBtns: true,
                         confirmClick: function () {
                             var _baseid = util.urlParamToJson(window.location.href)['baseinfoid'];
                             $.ajax({
-                                'url':i8_session.ajaxWfHost+ 'webajax/design/activity/GetProcLineByFieldID',
+                               'url':i8_session.ajaxWfHost+ 'webajax/design/activity/GetProcLineByFieldID',
                                 'data':{'procbaseid':_baseid,'fieldid':$(_topthis).find('.ctrlbox').attr('ctrl-name')||''},
                                 'async':false,
                                 'success':function(data){
                                     var _retObj = data.ReturnObject;
                                     if(!_retObj){
-                                        $(_this).effect("fold", {
-                                            to: {
-                                                height: $(_this).height(),
-                                                width: $(_this).width()
-                                            }
-                                        }, 100, function () {
-                                            $(_this).remove();
-                                        });
+                            $(_this).effect("fold", {
+                                to: {
+                                    height: $(_this).height(),
+                                    width: $(_this).width()
+                                }
+                            }, 100, function () {
+                                $(_this).remove();
+                            });
                                         //box.close();
                                         //return true;
                                     }else{
                                         //$(_this).remove();
-                                        alert('±§Ç¸£¬´Ë×Ö¶ÎÒÑ²ÎÓëÉóÅúÁ´Éè¼Æ£¬ÎŞ·¨É¾³ı£¡');
+                                        alert('æŠ±æ­‰ï¼Œæ­¤å­—æ®µå·²å‚ä¸å®¡æ‰¹é“¾è®¾è®¡ï¼Œæ— æ³•åˆ é™¤ï¼');
                                     }
                                 }
                             });
                             //box.close();
-                            return true;
+                           return true;
                         }
                     });
                     box.show();
                 })
                 $(".a_btn_ajustwidth", this).click(function () {
                     if ($(_this).is(".cb_col_1")) {
-                        $(_this).removeClass("cb_col_1").addClass("cb_col_2").find('.a_btn_ajustwidth').attr('title', 'µ÷¿í');
+                        $(_this).removeClass("cb_col_1").addClass("cb_col_2").find('.a_btn_ajustwidth').attr('title', 'è°ƒå®½');
                     } else if ($(_this).is(".cb_col_2")) {
-                        $(_this).removeClass("cb_col_2").addClass("cb_col_1").find('.a_btn_ajustwidth').attr('title', 'µ÷Õ­');
+                        $(_this).removeClass("cb_col_2").addClass("cb_col_1").find('.a_btn_ajustwidth').attr('title', 'è°ƒçª„');
                     }
                 })
             }
@@ -105,21 +102,21 @@ define(function (require, exports) {
         return _ctrl;
     }
 
-    /*·â×°ĞŞ¸Äµ¯³ö¿ò*/
+    /*å°è£…ä¿®æ”¹å¼¹å‡ºæ¡†*/
     function showUpdateDialogBox(setting) {
-        setting = $.extend({title: "ĞŞ¸Ä", content: null, updateCtrl: null, ctype: ""}, setting);
+        setting = $.extend({title: "ä¿®æ”¹", content: null, updateCtrl: null, ctype: ""}, setting);
         var box = $.MsgBox({
-            title: setting.title + "ÉèÖÃ",
+            title: setting.title + "è®¾ç½®",
             content: setting.content,
             isdrag: true,
             showBtns: true,
             confirmClick: function () {
                 if (control_Lib[setting.ctype]) {
-                    // $("#ck_mustchecked", updateBox).prop({ checked: _original_config.IsRequire });
+                   // $("#ck_mustchecked", updateBox).prop({ checked: _original_config.IsRequire });
                     var submit = new submitInter(setting.ctype);
                     if (submit.ckform()) {
                         $(setting.updateCtrl).html(submit.ctrlObj());
-                        /*µ¥¶ÀÖ´ĞĞ¿Ø¼şfilled·½·¨¡¾¶ÔÒÑÌî³ä¿Ø¼ş¡¿*/
+                        /*å•ç‹¬æ‰§è¡Œæ§ä»¶filledæ–¹æ³•ã€å¯¹å·²å¡«å……æ§ä»¶ã€‘*/
                         var control = control_Lib[setting.ctype];
                         if (control.filled) {
                             if (typeof control.filled == "function") {
@@ -131,7 +128,7 @@ define(function (require, exports) {
                         return false;
                     }
                     $(".ctitletxt").removeClass("ctrl-is-edit");
-                    /*±ê¼Çµ±Ç°¿Ø¼şÎªÕıÔÚ±à¼­*/
+                    /*æ ‡è®°å½“å‰æ§ä»¶ä¸ºæ­£åœ¨ç¼–è¾‘*/
                     //return true;
                 }
                 else {
@@ -140,7 +137,7 @@ define(function (require, exports) {
             }
         });
         box.show();
-        /*ĞŞ¸Ä¿òµ¯³öÀ´*/
+        /*ä¿®æ”¹æ¡†å¼¹å‡ºæ¥*/
         if (control_Lib[setting.ctype].updateBoxShowed) {
             control_Lib[setting.ctype].updateBoxShowed(setting.updateCtrl);
         }
@@ -153,7 +150,7 @@ define(function (require, exports) {
 //        console.log($("#ck_mustchecked"))
     }
 
-    /*Ìá½»¶ÔÏó·â×°*/
+    /*æäº¤å¯¹è±¡å°è£…*/
     var comInputs = function () {
         var convertPY = require('./workflow_pinyin.js');
         this.title = $.trim($("#txt_ctrlTitleName").val());
@@ -166,7 +163,7 @@ define(function (require, exports) {
         this.fieldID = function () {
             //var fieldData = this.title;
             var pyName = convertPY.ConvertPinyin(this.title);
-            //Èç¹ûÆ´Òô×ª»»Ê§°Ü£¬Ôò½øĞĞÌØÊâ´¦Àí
+            //å¦‚æœæ‹¼éŸ³è½¬æ¢å¤±è´¥ï¼Œåˆ™è¿›è¡Œç‰¹æ®Šå¤„ç†
             if(!pyName){
                 pyName = 'ct-'+(+new Date());
             }
@@ -180,36 +177,36 @@ define(function (require, exports) {
             return pyName;
         }
     }
-    /*¿Ø¼ş×ª»»*/
+    /*æ§ä»¶è½¬æ¢*/
     var newCtrlObj = function (_ctype) {
         var oRow = control_Lib[_ctype];
         var prinput = new oRow.inputs();
         comInputs.call(prinput);
         return oRow.cformat.call(prinput, _ctype);
     }
-    /*¹«¹²ÑéÖ¤*/
+    /*å…¬å…±éªŒè¯*/
     var confirmSubmit = function (ct) {
         var _ctype = ct;
         var goNext = true;
         var ctrlName = $.trim($("#txt_ctrlTitleName").val());
-        if ("|contentMark|separator".indexOf(ct) == -1) {/*ÅÅ³ıÄÚÈİ±¸×¢¿Ø¼şµÄ×Ö¶ÎÍ·ÑéÖ¤*/
+        if ("|contentMark|separator".indexOf(ct) == -1) {/*æ’é™¤å†…å®¹å¤‡æ³¨æ§ä»¶çš„å­—æ®µå¤´éªŒè¯*/
             if (ctrlName.length == 0) {
-                alert('×Ö¶ÎÃû³Æ²»ÄÜÎª¿Õ!');
+                alert('å­—æ®µåç§°ä¸èƒ½ä¸ºç©º!');
                 goNext = false;
                 return false;
             }
             if (!isNaN(ctrlName.substring(0, 1))) {
-                alert('×Ö¶ÎÃû²»ÄÜÒÔÊı×Ö¿ªÍ·£¡');
+                alert('å­—æ®µåä¸èƒ½ä»¥æ•°å­—å¼€å¤´ï¼');
                 goNext = false;
                 return false;
             }
             var _white_list = util.workflowWhiteList;
-            // var _white_list = /^[\u4e00-\u9fa5_a-zA-Z0-9@,\s]+$/ig;
+           // var _white_list = /^[\u4e00-\u9fa5_a-zA-Z0-9@,\s]+$/ig;
             //var _validateResult = util.workflowInputVerify(ctrlName);
             _white_list.lastIndex = 0;
             if (!_white_list.test(ctrlName)) {
                 //alert(_validateResult.tips);
-                alert('×Ö¶ÎÃû³Æ°üº¬·Ç·¨×Ö·û£¡');
+                alert('å­—æ®µåç§°åŒ…å«éæ³•å­—ç¬¦ï¼');
                 goNext = false;
                 return false;
             }
@@ -221,7 +218,7 @@ define(function (require, exports) {
 
         $("#fd_designArea .ctitletxt").each(function () {
             if ($.trim($(this).text()) == $.trim($("#txt_ctrlTitleName").val()) && !$(this).is(".ctrl-is-edit")) {
-                alert('¿Ø¼şÃûÒÑ´æÔÚ£¡');
+                alert('æ§ä»¶åå·²å­˜åœ¨ï¼');
                 goNext = false;
                 return false;
             }
@@ -252,7 +249,7 @@ define(function (require, exports) {
         }
     }
 
-    /*¿Ø¼şÁĞ±í×Ô¶¯¼Ó¹ö¶¯Ìõ*/
+    /*æ§ä»¶åˆ—è¡¨è‡ªåŠ¨åŠ æ»šåŠ¨æ¡*/
     var controlsAutoScoll = function () {
         var _c_top = $("#fdclist").offset().top - $(document).scrollTop();
         var _c_c_height = $(window).height() - _c_top;
@@ -263,8 +260,8 @@ define(function (require, exports) {
         }
     }
 
-    //ĞŞÕıie8ÏÂÃæ²»³öÏÖ±íµ¥Éè¼ÆÆ÷µÄÎÊÌâ
-    /*ÁĞ±í¿Ø¼ş*/
+    //ä¿®æ­£ie8ä¸‹é¢ä¸å‡ºç°è¡¨å•è®¾è®¡å™¨çš„é—®é¢˜
+    /*åˆ—è¡¨æ§ä»¶*/
     function ToolItem(setting) {
         this.CTYPE = setting.ctype || "";
         this.IPOS = setting.ipos || "0px 0px";
@@ -283,7 +280,7 @@ define(function (require, exports) {
         }
     }
 
-    /*´´½¨µ¯³ö²ã*/
+    /*åˆ›å»ºå¼¹å‡ºå±‚*/
     var showMaskLayer = function () {
         var layerID = "div_canvas" + Math.random().toString().replace(".", "");
         var bodyHeight = document.body.scrollHeight - 40;
@@ -292,13 +289,13 @@ define(function (require, exports) {
         return layerID;
     };
 
-    /*±íµ¥³õÊ¼»¯*/
+    /*è¡¨å•åˆå§‹åŒ–*/
     exports.initFormDesigner = function (_setting) {
         var ACTION = util.getUrlParam('action');
         var FROM_ID = util.getUrlParam('id');
         var FROM_NAME = util.getUrlParam('name');
         var BASE_INFOID = util.getUrlParam('baseinfoid');
-        //´òÓ¡È«¾Ö¿ØÖÆ
+        //æ‰“å°å…¨å±€æ§åˆ¶
         if(!orProcBaseInfo.Config || !orProcBaseInfo.Config.isUsePrintSet){
             $('body').append('<style>#ck_needprint,#ck_needprint_label{display:none!important;}</style>')
         }
@@ -306,15 +303,15 @@ define(function (require, exports) {
         $("#txt_span_formName").text(decodeURIComponent(FROM_NAME));
         //loadDataResource(true);
         var setting = $.extend({
-            targetID: null, //µ¥»÷ÔªËØ¶ÔÏóID£¬ÓÃÀ´´¥·¢±íµ¥Éè¼ÆÆ÷
+            targetID: null, //å•å‡»å…ƒç´ å¯¹è±¡IDï¼Œç”¨æ¥è§¦å‘è¡¨å•è®¾è®¡å™¨
             DesignedOkay: function () {
-            }, //±íµ¥Éè¼ÆÆ÷³õÊ¼»¯Íê³É»Øµ÷
-            originCtrl: null, //¿Ø¼şËù´æ·ÅÈİÆ÷ID
-            formName: "--"//µ¥¸ö±íµ¥Ãû
+            }, //è¡¨å•è®¾è®¡å™¨åˆå§‹åŒ–å®Œæˆå›è°ƒ
+            originCtrl: null, //æ§ä»¶æ‰€å­˜æ”¾å®¹å™¨ID            
+            formName: "--"//å•ä¸ªè¡¨å•å
         }, _setting);
-        setting.formName = $("#txt_name").val(); //±íµ¥Ãû
+        setting.formName = $("#txt_name").val(); //è¡¨å•å
         //if ($(".fd_bgcanvas").length == 0) {
-        var layerid = showMaskLayer(); //µ¯³ö²ã£¬²¢·µ»Øµ¯³ö²ãID
+        var layerid = showMaskLayer(); //å¼¹å‡ºå±‚ï¼Œå¹¶è¿”å›å¼¹å‡ºå±‚ID
         var extralCName = [];//
         _.each(extra_ctrl, function (data) {
             ds_config[data.ctype] = data.cpath;
@@ -322,8 +319,8 @@ define(function (require, exports) {
         });
 
         dep_ctrls = _.values(ds_config);
-        /*¶¯Ì¬ÉçÇø¼ÓÔØ¿Ø¼ş½áÊø*/
-        require.async(dep_ctrls, function () {//Òì²½¼ÓÔØÖ¸¶¨¿Ø¼ş
+        /*åŠ¨æ€ç¤¾åŒºåŠ è½½æ§ä»¶ç»“æŸ*/
+        require.async(dep_ctrls, function () {//å¼‚æ­¥åŠ è½½æŒ‡å®šæ§ä»¶
             var toolItemHtml = "", extCtrlHtml = "";
             var DataBase = arguments;
             for (var item = 0; item < DataBase.length; item++) {
@@ -336,7 +333,7 @@ define(function (require, exports) {
                             style: DataBase[item].style
                         })).toObject()[0].outerHTML;
                     } else {
-                        if (DataBase[item].ctype != "dataForm")/*ÅÅ³ı¹Ì¶¨Ã÷Ï¸ÁĞ±í*/
+                        if (DataBase[item].ctype != "dataForm")/*æ’é™¤å›ºå®šæ˜ç»†åˆ—è¡¨*/
                             toolItemHtml += (new ToolItem({
                                 ctype: DataBase[item].ctype,
                                 ipos: DataBase[item].ipos,
@@ -362,21 +359,21 @@ define(function (require, exports) {
                     autoScrollOnFocus:true
                 }
             });
-            /*¼ÓÔØ¿Ø¼ş*/
+            /*åŠ è½½æ§ä»¶*/
             //}
-            var ctrlDataLoadInit = $('<div class="controlInitLayer"></div><div class="ctrl-loadingTxt">ÕıÔÚ³õÊ¼»¯...</div>');
+            var ctrlDataLoadInit = $('<div class="controlInitLayer"></div><div class="ctrl-loadingTxt">æ­£åœ¨åˆå§‹åŒ–...</div>');
             $("#fdclist_boxer").append(ctrlDataLoadInit);
             for (var i = 0; i < arguments.length; i++) {
                 control_Lib[arguments[i].ctype] = arguments[i];
             }
-            //Éè¼ÆÆ÷Îª±à¼­×´Ì¬
+            //è®¾è®¡å™¨ä¸ºç¼–è¾‘çŠ¶æ€
             //if(ACTION=="edit") {
-            $.get('../json/getformbyprocbaseid.json', {baseInfoID: BASE_INFOID}, function (response) {
-                if (response.Result && response.ReturnObject) {
-                    var ctrlHtml = response.ReturnObject.MetaData;
-                    FROM_ID = response.ReturnObject.ID;
+            //$.get(i8_session.ajaxWfHost + 'webajax/form/getformbyprocbaseid', {baseInfoID: BASE_INFOID}, function (response) {
+                if (true && null) {
+                    var ctrlHtml = null.MetaData;
+                    FROM_ID = null.ID;
                     ctrlHtml = ctrlHtml.replace(/ctype="separator" style="[\s\w:;]+"/ig, 'ctype="separator"');
-                    /*½«Ô­·Ö¸ôÏßÄÚÁªÑùÊ½É¾³ıµô*/
+                    /*å°†åŸåˆ†éš”çº¿å†…è”æ ·å¼åˆ é™¤æ‰*/
                     document.getElementById("fd_designArea").innerHTML = ctrlHtml;
                     var config_script = document.getElementById("formconfigscript").innerHTML;
                     if (config_script) {
@@ -393,7 +390,7 @@ define(function (require, exports) {
                         }
                         $("#fd_designArea").find(".fdctrl").each(function () {
                             ctrlSetting($(this));
-                            /*¸ù¾İÔ­ctrl-name,À´¶Á×ÜÅäÖÃ»¹Ô­µ¥¸ö¿Ø¼ş<pre>ĞÅÏ¢*/
+                            /*æ ¹æ®åŸctrl-name,æ¥è¯»æ€»é…ç½®è¿˜åŸå•ä¸ªæ§ä»¶<pre>ä¿¡æ¯*/
                             var ctrlbox = $(this).find(".ctrlbox");
                             ctrlbox.find("pre").remove();
                             var ctrl_name = ctrlbox.attr("ctrl-name");
@@ -401,7 +398,7 @@ define(function (require, exports) {
                                 var configJson = totalConfig[ctrl_name];
                                 var ctrl_config = $.JSONString(configJson);
                                 if(configJson.ctype == 'customFormNew' && (configJson.FieldConfig||{}).autoIndex){
-                                    $('<th class="datalist-notsubmit">ĞòºÅ</th>').insertBefore($(this).find('th').eq(0));
+                                   $('<th class="datalist-notsubmit">åºå·</th>').insertBefore($(this).find('th').eq(0));
                                     $('<td class="datalist-notsubmit"></td>').insertBefore($(this).find('.gridSummaryRow').find('td').eq(0));
                                 }
                                 ctrlbox.append("<pre>" + ctrl_config + "</pre>");
@@ -409,19 +406,19 @@ define(function (require, exports) {
                         });
                     }
                 } else {
-                    if (!_.isNull(response.Description) || !_.isEmpty(response.Description)) {
-                        alert(response.Description);
+                    if (!_.isNull(null) || !_.isEmpty(null)) {
+                        alert(null);
                     }
                     document.getElementById("fd_designArea").innerHTML = "";
                 }
-            }, "json")
+            //}, "json")
             //}else{
             //document.getElementById("fd_designArea").innerHTML="";
             //}
 
             dataCache.getMainSource(function () {
-                ctrlDataLoadInit.remove();//¼ÓÔØÊı¾İÔ´
-                //¿Ø¼ş¿â/Êı¾İÔ´Ö®¼äTabÇĞ»»
+                ctrlDataLoadInit.remove();//åŠ è½½æ•°æ®æº
+                //æ§ä»¶åº“/æ•°æ®æºä¹‹é—´Tabåˆ‡æ¢
                 $(".fdfb_menu .fdfb_menu_item").bind("click", function () {
                     if (!$(this).hasClass("curtmenuitem")) {
                         $(".fdfb_menu .fdfb_menu_item").removeClass("curtmenuitem");
@@ -429,7 +426,7 @@ define(function (require, exports) {
                             $("#fdclist_boxer").show();
                             $("#cRec_boxer").hide();
                             //var link = $.DataSourceInit();
-                            //link.reloadDataSource();/*ÖØĞÂ¼ÓÔØÊı¾İÔ´*/
+                            //link.reloadDataSource();/*é‡æ–°åŠ è½½æ•°æ®æº*/
 
                         } else if ($(this).attr("tag") == "dsrc") {
                             $("#fdclist_boxer").hide();
@@ -443,8 +440,8 @@ define(function (require, exports) {
             })
 
             initLeftControlMTRightPanel();
-            /*³õÊ¼»¯×ó²à¿Ø¼ş¿ÉÍÏ¶¯ÖÁÓÒ²à*/
-            /*±íµ¥Éè¼Æ±£´æ*/
+            /*åˆå§‹åŒ–å·¦ä¾§æ§ä»¶å¯æ‹–åŠ¨è‡³å³ä¾§*/
+            /*è¡¨å•è®¾è®¡ä¿å­˜*/
             $("#btn_savedesigndata").click(function () {
                 submitData($("#fd_designArea"));
             });
@@ -455,15 +452,15 @@ define(function (require, exports) {
             });
         });
 
-        /*³õÊ¼»¯×ó²à¿Ø¼ş¿ÉÍÏ¶¯ÖÁÓÒ²à*/
+        /*åˆå§‹åŒ–å·¦ä¾§æ§ä»¶å¯æ‹–åŠ¨è‡³å³ä¾§*/
         function initLeftControlMTRightPanel() {
-            util.i8loadjs(i8_session.resWfHost + 'default/javascripts/common/jquery-ui-custom.min.js', function () {
+            util.i8loadjs('./jquery-ui-custom.min.js', function () {
                 $("#fdclist div.ctoolitem").mouseover(function (e) {
                     $(this).addClass("lihover");
                 }).mouseout(function () {
                     $(this).removeClass("lihover");
                 });
-                //¿Ø¼şÕÛµşĞ§¹û
+                //æ§ä»¶æŠ˜å æ•ˆæœ
                 $("#fdclist div.control-headline").click(function () {
                     var faBox = $(this).parents("div.controls-box");
                     if (faBox.attr("ext") == "true") {
@@ -493,7 +490,7 @@ define(function (require, exports) {
                     cursor: 'move',
                     scope: 'drop',
                     connectToSortable: $("#fd_designArea")
-                }); //¿ÉÍÏ×§ÒÆ¶¯
+                }); //å¯æ‹–æ‹½ç§»åŠ¨
                 $("#fd_designArea").sortable({
                     placeholder: "ui-place-highlight",
                     item: ".ctoolitem",
@@ -502,10 +499,10 @@ define(function (require, exports) {
                     stop: function (event, ui) {
                         if (ui.item[0].className.indexOf("ctoolitem") > -1) {
                             var resetObj = ui.item.removeClass("ctoolitem").addClass("fdctrl").empty().hide();
-                            /*ÖØÖÃÍÏ×§¶ÔÏó*/
+                            /*é‡ç½®æ‹–æ‹½å¯¹è±¡*/
                             var _ctype = resetObj.attr("ctype");
                             var box = $.MsgBox({
-                                title: control_Lib[_ctype].name + "ÉèÖÃ",
+                                title: control_Lib[_ctype].name + "è®¾ç½®",
                                 content: (new builderCtrlDlgBox(_ctype)).toBoxString(), //render({'prototypes':control_Lib[_ctype].box[0]}),// control_Lib[_ctype].box.,
                                 isdrag: true,
                                 showBtns: true,
@@ -514,7 +511,7 @@ define(function (require, exports) {
                                     if (submit.ckform()) {
                                         var c = resetObj.append(submit.ctrlObj()).show().addClass("cb_col_" + submit.crowType());
                                         ctrlSetting(c);
-                                        /*µ¥¶ÀÖ´ĞĞ¿Ø¼şfilled·½·¨¡¾¶ÔÒÑÌî³ä¿Ø¼ş¡¿*/
+                                        /*å•ç‹¬æ‰§è¡Œæ§ä»¶filledæ–¹æ³•ã€å¯¹å·²å¡«å……æ§ä»¶ã€‘*/
                                         var control = control_Lib[_ctype];
                                         if (control.filled) {
                                             if (typeof control.filled == "function") {
@@ -529,11 +526,11 @@ define(function (require, exports) {
                                 },
                                 cancelClick: function () {
                                     resetObj.remove();
-                                    /*ÒÆ³ıÔ­ÍÏ×§¶ÔÏó*/
+                                    /*ç§»é™¤åŸæ‹–æ‹½å¯¹è±¡*/
                                 }
                             });
                             box.show();
-                            /*´ò¿ª´°¿ÚºóÖ´ĞĞ*/
+                            /*æ‰“å¼€çª—å£åæ‰§è¡Œ*/
                             if (control_Lib[_ctype].hasOwnProperty("opened")) {
                                 control_Lib[_ctype].opened();
                             }
@@ -553,11 +550,11 @@ define(function (require, exports) {
             switch (_ctype) {
 
                 case "simpletextbox":
-                    _retValue = _$me.find('input').val();
+                _retValue = _$me.find('input').val();
                     break;
 
-                case "mutitextbox":
-                    _retValue =  _$me.find('textarea').val();
+                 case "mutitextbox":
+                   _retValue =  _$me.find('textarea').val();
                     break;
 
                 default:
@@ -568,26 +565,26 @@ define(function (require, exports) {
             return _retValue;
         }
 
-        /*Êı¾İ±£´æ*/
+        /*æ•°æ®ä¿å­˜*/
         function submitData(formData) {
-            //ÒÆ³ı²»ĞèÒªÌá½»µÄ±íÍ·
+            //ç§»é™¤ä¸éœ€è¦æäº¤çš„è¡¨å¤´
             formData.find('.datalist-notsubmit').remove();
             var fieldData = "";
             $(".fdctrl .ctitletxt", formData).each(function () {
                 fieldData += encodeURIComponent($.trim($(this).text())) + "|";
             });
             if (fieldData.length < 1) {
-                alert('±íµ¥»¹Î´Éè¼Æ');
+                alert('è¡¨å•è¿˜æœªè®¾è®¡');
                 return;
             }
 
             var saveboxhave = dlgBox.showNoTitle({
-                cont: '<div style="padding:10px;height:35px;"><div style="float:left"><img src="' + i8_session.resWfHost + 'default/images/o_loading.gif" alt="ÇëÉÔºó..."/></div><div style="float:left;line-height:35px;">¡¡ÕıÔÚ±£´æ...</div></div>',
+                cont: '<div style="padding:10px;height:35px;"><div style="float:left"><img src="' + i8_session.resWfHost + 'default/images/o_loading.gif" alt="è¯·ç¨å..."/></div><div style="float:left;line-height:35px;">ã€€æ­£åœ¨ä¿å­˜...</div></div>',
                 nomask: true
             });
             var _controlData = [],_engineParams=[];
-            /*´æ´¢×ÜÅäÖÃ*/
-            /*Æ´×°javascriptÊı¾İÎÄ¼ş*/
+            /*å­˜å‚¨æ€»é…ç½®*/
+            /*æ‹¼è£…javascriptæ•°æ®æ–‡ä»¶*/
             $(".fdctrl", formData).each(function (e) {
                 if ($(this)[0].style.display == "none") {
                     return;
@@ -602,7 +599,7 @@ define(function (require, exports) {
                     thisConfig.FieldConfig = $.JSONString(thisConfig.FieldConfig).toString();
 
                     thisConfig.FieldConfig = thisConfig.FieldConfig.replace(/\"/g, "\\\"");
-                    //ÉèÖÃ¶îÍâµÄ²ÎÊı
+                    //è®¾ç½®é¢å¤–çš„å‚æ•°
                     var saveFieldid = thisConfig.FieldID.replace(/\-/g, "");
 //                    if($.isArray(thisConfig.ProcDataFieldConfig)){
 //                        _.each(thisConfig.ProcDataFieldConfig,function(item){
@@ -618,7 +615,7 @@ define(function (require, exports) {
                     try {
                         _thisFieldConfig = $.parseJSON(thisConfig.FieldConfig.replace(/\\/g,""));
                     }catch(ex){
-                        alert('ÅäÖÃÓĞÎó')
+                        alert('é…ç½®æœ‰è¯¯')
                     }
                     if(_thisFieldConfig) {
                         var proc_params = _thisFieldConfig.ProcessParam;
@@ -635,9 +632,9 @@ define(function (require, exports) {
                     var paymentJson = {"paymentverification":true,"paymentapplication":true,"paymentprojectapplication":true,"paymentprojectverification":true};
                     var hasParamInTable = {"overtimecomponent":true,"vacationsummarycomponent":true,"cancelvacationcomponent":true,"userinfocomponent":true,"paymentincome":true,"paymentpay":true,"paymentverification":true,"paymentapplication":true,"paymentprojectapplication":true,"paymentprojectverification":true};
 
-                    //Èç¹û±í¸ñÖĞÓĞÁ÷³Ì²ÎÊı
+                    //å¦‚æœè¡¨æ ¼ä¸­æœ‰æµç¨‹å‚æ•°
                     if(hasParamInTable[(thisConfig.ctype||"").toLowerCase()]){
-                        // var _fieldConfig =((thisConfig||{}).FieldConfig);
+                       // var _fieldConfig =((thisConfig||{}).FieldConfig);
 //                        if(!$.isPlainObject(_fieldConfig)){
 //                            _fieldConfig = $.parseJSON(_fieldConfig);
 //                        }
@@ -648,9 +645,9 @@ define(function (require, exports) {
                                     ctype: _configArr[i].colType,
                                     FieldType:controlEnum.sumcalctor,
                                     FieldID: 'listSUM'+_configArr[i].colName+'_'+ thisConfig.FieldID,//inputBox.attr("tagname"),
-                                    FieldName: "ºÏ¼Æ½ğ¶î",//inputBox.attr("tagtitle"),
+                                    FieldName: "åˆè®¡é‡‘é¢",//inputBox.attr("tagtitle"),
                                     DefaultValue: '',
-                                    DataType: 1,//DataTypeÎª1£¬±íÊ¾¸ÃÖµÀàĞÍÎªÕûĞÍÊı×ÖÀàĞÍ
+                                    DataType: 1,//DataTypeä¸º1ï¼Œè¡¨ç¤ºè¯¥å€¼ç±»å‹ä¸ºæ•´å‹æ•°å­—ç±»å‹
                                     IsProcDataField: true,
                                     IsBindData: false,
                                     IsRequire: false,
@@ -670,7 +667,7 @@ define(function (require, exports) {
                                     FieldID: thisConfig.FieldID+'_col_'+i+'_'+_configArr[i].colName,//inputBox.attr("tagname"),
                                     FieldName: _configArr[i].colText,//inputBox.attr("tagtitle"),
                                     DefaultValue: '',
-                                    DataType: 0,//DataTypeÎª1£¬±íÊ¾¸ÃÖµÀàĞÍÎªÕûĞÍÊı×ÖÀàĞÍ
+                                    DataType: 0,//DataTypeä¸º1ï¼Œè¡¨ç¤ºè¯¥å€¼ç±»å‹ä¸ºæ•´å‹æ•°å­—ç±»å‹
                                     IsProcDataField: true,
                                     IsBindData: false,
                                     IsRequire: false,
@@ -686,63 +683,63 @@ define(function (require, exports) {
                         }
                     }
                     if((thisConfig.ctype ||'').toLowerCase() == "userinfocomponent"){
-                        if(!!thisConfig.IsSubparam){
-                            var _positionId = '';
-                            var _retObj = _.find( window["mainSourceList"],function(item){ return item.Type == 2});
-                            _positionId = (_retObj||{}).ID ||'';
-                            //Ôö¼ÓÈËÔ±ĞÅÏ¢
-                            _controlData.push({"fieldName": thisConfig.FieldID+'_departmentofcreator', "totalConfig":{
-                                ctype: controlDict.orgselector,
-                                FieldType: controlEnum.orgselector,//ÈËÔ±»ù´¡ĞÅÏ¢ÏÔÊ¾¿Ø¼ş
-                                FieldID: thisConfig.FieldID+'_departmentofcreator',
-                                FieldName: '·¢ÆğÈËËùÔÚ²¿ÃÅ',
-                                DefaultValue: '',
-                                DataType: 0,
-                                IsProcDataField:true ,
-                                IsBindData: false,
-                                IsRequire:false ,
-                                DataSource: '',
-                                FieldConfig:('{"sType":"1", "parentField":"'+thisConfig.FieldID+'","calcField":"'+thisConfig.FieldID+'_departmentofcreator"}').replace(/"/g, "\\\""),
-                                SortIndex: 0,
-                                isvisible: ( "hidden")
-                            }});
-                            //Ôö¼Ó²¿ÃÅĞÅÏ¢
-                            _controlData.push({"fieldName": thisConfig.FieldID+'_levelofcreator', "totalConfig":{
-                                ctype:controlDict.selectoption,
-                                FieldType: controlEnum.selectoption,//ÈËÔ±»ù´¡ĞÅÏ¢ÏÔÊ¾¿Ø¼ş
-                                FieldID:  thisConfig.FieldID+'_levelofcreator',
-                                FieldName: 'Ö°¼¶',
-                                DefaultValue: '',
-                                FieldConfig:('{"sType":"1", "parentField":"'+thisConfig.FieldID+'","calcField":"'+thisConfig.FieldID+'_levelofcreator"}').replace(/"/g, "\\\""),
-                                DataType:1,
-                                IsProcDataField: true,
-                                IsBindData: false,
-                                IsRequire: false,
-                                DataSource: _positionId,
-                                SortIndex: 0,
-                                isvisible: ("hidden")
-                            }});
-                        }
+        if(!!thisConfig.IsSubparam){
+            var _positionId = '';
+            var _retObj = _.find( window["mainSourceList"],function(item){ return item.Type == 2});
+            _positionId = (_retObj||{}).ID ||'';
+                    //å¢åŠ äººå‘˜ä¿¡æ¯
+            _controlData.push({"fieldName": thisConfig.FieldID+'_departmentofcreator', "totalConfig":{
+                ctype: controlDict.orgselector,
+                FieldType: controlEnum.orgselector,//äººå‘˜åŸºç¡€ä¿¡æ¯æ˜¾ç¤ºæ§ä»¶
+                FieldID: thisConfig.FieldID+'_departmentofcreator',
+                FieldName: 'å‘èµ·äººæ‰€åœ¨éƒ¨é—¨',
+                DefaultValue: '',
+                DataType: 0,
+                IsProcDataField:true ,
+                IsBindData: false,
+                IsRequire:false ,
+                DataSource: '',
+                FieldConfig:('{"sType":"1", "parentField":"'+thisConfig.FieldID+'","calcField":"'+thisConfig.FieldID+'_departmentofcreator"}').replace(/"/g, "\\\""),
+                SortIndex: 0,
+                isvisible: ( "hidden")
+            }});
+                    //å¢åŠ éƒ¨é—¨ä¿¡æ¯
+            _controlData.push({"fieldName": thisConfig.FieldID+'_levelofcreator', "totalConfig":{
+                ctype:controlDict.selectoption,
+                FieldType: controlEnum.selectoption,//äººå‘˜åŸºç¡€ä¿¡æ¯æ˜¾ç¤ºæ§ä»¶
+                FieldID:  thisConfig.FieldID+'_levelofcreator',
+                FieldName: 'èŒçº§',
+                DefaultValue: '',
+                FieldConfig:('{"sType":"1", "parentField":"'+thisConfig.FieldID+'","calcField":"'+thisConfig.FieldID+'_levelofcreator"}').replace(/"/g, "\\\""),
+                DataType:1,
+                IsProcDataField: true,
+                IsBindData: false,
+                IsRequire: false,
+                DataSource: _positionId,
+                SortIndex: 0,
+                isvisible: ("hidden")
+            }});
+        }
 //
-                        if(!!thisConfig.IsDelegate){
-                            _controlData.push({"fieldName": thisConfig.FieldID+'_creator', "totalConfig":{  ctype:controlDict.userkey,
-                                FieldType: controlEnum.userkey,//ÈËÔ±»ù´¡ĞÅÏ¢ÏÔÊ¾¿Ø¼ş
-                                FieldID:  thisConfig.FieldID+'_creator',
-                                FieldName: '´úÀíÈË',
-                                DefaultValue: '',
-                                DataType: 0,
-                                IsProcDataField: true,
-                                IsBindData: false,
-                                IsRequire: false ,
-                                DataSource: '',
-                                FieldConfig:('{"sType":"1", "parentField":"'+thisConfig.FieldID+'","calcField":"'+thisConfig.FieldID+'_creator"}').replace(/"/g, "\\\""),
-                                SortIndex: 0,
-                                isvisible: ( "hidden")}});
+        if(!!thisConfig.IsDelegate){
+            _controlData.push({"fieldName": thisConfig.FieldID+'_creator', "totalConfig":{  ctype:controlDict.userkey,
+                FieldType: controlEnum.userkey,//äººå‘˜åŸºç¡€ä¿¡æ¯æ˜¾ç¤ºæ§ä»¶
+                FieldID:  thisConfig.FieldID+'_creator',
+                FieldName: 'ä»£ç†äºº',
+                DefaultValue: '',
+                DataType: 0,
+                IsProcDataField: true,
+                IsBindData: false,
+                IsRequire: false ,
+                DataSource: '',
+                FieldConfig:('{"sType":"1", "parentField":"'+thisConfig.FieldID+'","calcField":"'+thisConfig.FieldID+'_creator"}').replace(/"/g, "\\\""),
+                SortIndex: 0,
+                isvisible: ( "hidden")}});
 
-                        }
+        }
 
                     }
-                    else if(thisConfig.ctype == 'fullmember' && !!thisConfig.subparam){
+                     else if(thisConfig.ctype == 'fullmember' && !!thisConfig.subparam){
                         var _positionId = '';
                         var _retObj = _.find( window["mainSourceList"],function(item){ return item.Type == 2});
                         _positionId = _retObj.ID;
@@ -750,9 +747,9 @@ define(function (require, exports) {
                             ctype: 'selectoption',
                             FieldType: 3,
                             FieldID: thisConfig.FieldID+'_position',
-                            FieldName:"×ªÕıÈËÖ°¼¶" ,
+                            FieldName:"è½¬æ­£äººèŒçº§" ,
                             DefaultValue: '',
-                            DataType: 1,//DataTypeÎª1£¬±íÊ¾¸ÃÖµÀàĞÍÎªÕûĞÍÊı×ÖÀàĞÍ
+                            DataType: 1,//DataTypeä¸º1ï¼Œè¡¨ç¤ºè¯¥å€¼ç±»å‹ä¸ºæ•´å‹æ•°å­—ç±»å‹
                             IsProcDataField: true,
                             IsBindData: false,
                             IsRequire: false,
@@ -770,9 +767,9 @@ define(function (require, exports) {
                             ctype: 'userkey',
                             FieldType: 6,
                             FieldID: thisConfig.FieldID+'_userinfo',//inputBox.attr("tagname"),
-                            FieldName: '×ªÕıÈË',//inputBox.attr("tagtitle"),
+                            FieldName: 'è½¬æ­£äºº',//inputBox.attr("tagtitle"),
                             DefaultValue: '',
-                            DataType: 0,//DataTypeÎª1£¬±íÊ¾¸ÃÖµÀàĞÍÎªÕûĞÍÊı×ÖÀàĞÍ
+                            DataType: 0,//DataTypeä¸º1ï¼Œè¡¨ç¤ºè¯¥å€¼ç±»å‹ä¸ºæ•´å‹æ•°å­—ç±»å‹
                             IsProcDataField: true,
                             IsBindData: false,
                             IsRequire: false,
@@ -789,12 +786,12 @@ define(function (require, exports) {
 
                     }
 
-                    if (paramJson[thisConfig.ctype]) {//Èç¹ûÊÇ±í¸ñ¿Ø¼ş£¬ÔòÈ¥±éÀú¿Ø¼şÖĞµÄºÏ¼Æ×Ö¶Î
-                        /*ºÏ¼Æ×Ö¶Î£¬ÖØĞÂÆ´¶ÔÏó*/
+                    if (paramJson[thisConfig.ctype]) {//å¦‚æœæ˜¯è¡¨æ ¼æ§ä»¶ï¼Œåˆ™å»éå†æ§ä»¶ä¸­çš„åˆè®¡å­—æ®µ
+                        /*åˆè®¡å­—æ®µï¼Œé‡æ–°æ‹¼å¯¹è±¡*/
                         $("input.grid_col_total_inputvalue,.paymentsummary_total_inputvalue,.vacationsummary_total_inputvalue,.control_summary_total_amount", $(this)).each(function (e) {
                             var inputBox = $(this);
                             var _tagName = inputBox.attr('tagname');
-                            _tagName = _tagName.replace('__', '_'); //´¦ÀíÀÏÊı¾İ ½«ÏÂ»®ÏßÌæ»»
+                            _tagName = _tagName.replace('__', '_'); //å¤„ç†è€æ•°æ® å°†ä¸‹åˆ’çº¿æ›¿æ¢
                             var _colInfo = _tagName.replace('listSUM', '');
                             var _lastIndex = _colInfo.lastIndexOf('_');
                             var _colName = _colInfo.substr(0, _lastIndex);
@@ -807,9 +804,9 @@ define(function (require, exports) {
                             }
 
                             var isparam =  inputBox.attr("isparam") === "true" ? true : false;
-                            //Èç¹û²»ÊÇinput °´Å¥£¬ÔòÄ¬ÈÏÁ÷³Ì²ÎÊı¾ÍÊÇ true
+                            //å¦‚æœä¸æ˜¯input æŒ‰é’®ï¼Œåˆ™é»˜è®¤æµç¨‹å‚æ•°å°±æ˜¯ true
                             if(!inputBox.is('input')){
-                                isparam = true;
+                               isparam = true;
                             }
 
 
@@ -820,7 +817,7 @@ define(function (require, exports) {
                                 FieldID: inputBox.attr("tagname"),
                                 FieldName: inputBox.attr("tagtitle"),
                                 DefaultValue: '',
-                                DataType: 1,//DataTypeÎª1£¬±íÊ¾¸ÃÖµÀàĞÍÎªÕûĞÍÊı×ÖÀàĞÍ
+                                DataType: 1,//DataTypeä¸º1ï¼Œè¡¨ç¤ºè¯¥å€¼ç±»å‹ä¸ºæ•´å‹æ•°å­—ç±»å‹
                                 IsProcDataField: isparam,
                                 IsBindData: false,
                                 IsRequire: false,
@@ -838,9 +835,9 @@ define(function (require, exports) {
 //                                    ctype: 'userkey',
 //                                    FieldType: 6,
 //                                    FieldID: _tableName+'_col_16_costcenterPrincipal',//inputBox.attr("tagname"),
-//                                    FieldName: 'ºËËãÖĞĞÄ¸ºÔğÈË',//inputBox.attr("tagtitle"),
+//                                    FieldName: 'æ ¸ç®—ä¸­å¿ƒè´Ÿè´£äºº',//inputBox.attr("tagtitle"),
 //                                    DefaultValue: '',
-//                                    DataType: 0,//DataTypeÎª1£¬±íÊ¾¸ÃÖµÀàĞÍÎªÕûĞÍÊı×ÖÀàĞÍ
+//                                    DataType: 0,//DataTypeä¸º1ï¼Œè¡¨ç¤ºè¯¥å€¼ç±»å‹ä¸ºæ•´å‹æ•°å­—ç±»å‹
 //                                    IsProcDataField: true,
 //                                    IsBindData: false,
 //                                    IsRequire: false,
@@ -862,7 +859,7 @@ define(function (require, exports) {
             });
             var totalConfig = '<script type="text/javascript" id="formconfigscript">window.form_config=' + $.JSONString(_controlData) + ';window.form_params=' +  $.JSONString(_engineParams) + ';window.form_version="3.0.1";</script>';
             var _newDataForm = formData.clone();
-            _newDataForm.find("pre").remove(); //Çå¿ÕÔ­¿ØÖÆÁÙÊ±±£´æµÄconfigĞÅÏ¢
+            _newDataForm.find("pre").remove(); //æ¸…ç©ºåŸæ§åˆ¶ä¸´æ—¶ä¿å­˜çš„configä¿¡æ¯
             var _saveFormData = _newDataForm.html().replace(/<script(.|\n)*\/script>\s*/ig, "") + totalConfig;
             try{
                 var controls = _.pluck(_controlData,"totalConfig");
@@ -875,7 +872,7 @@ define(function (require, exports) {
                         })
                         if(asts.length>0){
                             saveboxhave.close();
-                            alert('×Ê²úÁìÓÃÓë¹é»¹¿Ø¼ş£¬²»ÄÜ´úÀí·¢Æğ£¡ÇëÈ¡ÏûÈËÔ±ĞÅÏ¢¿Ø¼ş´úÀí·¢ÆğÉèÖÃ£¡');
+                            alert('èµ„äº§é¢†ç”¨ä¸å½’è¿˜æ§ä»¶ï¼Œä¸èƒ½ä»£ç†å‘èµ·ï¼è¯·å–æ¶ˆäººå‘˜ä¿¡æ¯æ§ä»¶ä»£ç†å‘èµ·è®¾ç½®ï¼');
                             return;
                         }
                     }
@@ -889,10 +886,10 @@ define(function (require, exports) {
                 formid: FROM_ID
             }, function (response) {
                 if (response.Result) {
-                    var js_wf_BaseInfoID = response.ReturnObject; //¸üĞÂID
+                    var js_wf_BaseInfoID = response.ReturnObject; //æ›´æ–°ID
                     //designedOkayAction(formData.clone());
                     saveboxhave.close();
-                    alert('±£´æ³É¹¦£¡');
+                    alert('ä¿å­˜æˆåŠŸï¼');
                     window.parent.location.hash=js_wf_BaseInfoID;
                     if (window.parent.formSaveCompleted) {
                         window.parent.formSaveCompleted({

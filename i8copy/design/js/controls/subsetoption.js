@@ -4,7 +4,7 @@
 define(function (require) {
     var dataCache=require('../sourceCache');
     var control_prototype = {
-        ctype: 'subsetoption', ipos: '0px -532px', name: '¼¶Áª²Ëµ¥',
+        ctype: 'subsetoption', ipos: '0px -532px', name: 'çº§è”èœå•',
         propertyHtml: function () {
             return require('../template/property-subsetoption.tpl');
         },
@@ -29,7 +29,7 @@ define(function (require) {
             var render = template(ctrl_tpl);
             var config = {
                 ctype: arguments[0],
-                FieldType: 13,//¼¶Áª¿Ø¼þ
+                FieldType: 13,//çº§è”æŽ§ä»¶
                 FieldID: this.fieldID(),
                 FieldName: this.title,
                 DefaultValue: '',
@@ -90,7 +90,7 @@ define(function (require) {
                 var subsetObj = obj.find(".ctrl_subsetoptions");
                 var config = $.parseJSON($.trim(obj.find("pre").html()));
                 dataCache.getSourceByID(config.DataSource,function(datalist){
-                    var level_1_code='<option value="0" text="--ÇëÑ¡Ôñ--">--ÇëÑ¡Ôñ--</option>';
+                    var level_1_code='<option value="0" text="--è¯·é€‰æ‹©--">--è¯·é€‰æ‹©--</option>';
                     _.each(datalist,function(item1){
                         level_1_code += '<option value="' + item1.ID + '" text="' + item1.Value + '">' + item1.Value + '</option>';
                     })
@@ -98,7 +98,7 @@ define(function (require) {
                     $(".ctrl_mainoptions",obj).change(function(){
                         var parentID = $.trim($(this).val());
                         var objItems= _.findWhere(datalist,{ID:parentID});
-                        var suboptHtml='<option value="0" text="--ÇëÑ¡Ôñ--">--ÇëÑ¡Ôñ--</option>'
+                        var suboptHtml='<option value="0" text="--è¯·é€‰æ‹©--">--è¯·é€‰æ‹©--</option>'
                         _.each(objItems.subItems,function(item){
                             suboptHtml += '<option value="' + item.ID + '" text="' + item.Value + '">' + item.Value + '</option>';
                         });

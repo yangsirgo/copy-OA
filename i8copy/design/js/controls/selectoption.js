@@ -6,8 +6,8 @@ define(function (require) {
     var dataCache=require('../sourceCache');
     var white_list = utilModel.workflowWhiteList;// /^[\u4e00-\u9fa5_a-zA-Z0-9\s]+$/ig;
     var control_prototype = {
-        ctype: 'selectoption', ipos: '0px -81px', name: 'ÏÂÀ­²Ëµ¥',
-        //box: ['<div class="boxrow"><div class="brtt"><span class="span_bfieldTxt">Êı¾İÔ´£º</span></div><div class="brbx"><select id="slt_selectdatasource"><option value="0">×Ô¶¨ÒåÊı¾İ</option></select> <a id="a_link_newdatasource" style="display:none;">ĞÂÔöÊı¾İÔ´</a></div></div><div class="boxrow customItemsettingsdiv"><div class="brtt"><span class="span_bfieldTxt">×Ô¶¨Ñ¡Ïî£º</span></div><div class="brbx"><textarea class="areaselectitemset" id="txt_areaselectitemset" rows="5" cols="5">Ñ¡Ïî1\nÑ¡Ïî2\nÑ¡Ïî3</textarea></div></div>'],
+        ctype: 'selectoption', ipos: '0px -81px', name: 'ä¸‹æ‹‰èœå•',
+        //box: ['<div class="boxrow"><div class="brtt"><span class="span_bfieldTxt">æ•°æ®æºï¼š</span></div><div class="brbx"><select id="slt_selectdatasource"><option value="0">è‡ªå®šä¹‰æ•°æ®</option></select> <a id="a_link_newdatasource" style="display:none;">æ–°å¢æ•°æ®æº</a></div></div><div class="boxrow customItemsettingsdiv"><div class="brtt"><span class="span_bfieldTxt">è‡ªå®šé€‰é¡¹ï¼š</span></div><div class="brbx"><textarea class="areaselectitemset" id="txt_areaselectitemset" rows="5" cols="5">é€‰é¡¹1\né€‰é¡¹2\né€‰é¡¹3</textarea></div></div>'],
         propertyHtml: function () {
             return require('../template/property-selectoption.tpl');
         },
@@ -21,7 +21,7 @@ define(function (require) {
                         optionCode += '<option value="' + datasource[i].ID + '">' + datasource[i].Name + '</option>';
                     }
                 }
-                $("#txt_areaselectitemset").val("Ñ¡Ïî1\nÑ¡Ïî2\nÑ¡Ïî3");
+                $("#txt_areaselectitemset").val("é€‰é¡¹1\né€‰é¡¹2\né€‰é¡¹3");
                 //$("#txt_areaselectitemset").select();
                 $("#slt_selectdatasource").append(optionCode).change(function () {
                     var selValue = $(this).val();
@@ -29,7 +29,7 @@ define(function (require) {
                         dataCache.GetRunProcDataSourceAndLine(selValue, function (data) {
                             if (data.length > 0) {
                                 if ($('.customitem-datasource-tips').length == 0) {
-                                    $('.customItemsettingsdiv').after('<div class="customitem-datasource-tips" >ÌáÊ¾£º´Ë×Ö¶ÎÒÑ²ÎÓë·ÖÖ§Ìõ¼şÉè¼Æ£¬ÎªÁË²»Ó°ÏìÁ÷³ÌÕı³£Ê¹ÓÃ£¬ÇëÔÚĞŞ¸ÄÊı¾İÔ´ºó¼°Ê±¸üĞÂÏà¹ØÁ÷³ÌÉè¼Æ£¡</div>');
+                                    $('.customItemsettingsdiv').after('<div class="customitem-datasource-tips" >æç¤ºï¼šæ­¤å­—æ®µå·²å‚ä¸åˆ†æ”¯æ¡ä»¶è®¾è®¡ï¼Œä¸ºäº†ä¸å½±å“æµç¨‹æ­£å¸¸ä½¿ç”¨ï¼Œè¯·åœ¨ä¿®æ”¹æ•°æ®æºååŠæ—¶æ›´æ–°ç›¸å…³æµç¨‹è®¾è®¡ï¼</div>');
                                 }
                             } else {
                                 $('.customitem-datasource-tips').remove();
@@ -56,7 +56,7 @@ define(function (require) {
             }
             white_list.lastIndex = 0;
             if(!white_list.test(_inputValue) && _inputValue.length>0){
-                alert('×Ô¶¨ÒåÑ¡ÏîÖ»ÔÊĞíÊäÈëÖĞÓ¢ÎÄºÍÊı×Ö');
+                alert('è‡ªå®šä¹‰é€‰é¡¹åªå…è®¸è¾“å…¥ä¸­è‹±æ–‡å’Œæ•°å­—');
                 return false;
             }
             return true;
@@ -67,7 +67,7 @@ define(function (require) {
             var render = template(ctrl_tpl);
             var config = {
                 ctype: arguments[0],
-                FieldType: 3,//ÏÂÀ­²Ëµ¥
+                FieldType: 3,//ä¸‹æ‹‰èœå•
                 FieldID: this.fieldID(),
                 FieldName: this.title,
                 DefaultValue: '',
@@ -101,7 +101,7 @@ define(function (require) {
                         if (bol) {
                             config.FieldConfig.customItems = itemSource;
                         } else {
-                            utilModel.i8alert({ str: "µ¥¸öÑ¡Ïî³¤¶È³¬¹ı50£¬ÇëÖØĞÂÊäÈë£¡" });
+                            utilModel.i8alert({ str: "å•ä¸ªé€‰é¡¹é•¿åº¦è¶…è¿‡50ï¼Œè¯·é‡æ–°è¾“å…¥ï¼" });
                             return false;
                         }
                     }
@@ -110,7 +110,7 @@ define(function (require) {
             config.str_config = $.JSONString(config);
             config.sourcelist = itemSource;
             return render(config);
-            //return $('<div class="ctrlbox" ctype="' + arguments[0] + '" rowtype="1"><div class="ctrltitle"><span class="span_mustinputtag" style="visibility:' + (this.mustinput ? "visible" : "hidden") + '">*</span><span class="ctitletxt">' + this.title + '</span>£º</div><div class="ctrltxt"><select style="width:237px" class="ctrl_selectoptions"  isparam="' + this.isparam + '" mustinput="' + this.mustinput + '"' + sourceidCode + '>' + itemsCode + '</select></div></div>');
+            //return $('<div class="ctrlbox" ctype="' + arguments[0] + '" rowtype="1"><div class="ctrltitle"><span class="span_mustinputtag" style="visibility:' + (this.mustinput ? "visible" : "hidden") + '">*</span><span class="ctitletxt">' + this.title + '</span>ï¼š</div><div class="ctrltxt"><select style="width:237px" class="ctrl_selectoptions"  isparam="' + this.isparam + '" mustinput="' + this.mustinput + '"' + sourceidCode + '>' + itemsCode + '</select></div></div>');
 
         },
         filled:function(ctrl){

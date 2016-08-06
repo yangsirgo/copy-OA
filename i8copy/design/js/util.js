@@ -6,8 +6,8 @@ define(function (require, exports, module) {
     //var _domain=_host.substr(_host.split('.')[0].length+1);
     //var hostname=window.location.hostname.split('.').splice(-2).join('.');
     //document.domain=_domain;
-    //°×Ãûµ¥
-    var _white_list = /^[¡¾¡¿£¨£©£¬£»¡££º¡¢¡®¡¯¡°¡±£¿¡¶¡·¡ª¡ª¡¤;£¤¡­¡­£¡~=@#%`,;_/\?\{\}\[\]\!\$\^\*\(\)\+\.\|\-\u4e00-\u9fa5a-zA-Z0-9\s]+$/ig;
+    //ç™½åå•
+    var _white_list = /^[ã€ã€‘ï¼ˆï¼‰ï¼Œï¼›ã€‚ï¼šã€â€˜â€™â€œâ€ï¼Ÿã€Šã€‹â€”â€”Â·;ï¿¥â€¦â€¦ï¼~=@#%`,;_/\?\{\}\[\]\!\$\^\*\(\)\+\.\|\-\u4e00-\u9fa5a-zA-Z0-9\s]+$/ig;
     var _workflowInputVerify = function (value) {
         var _retObj = {};
         var _flag = false;
@@ -16,11 +16,11 @@ define(function (require, exports, module) {
             _flag = true;
         }
         _retObj.result =  _flag;
-        _retObj.tips = "ÊäÈëÃûÖĞ°üº¬·Ç·¨×Ö·û£¡";
+        _retObj.tips = "è¾“å…¥åä¸­åŒ…å«éæ³•å­—ç¬¦ï¼";
         return _retObj;
     }
     var util = function () {
-        /*´´½¨cookie*/
+        /*åˆ›å»ºcookie*/
         var _setCookie = function (sName, sValue, days) {
             _delCookie(sName);
             if (!days) {
@@ -31,7 +31,7 @@ define(function (require, exports, module) {
             exp.setTime(exp.getTime() + days * 24 * 60 * 60 * 1000);
             document.cookie = sName + "=" + encodeURIComponent(sValue) + ";path=/; expires=" + exp.toGMTString();
         }
-        /*»ñÈ¡cookies*/
+        /*è·å–cookies*/
         var _getCookie = function (sName) {
             var aCookie = document.cookie.split("; ");
             for (var i = 0; i < aCookie.length; i++) {
@@ -40,12 +40,12 @@ define(function (require, exports, module) {
                     return decodeURIComponent(aCrumb[1]);
             }
         }
-        /*É¾³ıcookies*/
+        /*åˆ é™¤cookies*/
         var _delCookie = function (sName) {
             var cookieDate = new Date(2000,11,10,19,30,30);
             document.cookie = sName+'= ; expires=' + cookieDate.toGMTString() + '; path=/';
         }
-        /*½«json object¶ÔÏó×ª»»³Éstring*/
+        /*å°†json objectå¯¹è±¡è½¬æ¢æˆstring*/
         var _toJsonString = function (obj) {
             var t = typeof (obj);
             if (t != "object" || obj === null) {
@@ -65,11 +65,11 @@ define(function (require, exports, module) {
             }
         };
         var _urlParamToJson = function (url, key, replace) {
-            url = url.replace(/^[^?=]*\?/ig, '').split('#')[0]; //È¥³ıÍøÖ·ÓëhashĞÅÏ¢
+            url = url.replace(/^[^?=]*\?/ig, '').split('#')[0]; //å»é™¤ç½‘å€ä¸hashä¿¡æ¯
             var json = {};
             url.replace(/(^|&)([^&=]+)=([^&]*)/g, function (a, b, key, value) {
                 if (!(key in json)) {
-                    json[key] = /\[\]$/.test(key) ? [value] : value; //Èç¹û²ÎÊıÃûÒÔ[]½áÎ²£¬Ôòµ±×÷Êı×é
+                    json[key] = /\[\]$/.test(key) ? [value] : value; //å¦‚æœå‚æ•°åä»¥[]ç»“å°¾ï¼Œåˆ™å½“ä½œæ•°ç»„
                 }
                 else if (json[key] instanceof Array) {
                     json[key].push(value);
@@ -80,7 +80,7 @@ define(function (require, exports, module) {
             });
             return key ? json[key] : json;
         };
-        var stringifyParam=function(param, key){//json×ª»¯Îªurl
+        var stringifyParam=function(param, key){//jsonè½¬åŒ–ä¸ºurl
             var paramStr="";
             if(param instanceof String||param instanceof Number||param instanceof Boolean){
                 paramStr+="&"+key+"="+encodeURIComponent(param);
@@ -93,13 +93,13 @@ define(function (require, exports, module) {
             return paramStr.substr(1);
         };
         /*
-         *¹«ÓÃÌáÊ¾·½·¨
-         *btnobj:$¶ÔÏó,Ä¬ÈÏÎª¿ÕÔÚÆÁÄ»ÖĞ¼äÏÔÊ¾£¬ÓĞ´«µİ¶ÔÏóÔòÔÚ°´Å¥µÄÉÏ·½ÏÔÊ¾,
-         *str:ÌáÊ¾ÏûÏ¢ÄÚÈİ,
-         *type:1,ÌáÊ¾ÀàĞÍ£¬1Îª´íÎóÌáÊ¾£¬2Îª¾¯¸æ£¬3ÎªÍ¨¹ı»òÕß³É¹¦
-         *stype:Ä¬ÈÏÎª¿Õ£¬false ×Ô¶¯¹Ø±Õ£¬true ÔòÊÖ¶¯¹Ø±Õ
-         *time:Ä¬ÈÏÎª2000(Á½Ãë)
-         *cbk:function() »Øµ÷º¯Êı
+         *å…¬ç”¨æç¤ºæ–¹æ³•
+         *btnobj:$å¯¹è±¡,é»˜è®¤ä¸ºç©ºåœ¨å±å¹•ä¸­é—´æ˜¾ç¤ºï¼Œæœ‰ä¼ é€’å¯¹è±¡åˆ™åœ¨æŒ‰é’®çš„ä¸Šæ–¹æ˜¾ç¤º,
+         *str:æç¤ºæ¶ˆæ¯å†…å®¹,
+         *type:1,æç¤ºç±»å‹ï¼Œ1ä¸ºé”™è¯¯æç¤ºï¼Œ2ä¸ºè­¦å‘Šï¼Œ3ä¸ºé€šè¿‡æˆ–è€…æˆåŠŸ
+         *stype:é»˜è®¤ä¸ºç©ºï¼Œfalse è‡ªåŠ¨å…³é—­ï¼Œtrue åˆ™æ‰‹åŠ¨å…³é—­
+         *time:é»˜è®¤ä¸º2000(ä¸¤ç§’)
+         *cbk:function() å›è°ƒå‡½æ•°
          */
         var i8alert = function (json) {
             var time = 2000;
@@ -108,11 +108,11 @@ define(function (require, exports, module) {
             if (!json.type) {
                 json.type = 1;
             }
-            //ÌáÊ¾ÄÚÈİÀàĞÍ
+            //æç¤ºå†…å®¹ç±»å‹
             if (json.type != 1) {
                 _color = " #717276";
             }
-            //ÏÔÊ¾·½Ê½
+            //æ˜¾ç¤ºæ–¹å¼
             if (json.stype) {
                 stypehtml = '<span class="lg_fm_close"></span>';
             }
@@ -160,13 +160,13 @@ define(function (require, exports, module) {
                 }
             }, time);
         };
-        /*È«ÆÁloadingĞ§¹û
-         *btnobj:$¶ÔÏó,Ä¬ÈÏÎª¿ÕÔÚÆÁÄ»ÖĞ¼äÏÔÊ¾£¬ÓĞ´«µİ¶ÔÏóÔòÔÚ°´Å¥µÄÉÏ·½ÏÔÊ¾,
-         *str:ÌáÊ¾ÏûÏ¢ÄÚÈİ,
+        /*å…¨å±loadingæ•ˆæœ
+         *btnobj:$å¯¹è±¡,é»˜è®¤ä¸ºç©ºåœ¨å±å¹•ä¸­é—´æ˜¾ç¤ºï¼Œæœ‰ä¼ é€’å¯¹è±¡åˆ™åœ¨æŒ‰é’®çš„ä¸Šæ–¹æ˜¾ç¤º,
+         *str:æç¤ºæ¶ˆæ¯å†…å®¹,
          */
         var i8loaing = function (json) {
             if (!json.str) {
-                json.str = "ÇëÉÔµÈ..."
+                json.str = "è¯·ç¨ç­‰..."
             }
             var domobj = document.getElementById("js_lg_tp_div");
             if (domobj) {
@@ -191,7 +191,7 @@ define(function (require, exports, module) {
         };
 
         /**
-         * ½ØÈ¡×Ö·û´®
+         * æˆªå–å­—ç¬¦ä¸²
          * @param str
          * @param len
          */
@@ -209,20 +209,20 @@ define(function (require, exports, module) {
         }
         var replaceSpecial=function(str,es){
             var es=es||'';
-            var keyword=new RegExp("[\\ ,\\¡£,\\`,\\~,\\!,\\@,\\#,\\$,\\%,\\^,\\+,\\*,\\&,\\\\,\\/,\\?,\\|,\\:,\\.,\\<,\\>,\\{,\\},\\(,\\),\\'',\\;,\\=,\"]","gi")
+            var keyword=new RegExp("[\\ ,\\ã€‚,\\`,\\~,\\!,\\@,\\#,\\$,\\%,\\^,\\+,\\*,\\&,\\\\,\\/,\\?,\\|,\\:,\\.,\\<,\\>,\\{,\\},\\(,\\),\\'',\\;,\\=,\"]","gi")
             return str.replace(keyword,function(word){
                 return '\\'+word;
             })
         }
 
-        //¹Ø±Õloading·½·¨
+        //å…³é—­loadingæ–¹æ³•
         var i8closeloading = function () {
             $("#js_lg_tp_div").hide();
             $("#fw_nomaskzhezhao").hide();
         }
-        var oneDay = 3600 * 24 * 1000, oneHour = 3600 * 1000, oneMinute = 60 * 1000, week = ['ÖÜÒ»', 'ÖÜ¶ş', 'ÖÜÈı', 'ÖÜËÄ', 'ÖÜÎå', 'ÖÜÁù', 'ÖÜÈÕ'];
+        var oneDay = 3600 * 24 * 1000, oneHour = 3600 * 1000, oneMinute = 60 * 1000, week = ['å‘¨ä¸€', 'å‘¨äºŒ', 'å‘¨ä¸‰', 'å‘¨å››', 'å‘¨äº”', 'å‘¨å…­', 'å‘¨æ—¥'];
 
-        //·ÖÖÓ´¦Àíº¯Êı  £¬µ±·ÖÖÓĞ¡ÓÚ10Ê±£¬×Ô¶¯ÔÚ·ÖÖÓÇ°²¹0
+        //åˆ†é’Ÿå¤„ç†å‡½æ•°  ï¼Œå½“åˆ†é’Ÿå°äº10æ—¶ï¼Œè‡ªåŠ¨åœ¨åˆ†é’Ÿå‰è¡¥0
         var fMinuteHandle = function (minute) {
             if (minute < 10) {
                 return '0' + minute;
@@ -235,20 +235,20 @@ define(function (require, exports, module) {
             }
             return day;
         };
-        //ÈÕÆÚ´¦Àíº¯Êı
+        //æ—¥æœŸå¤„ç†å‡½æ•°
         var fDateHandle = function (date, currentDate) {
             var curDate = null;
             if (currentDate) {
                 if (typeof currentDate === 'string') {
                     try {
-                        curDate = currentDate.toDate(); //³¢ÊÔ×ª»¯Îª datetime¶ÔÏó
+                        curDate = currentDate.toDate(); //å°è¯•è½¬åŒ–ä¸º datetimeå¯¹è±¡
                     }
                     catch (e) {
                         curDate = new Date();
                     }
                 }
                 else {
-                    curDate = curDate || new Date();    //·ñÔòÈÏÎªÊÇ´«ÈëµÄÊ±¼ä¶ÔÏó£¬´Ë´¦¿ÉÒÔ¿¼ÂÇÖØ¹¹£¬ÅĞ¶ÏcurDateÎª datetime¶ÔÏó
+                    curDate = curDate || new Date();    //å¦åˆ™è®¤ä¸ºæ˜¯ä¼ å…¥çš„æ—¶é—´å¯¹è±¡ï¼Œæ­¤å¤„å¯ä»¥è€ƒè™‘é‡æ„ï¼Œåˆ¤æ–­curDateä¸º datetimeå¯¹è±¡
                 }
             }
             curDate = curDate || new Date();
@@ -261,18 +261,18 @@ define(function (require, exports, module) {
             }
             var timeTick = curDate - msgDate;
             if (timeTick <= 0) {
-                return '¸Õ¸Õ';
+                return 'åˆšåˆš';
             }
             if ((timeTick / oneDay) >= 1 || (Math.abs((curDate.getDate() - msgDate.getDate())) >= 1)) {
-                return msgDate.getFullYear() + 'Äê' + (msgDate.getMonth() + 1) + 'ÔÂ' + msgDate.getDate() + 'ÈÕ' + " " + (msgDate.getHours() + ':' + fMinuteHandle(msgDate.getMinutes()));
+                return msgDate.getFullYear() + 'å¹´' + (msgDate.getMonth() + 1) + 'æœˆ' + msgDate.getDate() + 'æ—¥' + " " + (msgDate.getHours() + ':' + fMinuteHandle(msgDate.getMinutes()));
             }
             if ((timeTick / oneHour) > 1) {
-                return '½ñÌì ' + msgDate.getHours() + ':' + fMinuteHandle(msgDate.getMinutes());
+                return 'ä»Šå¤© ' + msgDate.getHours() + ':' + fMinuteHandle(msgDate.getMinutes());
             }
             if ((timeTick / oneMinute) > 1) {
-                return Math.ceil(timeTick / oneMinute) + '·ÖÖÓÇ°';
+                return Math.ceil(timeTick / oneMinute) + 'åˆ†é’Ÿå‰';
             }
-            return '¸Õ¸Õ';
+            return 'åˆšåˆš';
         };
         var _dateDiff = function (interval, date1, date2) {
             var objInterval = { 'D': 1000 * 60 * 60 * 24, 'H': 1000 * 60 * 60, 'M': 1000 * 60, 'S': 1000, 'T': 1 };
@@ -320,11 +320,11 @@ define(function (require, exports, module) {
                 head.appendChild(script);
             } catch (exp) { }
         }
-        /*¶¯Ì¬¼ÓÔØJS*/
+        /*åŠ¨æ€åŠ è½½JS*/
         function _loadjs(url, callback) {
-            if (Object.prototype.toString.call(url) === '[object Array]') {	//ÊÇ·ñÊı×é
-                this.suc = 0;			//¼ÓÔØ¼ÆÊı
-                this.len = url.length;	//Êı×é³¤¶È
+            if (Object.prototype.toString.call(url) === '[object Array]') {	//æ˜¯å¦æ•°ç»„
+                this.suc = 0;			//åŠ è½½è®¡æ•°
+                this.len = url.length;	//æ•°ç»„é•¿åº¦
                 var a = this;
                 for (var i = 0; i < url.length; i++) {
                     _loadsinglejs(url[i], function () { a.suc++; if (a.suc == a.len) try { callback(); } catch (e) { } });
@@ -333,7 +333,7 @@ define(function (require, exports, module) {
                 _loadsinglejs(url, callback);
             }
         }
-        /*ÎÄ¼ş´óĞ¡×ª»»_byte×Ö½Ú*/
+        /*æ–‡ä»¶å¤§å°è½¬æ¢_byteå­—èŠ‚*/
         function _sizeFormat(_byte) {
             var i = 0;
             while (Math.abs(_byte) >= 1024) {
@@ -349,7 +349,7 @@ define(function (require, exports, module) {
             var date = _date.replace(/\-/g, "/");
             var nDate = new Date(date);
             var time = (nDate.getHours().toString().length == 1 ? ("0" + nDate.getHours().toString()) : nDate.getHours().toString()) +":"+ (nDate.getMinutes().toString().length == 1 ? ("0" + nDate.getMinutes().toString()) : nDate.getMinutes().toString());
-            var cn_str = (nDate.getYear().toString()).substr(1, 3) + "Äê" + (nDate.getMonth() + 1) + "ÔÂ" + nDate.getDate() + "ÈÕ " + time;
+            var cn_str = (nDate.getYear().toString()).substr(1, 3) + "å¹´" + (nDate.getMonth() + 1) + "æœˆ" + nDate.getDate() + "æ—¥ " + time;
             return cn_str;
         }
         var _subString = function (str, n) {
@@ -395,7 +395,7 @@ define(function (require, exports, module) {
             var len = 0;
             for (var i = 0; i < str.length; i++) {
                 var c = str.charCodeAt(i);
-                //µ¥×Ö½Ú¼Ó1
+                //å•å­—èŠ‚åŠ 1
                 if ((c >= 0x0001 && c <= 0x007e) || (0xff60 <= c && c <= 0xff9f)) {
                     len++;
                 }
@@ -407,12 +407,12 @@ define(function (require, exports, module) {
         }
 
 
-        /*import  ÖØĞ´window.alert*/
+        /*import  é‡å†™window.alert*/
         window._alert = window.alert;
         window.alert = function (data) {
             i8alert({str:data});
         }
-        //×ª»»Ê±¼ä¸ñÊ½£¨ÓÃÓÚajax»ñÈ¡Êı¾İºóÖ´ĞĞ¸ñÊ½×ª»»£©
+        //è½¬æ¢æ—¶é—´æ ¼å¼ï¼ˆç”¨äºajaxè·å–æ•°æ®åæ‰§è¡Œæ ¼å¼è½¬æ¢ï¼‰
         var dateformat=function dateformat(value, format) {
             var date=new Date(value);
             if(date=='Invalid Date'||isNaN(date)){
@@ -424,7 +424,7 @@ define(function (require, exports, module) {
             /*
              * eg:format="yyyy-MM-dd hh:mm:ss";
              */
-            var cn=['ÈÕ','Ò»','¶ş','Èı','ËÄ','Îå','Áù'];
+            var cn=['æ—¥','ä¸€','äºŒ','ä¸‰','å››','äº”','å…­'];
             var o = {
                 "M+": this.getMonth() + 1, // month
                 "d+": this.getDate(), // day
@@ -452,7 +452,7 @@ define(function (require, exports, module) {
             return format;
         }
         var _HtmlUtil = {
-            /*1.ÓÃÕıÔò±í´ïÊ½ÊµÏÖhtml×ªÂë*/
+            /*1.ç”¨æ­£åˆ™è¡¨è¾¾å¼å®ç°htmlè½¬ç */
             htmlEncodeByRegExp:function (str){
                 var s = "";
                 if(str.length == 0) return "";
@@ -464,7 +464,7 @@ define(function (require, exports, module) {
                 s = s.replace(/\"/g,"&quot;");
                 return s;
             },
-            /*2.ÓÃÕıÔò±í´ïÊ½ÊµÏÖhtml½âÂë*/
+            /*2.ç”¨æ­£åˆ™è¡¨è¾¾å¼å®ç°htmlè§£ç */
             htmlDecodeByRegExp:function (str){
                 var s = "";
                 if(str.length == 0) return "";
@@ -486,9 +486,9 @@ define(function (require, exports, module) {
             css.href = url;
             head.insertBefore(css, head.firstChild);
         }
-        var faceLib = [["Î¢Ğ¦", "weixiao.gif"], ["´óĞ¦", "ciya.gif"], ["»¨³Õ", "se.gif"], ["°ÁÂı", "aoman.gif"], ["°İ°İ", "zaijian.gif"], ["±¯¾ç", "ai.gif"], ["±ÉÊÓ", "bishi.gif"], ["·¢´ô", "fadai.gif"], ["±Õ×ì", "bizui.gif"], ["´ó¿Ş", "daku.gif"], ["´óÂî", "zhouma.gif"], ["µãÍ·Ğ¦", "hanxiao.gif"], ["º¹", "liuhan.gif"], ["¾ª¿Ö", "jingkong.gif"], ["ÇÃ´ò", "qiaoda.gif"], ["×¥¿ñ", "zhuakuang.gif"], ["·Ü¶·", "fengdou.gif"], ["¹ÄÕÆ", "guzhang.gif"], ["´ò¹şÇ·", "haqian.gif"], ["²Áº¹", "cahan.gif"], ["ŞÏŞÎ", "ganga.gif"], ["Å­", "fanu.gif"], ["À§", "kun.gif"], ["°×ÑÛ", "baiyan.gif"], ["³Ô¾ª", "jingyan.gif"], ["ºß", "nanguo.gif"], ["¿ÉÁ¯", "kelian.gif"], ["Àá", "liulei.gif"], ["º¦Ğß", "haixiu.gif"], ["»µĞ¦", "huaixiao.gif"], ["×óºßºß", "zuohenhen.gif"], ["ÓÒºßºß", "youhenhen.gif"], ["Ç×Ç×", "qinqin.gif"], ["ÏÅ", "xia.gif"], ["´ó±ø", "dabin.gif"], ["¿á", "ku.gif"], ["µÃÒâ", "deyi.gif"], ["Ë¯¾õ", "shui.gif"], ["ÒÉÎÊ", "yiwen.gif"], ["ÍµĞ¦", "touxiao.gif"], ["ÍÂ", "tu.gif"], ["µ÷Æ¤", "tiaopi.gif"], ["ÍÚ±ÇÊº", "koubi.gif"], ["ÎŞÄÎ", "piezui.gif"], ["¿ì¿ŞÁË", "kuaikule.gif"], ["Àäº¹", "lenghan.gif"], ["¿É°®", "keai.gif"], ["ôÜ´óÁË", "qiudale.gif"], ["Ğê", "xun.gif"], ["ÔÎ", "yun.gif"], ["ÒõÏÕ", "yinxian.gif"], ["Î¯Çü", "weiqu.gif"], ["ÃÀÎ¶", "jie.gif"], ["÷¼÷Ã", "kulou.gif"], ["ÖíÍ·", "zhutou.gif"], ["±§È­", "baoquan.gif"], ["Ê¤Àû", "shengli.gif"], ["°®Äã", "aini.gif"], ["¶¥Äã", "qiang.gif"], ["Èõ", "ruo.gif"], ["²»", "no.gif"], ["¹´Òı", "gouying.gif"], ["ÎÕÊÖ", "woshou.gif"], ["È­Í·", "quantou.gif"], ["²î¾¢", "chajing.gif"], ["ºÃµÄ", "ok.gif"], ["Ì«Ñô", "taiyang.gif"], ["ÔÂÁÁ", "yueliang.gif"]];
+        var faceLib = [["å¾®ç¬‘", "weixiao.gif"], ["å¤§ç¬‘", "ciya.gif"], ["èŠ±ç—´", "se.gif"], ["å‚²æ…¢", "aoman.gif"], ["æ‹œæ‹œ", "zaijian.gif"], ["æ‚²å‰§", "ai.gif"], ["é„™è§†", "bishi.gif"], ["å‘å‘†", "fadai.gif"], ["é—­å˜´", "bizui.gif"], ["å¤§å“­", "daku.gif"], ["å¤§éª‚", "zhouma.gif"], ["ç‚¹å¤´ç¬‘", "hanxiao.gif"], ["æ±—", "liuhan.gif"], ["æƒŠæ", "jingkong.gif"], ["æ•²æ‰“", "qiaoda.gif"], ["æŠ“ç‹‚", "zhuakuang.gif"], ["å¥‹æ–—", "fengdou.gif"], ["é¼“æŒ", "guzhang.gif"], ["æ‰“å“ˆæ¬ ", "haqian.gif"], ["æ“¦æ±—", "cahan.gif"], ["å°´å°¬", "ganga.gif"], ["æ€’", "fanu.gif"], ["å›°", "kun.gif"], ["ç™½çœ¼", "baiyan.gif"], ["åƒæƒŠ", "jingyan.gif"], ["å“¼", "nanguo.gif"], ["å¯æ€œ", "kelian.gif"], ["æ³ª", "liulei.gif"], ["å®³ç¾", "haixiu.gif"], ["åç¬‘", "huaixiao.gif"], ["å·¦å“¼å“¼", "zuohenhen.gif"], ["å³å“¼å“¼", "youhenhen.gif"], ["äº²äº²", "qinqin.gif"], ["å“", "xia.gif"], ["å¤§å…µ", "dabin.gif"], ["é…·", "ku.gif"], ["å¾—æ„", "deyi.gif"], ["ç¡è§‰", "shui.gif"], ["ç–‘é—®", "yiwen.gif"], ["å·ç¬‘", "touxiao.gif"], ["å", "tu.gif"], ["è°ƒçš®", "tiaopi.gif"], ["æŒ–é¼»å±", "koubi.gif"], ["æ— å¥ˆ", "piezui.gif"], ["å¿«å“­äº†", "kuaikule.gif"], ["å†·æ±—", "lenghan.gif"], ["å¯çˆ±", "keai.gif"], ["ç³—å¤§äº†", "qiudale.gif"], ["å˜˜", "xun.gif"], ["æ™•", "yun.gif"], ["é˜´é™©", "yinxian.gif"], ["å§”å±ˆ", "weiqu.gif"], ["ç¾å‘³", "jie.gif"], ["éª·é«…", "kulou.gif"], ["çŒªå¤´", "zhutou.gif"], ["æŠ±æ‹³", "baoquan.gif"], ["èƒœåˆ©", "shengli.gif"], ["çˆ±ä½ ", "aini.gif"], ["é¡¶ä½ ", "qiang.gif"], ["å¼±", "ruo.gif"], ["ä¸", "no.gif"], ["å‹¾å¼•", "gouying.gif"], ["æ¡æ‰‹", "woshou.gif"], ["æ‹³å¤´", "quantou.gif"], ["å·®åŠ²", "chajing.gif"], ["å¥½çš„", "ok.gif"], ["å¤ªé˜³", "taiyang.gif"], ["æœˆäº®", "yueliang.gif"]];
         var faceBpath = i8_session.resHost+"default/images/face/";
-        //ÄÚÈİ@ÈË×ª»»
+        //å†…å®¹@äººè½¬æ¢
         var atUserFormate=function(str){
             if(!str){
                 return "";
@@ -496,7 +496,7 @@ define(function (require, exports, module) {
             if(str.length>0) {
                 str = str.replace(/\$%\$([\w\-\,\u4E00-\ufa2d\.]+)\$%\$/g, function (str, info) {
                     var infosry = info.split(',');
-                    var enType = infosry[2];//enTypeÎª0,ÈËÔ±£»1£¬Èº×é£»2£¬×éÖ¯£»
+                    var enType = infosry[2];//enTypeä¸º0,äººå‘˜ï¼›1ï¼Œç¾¤ç»„ï¼›2ï¼Œç»„ç»‡ï¼›
                     var newStr = '<a class="k-a" href="users/' + infosry[1] + '">@' + infosry[0] + '</a>';
                     switch (enType) {
                         case "1":
@@ -523,7 +523,7 @@ define(function (require, exports, module) {
                         return str;
                     }
                 });
-                //[url="/report/detail/decffb25-5abc-4925-8fdc-47cc0633f4cc";txt="2015Äê3ÔÂ9ÈÕ-2015Äê3ÔÂ15ÈÕ"]
+                //[url="/report/detail/decffb25-5abc-4925-8fdc-47cc0633f4cc";txt="2015å¹´3æœˆ9æ—¥-2015å¹´3æœˆ15æ—¥"]
                 str=str.replace(/\[url="([\S^"]+)";txt="([^"]+)";target="([_\w]+)"\]/ig,function(str,href,txt,target){
                     if(href&&txt){
                         return "<a href=\""+href+"\"  target=\""+target+"\">"+txt+"</a>";

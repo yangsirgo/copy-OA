@@ -6,7 +6,7 @@ define(function (require) {
     var control_prototype = {
         ctype: 'orgSelector',
         ipos: '0px -410px',
-        name: 'ѡ���ſؼ�',
+        name: '选部门控件',
         propertyHtml: function () {
             return require('../template/property-orgSelector.tpl');
         },
@@ -27,7 +27,7 @@ define(function (require) {
             var MultiSelect = (this.sType == 2) ? true : false;
             var config = {
                 ctype: arguments[0],
-                FieldType: 7,//ѡ���ſؼ�
+                FieldType: 7,//选部门控件
                 FieldID: this.fieldID(),
                 FieldName: this.title,
                 DefaultValue: '',
