@@ -389,8 +389,120 @@ define(function (require, exports, module) {
                     }
                     /*加载树*/
                     var loadOrgTree = function () {
-                        $.post(i8_session.ajaxHost+"webajax/settings/GetDefaultOrgTree?rd=" + Math.random(), {}, function (response) {
-                            if (response.Result) {
+                        //$.post(i8_session.ajaxHost+"webajax/settings/GetDefaultOrgTree?rd=" + Math.random(), {}, function (response) {
+                        var response = {
+                            "ReturnObject": [
+                                {
+                                    "ID": {
+                                        "Timestamp": 1470017953,
+                                        "Machine": 10375484,
+                                        "Pid": 2220,
+                                        "Increment": 10521024,
+                                        "CreationTime": "2016-08-01 02:19:13"
+                                    },
+                                    "OrgID": 1,
+                                    "Name": "北京友善科技有限公司",
+                                    "PinyingName": null,
+                                    "ParentID": 0,
+                                    "IDPath": "1",
+                                    "RootID": 1,
+                                    "Deepth": 0,
+                                    "ManagerType": 1,
+                                    "ManagerID": "35acfa7f-0533-4bba-99db-d2fdd6d4c5d4",
+                                    "Order": 0,
+                                    "Status": 0,
+                                    "ManagerName": null,
+                                    "OrgNo": null,
+                                    "DisplayName": "北京友善科技有限公司",
+                                    "LastUpdateTime": "2016-08-09 16:10:41",
+                                    "CreateTime": "2016-08-01 10:19:13",
+                                    "AccountID": "3a1b83cb-cca7-41c1-852c-e5fceb78df4e"
+                                },
+                                {
+                                    "ID": {
+                                        "Timestamp": 1470017953,
+                                        "Machine": 10375484,
+                                        "Pid": 2220,
+                                        "Increment": 10521027,
+                                        "CreationTime": "2016-08-01 02:19:13"
+                                    },
+                                    "OrgID": 2,
+                                    "Name": "行政部",
+                                    "PinyingName": null,
+                                    "ParentID": 1,
+                                    "IDPath": "1/2",
+                                    "RootID": 1,
+                                    "Deepth": 1,
+                                    "ManagerType": 0,
+                                    "ManagerID": "00000000-0000-0000-0000-000000000000",
+                                    "Order": 0,
+                                    "Status": 0,
+                                    "ManagerName": null,
+                                    "OrgNo": "ZW",
+                                    "DisplayName": "行政部",
+                                    "LastUpdateTime": "2016-08-09 15:58:22",
+                                    "CreateTime": "2016-08-01 10:19:13",
+                                    "AccountID": "3a1b83cb-cca7-41c1-852c-e5fceb78df4e"
+                                },
+                                {
+                                    "ID": {
+                                        "Timestamp": 1470017953,
+                                        "Machine": 10375484,
+                                        "Pid": 2220,
+                                        "Increment": 10521031,
+                                        "CreationTime": "2016-08-01 02:19:13"
+                                    },
+                                    "OrgID": 4,
+                                    "Name": "财务部",
+                                    "PinyingName": null,
+                                    "ParentID": 1,
+                                    "IDPath": "1/4",
+                                    "RootID": 1,
+                                    "Deepth": 1,
+                                    "ManagerType": 0,
+                                    "ManagerID": "00000000-0000-0000-0000-000000000000",
+                                    "Order": 0,
+                                    "Status": 0,
+                                    "ManagerName": null,
+                                    "OrgNo": null,
+                                    "DisplayName": "财务部",
+                                    "LastUpdateTime": "2016-08-01 10:19:13",
+                                    "CreateTime": "2016-08-01 10:19:13",
+                                    "AccountID": "3a1b83cb-cca7-41c1-852c-e5fceb78df4e"
+                                },
+                                {
+                                    "ID": {
+                                        "Timestamp": 1470017953,
+                                        "Machine": 10375484,
+                                        "Pid": 2220,
+                                        "Increment": 10521029,
+                                        "CreationTime": "2016-08-01 02:19:13"
+                                    },
+                                    "OrgID": 3,
+                                    "Name": "人事部",
+                                    "PinyingName": null,
+                                    "ParentID": 1,
+                                    "IDPath": "1/3",
+                                    "RootID": 1,
+                                    "Deepth": 1,
+                                    "ManagerType": 0,
+                                    "ManagerID": "00000000-0000-0000-0000-000000000000",
+                                    "Order": 0,
+                                    "Status": 0,
+                                    "ManagerName": null,
+                                    "OrgNo": null,
+                                    "DisplayName": "人事部",
+                                    "LastUpdateTime": "2016-08-01 10:19:13",
+                                    "CreateTime": "2016-08-01 10:19:13",
+                                    "AccountID": "3a1b83cb-cca7-41c1-852c-e5fceb78df4e"
+                                }
+                            ],
+                            "Result": true,
+                            "Code": 0,
+                            "Description": null,
+                            "reqTime": 19
+                        };
+                        if (response.Result) {
                                 console.log(response.ReturnObject);
                                 var idObj={};
                                 _.each(response.ReturnObject,function(data){
@@ -438,7 +550,7 @@ define(function (require, exports, module) {
                                 $("#tbls_org_box").mCustomScrollbar({ theme: "dark-3" ,axis:"y"});
                                 $("#cropOrgTree_1_switch").trigger("click");
                             }
-                        }, "json");
+                        //}, "json");
                     };
                     /*点击节点之前事件*/
                     var treeBeforeClick = function (treeId, treeNode, clickFlag) {
@@ -527,8 +639,286 @@ define(function (require, exports, module) {
                     /*展开*/
                     var onExpandEvent = function (event, treeId, treeNode) {
                         if (!treeNode.isExpand && treeNodeEnable.user) {
-                            $.post(i8_session.ajaxHost+"webajax/settings/GetOrgPersonsInfo", {orgID:treeNode.OrgID,isOnlyContract:false}, function (response) {
-                                if (response.Result) {
+                            //$.post(i8_session.ajaxHost+"webajax/settings/GetOrgPersonsInfo", {orgID:treeNode.OrgID,isOnlyContract:false}, function (response) {
+                            var response = {
+                                "ReturnObject": {
+                                    "totalCount": 4,
+                                    "Result": [
+                                        {
+                                            "Item1": {
+                                                "PassportID": "35acfa7f-0533-4bba-99db-d2fdd6d4c5d4",
+                                                "Name": "杨国超",
+                                                "NamePinyin": "YangGuoChao",
+                                                "EnName": "",
+                                                "Birthday": null,
+                                                "MPhone": "15122653844",
+                                                "Tel": "",
+                                                "OrgID": 1,
+                                                "OrgName": "北京友善科技有限公司",
+                                                "ClassID": 1,
+                                                "ClassName": "CEO",
+                                                "PTRoleName": null,
+                                                "Position": "",
+                                                "Type": 0,
+                                                "Status": 0,
+                                                "Email": "499251782@qq.com",
+                                                "QQ": "",
+                                                "Gender": null,
+                                                "Labels": [],
+                                                "Comment": "",
+                                                "BirthLocation": "",
+                                                "HeadImage": "https://dn-i8res.qbox.me/public/platform/defhead.png",
+                                                "Portal": "calendar:true,checktop:false,members:true,birthday:false,topic:false,novice:false,taskrpt:false,managenovice:false,",
+                                                "Alarm": {
+                                                    "Tips": [
+                                                        "00000000-0000-0000-0000-000000000000",
+                                                        "4b1e7570-15dd-4a4f-88ca-af4c9cc87f99",
+                                                        "4a935fa4-4f55-4b01-89e2-d2f0b6e8ba39"
+                                                    ],
+                                                    "EMail": [
+                                                        "RemindMail_Schedule",
+                                                        "RemindMail_Workflow",
+                                                        "RemindMail_OverWorkflow",
+                                                        "RemindMail_ReturnWorkflow",
+                                                        "RemindMail_FileWorkflow",
+                                                        "RemindMail_RemindersWorkflow"
+                                                    ],
+                                                    "Frequency": "7"
+                                                },
+                                                "Contacts": [],
+                                                "LearnNav": {
+                                                    "addwf": true,
+                                                    "setinfo": true
+                                                },
+                                                "CoverImg": "",
+                                                "City": null,
+                                                "LeaderFlag": 1,
+                                                "StatusRemark": null,
+                                                "DepartureTime": null,
+                                                "EmployeeNo": "",
+                                                "LeaderName": null,
+                                                "Notice": {},
+                                                "OrderField": 10000,
+                                                "AppPmt": {
+                                                    "app_finacial": {
+                                                        "app_finacial_payment_report": "true"
+                                                    }
+                                                },
+                                                "UserFields": {},
+                                                "EmployeeNoRuleID": "00000000-0000-0000-0000-000000000000",
+                                                "ID": "f94a17d6-10b4-40fa-ad7e-e5c090c5a312",
+                                                "LastUpdateTime": "2016-08-01 10:19:13",
+                                                "CreateTime": "2016-08-01 10:19:13",
+                                                "AccountID": "3a1b83cb-cca7-41c1-852c-e5fceb78df4e"
+                                            },
+                                            "Item2": [
+                                                4,
+                                                20,
+                                                30
+                                            ],
+                                            "Item3": false,
+                                            "Item4": true
+                                        },
+                                        {
+                                            "Item1": {
+                                                "PassportID": "c3943716-ab49-48ea-b7f3-1dc944c5792c",
+                                                "Name": "RONG",
+                                                "NamePinyin": "RONG",
+                                                "EnName": null,
+                                                "Birthday": null,
+                                                "MPhone": "15222542323",
+                                                "Tel": "022-66203452",
+                                                "OrgID": 2,
+                                                "OrgName": "行政部",
+                                                "ClassID": 4,
+                                                "ClassName": "员工",
+                                                "PTRoleName": null,
+                                                "Position": "",
+                                                "Type": 0,
+                                                "Status": 0,
+                                                "Email": "",
+                                                "QQ": null,
+                                                "Gender": null,
+                                                "Labels": [],
+                                                "Comment": null,
+                                                "BirthLocation": null,
+                                                "HeadImage": "https://dn-i8res.qbox.me/public/platform/defhead.png",
+                                                "Portal": null,
+                                                "Alarm": {
+                                                    "Tips": [
+                                                        "00000000-0000-0000-0000-000000000000",
+                                                        "4b1e7570-15dd-4a4f-88ca-af4c9cc87f99",
+                                                        "4a935fa4-4f55-4b01-89e2-d2f0b6e8ba39"
+                                                    ],
+                                                    "EMail": [
+                                                        "RemindMail_Schedule",
+                                                        "RemindMail_Workflow",
+                                                        "RemindMail_OverWorkflow",
+                                                        "RemindMail_ReturnWorkflow",
+                                                        "RemindMail_FileWorkflow",
+                                                        "RemindMail_RemindersWorkflow"
+                                                    ],
+                                                    "Frequency": "7"
+                                                },
+                                                "Contacts": [],
+                                                "LearnNav": {},
+                                                "CoverImg": null,
+                                                "City": null,
+                                                "LeaderFlag": 0,
+                                                "StatusRemark": null,
+                                                "DepartureTime": null,
+                                                "EmployeeNo": "ZS0001",
+                                                "LeaderName": null,
+                                                "Notice": {},
+                                                "OrderField": 0,
+                                                "AppPmt": {},
+                                                "UserFields": {},
+                                                "EmployeeNoRuleID": "d21fdd16-c6e5-4e33-a114-74b3b03643fe",
+                                                "ID": "9d3f47b0-7829-4c91-99ca-88a1c076fbef",
+                                                "LastUpdateTime": "2016-08-09 16:03:30",
+                                                "CreateTime": "2016-08-09 16:03:30",
+                                                "AccountID": "3a1b83cb-cca7-41c1-852c-e5fceb78df4e"
+                                            },
+                                            "Item2": [],
+                                            "Item3": false,
+                                            "Item4": false
+                                        },
+                                        {
+                                            "Item1": {
+                                                "PassportID": "6783b50b-97b7-46eb-be22-0da57f2ddc4c",
+                                                "Name": "caiwu",
+                                                "NamePinyin": "caiwu",
+                                                "EnName": null,
+                                                "Birthday": null,
+                                                "MPhone": "15222562633",
+                                                "Tel": "022-3333333",
+                                                "OrgID": 4,
+                                                "OrgName": "财务部",
+                                                "ClassID": 4,
+                                                "ClassName": "员工",
+                                                "PTRoleName": null,
+                                                "Position": "员工",
+                                                "Type": 0,
+                                                "Status": 0,
+                                                "Email": "",
+                                                "QQ": null,
+                                                "Gender": null,
+                                                "Labels": [],
+                                                "Comment": null,
+                                                "BirthLocation": null,
+                                                "HeadImage": "https://dn-i8res.qbox.me/public/platform/defhead.png",
+                                                "Portal": null,
+                                                "Alarm": {
+                                                    "Tips": [
+                                                        "00000000-0000-0000-0000-000000000000",
+                                                        "4b1e7570-15dd-4a4f-88ca-af4c9cc87f99",
+                                                        "4a935fa4-4f55-4b01-89e2-d2f0b6e8ba39"
+                                                    ],
+                                                    "EMail": [
+                                                        "RemindMail_Schedule",
+                                                        "RemindMail_Workflow",
+                                                        "RemindMail_OverWorkflow",
+                                                        "RemindMail_ReturnWorkflow",
+                                                        "RemindMail_FileWorkflow",
+                                                        "RemindMail_RemindersWorkflow"
+                                                    ],
+                                                    "Frequency": "7"
+                                                },
+                                                "Contacts": [],
+                                                "LearnNav": {},
+                                                "CoverImg": null,
+                                                "City": null,
+                                                "LeaderFlag": 0,
+                                                "StatusRemark": null,
+                                                "DepartureTime": null,
+                                                "EmployeeNo": "ZS0002",
+                                                "LeaderName": null,
+                                                "Notice": {},
+                                                "OrderField": 0,
+                                                "AppPmt": {},
+                                                "UserFields": {},
+                                                "EmployeeNoRuleID": "d21fdd16-c6e5-4e33-a114-74b3b03643fe",
+                                                "ID": "996fde80-c940-4326-a657-ccfac5ac0e92",
+                                                "LastUpdateTime": "2016-08-09 16:05:26",
+                                                "CreateTime": "2016-08-09 16:05:26",
+                                                "AccountID": "3a1b83cb-cca7-41c1-852c-e5fceb78df4e"
+                                            },
+                                            "Item2": [],
+                                            "Item3": false,
+                                            "Item4": false
+                                        },
+                                        {
+                                            "Item1": {
+                                                "PassportID": "87bf4b7e-d314-48a5-91ff-1ad3d13b9320",
+                                                "Name": "renshi",
+                                                "NamePinyin": "renshi",
+                                                "EnName": null,
+                                                "Birthday": null,
+                                                "MPhone": "15312552121",
+                                                "Tel": "022444444",
+                                                "OrgID": 3,
+                                                "OrgName": "人事部",
+                                                "ClassID": 4,
+                                                "ClassName": "员工",
+                                                "PTRoleName": null,
+                                                "Position": "",
+                                                "Type": 0,
+                                                "Status": 0,
+                                                "Email": "",
+                                                "QQ": null,
+                                                "Gender": null,
+                                                "Labels": [],
+                                                "Comment": null,
+                                                "BirthLocation": null,
+                                                "HeadImage": "https://dn-i8res.qbox.me/public/platform/defhead.png",
+                                                "Portal": null,
+                                                "Alarm": {
+                                                    "Tips": [
+                                                        "00000000-0000-0000-0000-000000000000",
+                                                        "4b1e7570-15dd-4a4f-88ca-af4c9cc87f99",
+                                                        "4a935fa4-4f55-4b01-89e2-d2f0b6e8ba39"
+                                                    ],
+                                                    "EMail": [
+                                                        "RemindMail_Schedule",
+                                                        "RemindMail_Workflow",
+                                                        "RemindMail_OverWorkflow",
+                                                        "RemindMail_ReturnWorkflow",
+                                                        "RemindMail_FileWorkflow",
+                                                        "RemindMail_RemindersWorkflow"
+                                                    ],
+                                                    "Frequency": "7"
+                                                },
+                                                "Contacts": [],
+                                                "LearnNav": {},
+                                                "CoverImg": null,
+                                                "City": null,
+                                                "LeaderFlag": 0,
+                                                "StatusRemark": null,
+                                                "DepartureTime": null,
+                                                "EmployeeNo": "ZS0003",
+                                                "LeaderName": null,
+                                                "Notice": {},
+                                                "OrderField": 0,
+                                                "AppPmt": {},
+                                                "UserFields": {},
+                                                "EmployeeNoRuleID": "d21fdd16-c6e5-4e33-a114-74b3b03643fe",
+                                                "ID": "337bec51-5710-43d9-8f6e-d2c0534746fa",
+                                                "LastUpdateTime": "2016-08-09 16:06:38",
+                                                "CreateTime": "2016-08-09 16:06:38",
+                                                "AccountID": "3a1b83cb-cca7-41c1-852c-e5fceb78df4e"
+                                            },
+                                            "Item2": [],
+                                            "Item3": false,
+                                            "Item4": false
+                                        }
+                                    ]
+                                },
+                                "Result": true,
+                                "Code": 0,
+                                "Description": null,
+                                "reqTime": 29
+                            };
+                            if (response.Result) {
                                     var treeObj = $.fn.zTree.getZTreeObj("cropOrgTree");
                                     var Members = _.pluck(response.ReturnObject.Result,"Item1");
                                     if (!isShowQuit)
@@ -551,7 +941,7 @@ define(function (require, exports, module) {
                                     }
                                     treeNode.isExpand = true;
                                 }
-                            }, "json");
+                            //}, "json");
                         } else {
                             if (!treeNodeEnable.user) {/*判断子节点下是否还有子节点，若没有直接展开*/
                                 var treeObj = $.fn.zTree.getZTreeObj("cropOrgTree");
