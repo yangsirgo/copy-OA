@@ -45,15 +45,68 @@ define(function (require) {
     var getExtDataSource = function(existData){
 
         //8_session.ajaxWfHost+'webajax/form/getdatasourcelist'
-        $.ajax({
-            'url':i8_session.ajaxWfHost+'webajax/form/getPaymentExtSource',
-            'type':'get',
-            'datatype':'json',
-            'async':false,
-            'success':function(data){
+        //$.ajax({
+        //    'url':i8_session.ajaxWfHost+'webajax/form/getPaymentExtSource',
+        //    'type':'get',
+        //    'datatype':'json',
+        //    'async':false,
+        //    'success':function(data){
+                var data ={
+                    "Total": 0,
+                    "ReturnObject": [
+                        {
+                            "ExtType": "OccurDate",
+                            "Name": "日期",
+                            "DataType": "datepicker",
+                            "Category": "",
+                            "HasItem": false,
+                            "SortIndex": 1,
+                            "Items": null
+                        },
+                        {
+                            "ExtType": "City",
+                            "Name": "城市/区域",
+                            "DataType": "dropdown",
+                            "Category": "",
+                            "HasItem": true,
+                            "SortIndex": 2,
+                            "Items": null
+                        },
+                        {
+                            "ExtType": "BizPhase",
+                            "Name": "业务阶段",
+                            "DataType": "dropdown",
+                            "Category": "",
+                            "HasItem": true,
+                            "SortIndex": 3,
+                            "Items": null
+                        },
+                        {
+                            "ExtType": "Project",
+                            "Name": "客户/项目",
+                            "DataType": "dropdown",
+                            "Category": "",
+                            "HasItem": true,
+                            "SortIndex": 4,
+                            "Items": null
+                        },
+                        {
+                            "ExtType": "BizType",
+                            "Name": "业务类型/产品线",
+                            "DataType": "dropdown",
+                            "Category": "",
+                            "HasItem": true,
+                            "SortIndex": 5,
+                            "Items": null
+                        }
+                    ],
+                    "Result": true,
+                    "Code": 0,
+                    "Description": null
+                };
                 fnInitExtHtml(data,existData);
-            }
-        });
+            //}
+        //});
     }
 
     //生成菜单数据

@@ -52,12 +52,12 @@ define(function (require, exports) {
                         showBtns: true,
                         confirmClick: function () {
                             var _baseid = util.urlParamToJson(window.location.href)['baseinfoid'];
-                            $.ajax({
-                               'url':i8_session.ajaxWfHost+ 'webajax/design/activity/GetProcLineByFieldID',
-                                'data':{'procbaseid':_baseid,'fieldid':$(_topthis).find('.ctrlbox').attr('ctrl-name')||''},
-                                'async':false,
-                                'success':function(data){
-                                    var _retObj = data.ReturnObject;
+                            //$.ajax({
+                            //   'url':i8_session.ajaxWfHost+ 'webajax/design/activity/GetProcLineByFieldID',
+                            //    'data':{'procbaseid':_baseid,'fieldid':$(_topthis).find('.ctrlbox').attr('ctrl-name')||''},
+                            //    'async':false,
+                            //      'success':function(data){
+                                    var _retObj = false;
                                     if(!_retObj){
                             $(_this).effect("fold", {
                                 to: {
@@ -73,8 +73,8 @@ define(function (require, exports) {
                                         //$(_this).remove();
                                         alert('抱歉，此字段已参与审批链设计，无法删除！');
                                     }
-                                }
-                            });
+                                //}
+                            //});
                             //box.close();
                            return true;
                         }

@@ -1,1 +1,1 @@
-define("default/javascripts/plugins/i8formdesigner/template/property-vacationSummaryComponent.tpl", [], "");
+define("./js/template/property-vacationSummaryComponent.tpl", [], "");

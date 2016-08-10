@@ -5,19 +5,19 @@ define(function (require) {
     var configInfo = {};
     var fnGetProcLineByFieldID = function(baseid,fieldid,callback){
         var _baseid = baseid,_fieldid = fieldid;
-        $.ajax({
-            'url': i8_session.ajaxWfHost + 'webajax/design/activity/GetProcLineByFieldID',
-            'data':    {'procbaseid': _baseid, 'fieldid':_fieldid},
-            'async':   false,
-            'success': function (data) {
-                var _retObj = (data||{}).ReturnObject;
-                if (!!_retObj && $.isFunction(callback)) {
+        //$.ajax({
+        //    'url': i8_session.ajaxWfHost + 'webajax/design/activity/GetProcLineByFieldID',
+        //    'data':    {'procbaseid': _baseid, 'fieldid':_fieldid},
+        //    'async':   false,
+        //    'success': function (data) {
+        //        var _retObj = (data||{}).ReturnObject;
+                if (!!false && $.isFunction(callback)) {
                     callback();
                     //alert('抱歉，此字段已参与审批链设计，无法删除环节参数！');
                     //$(this).prop('selected',true);
                 }
-            }
-        });
+            //}
+        //});
     }
     /*removed content*/
     $.extend({
