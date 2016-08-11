@@ -3,7 +3,7 @@
  * 串签环节JS   按汇报关系
  */
 define(function(require,exports) {
-    var i8ui = require("default/javascripts/common/i8ui");
+    var i8ui = require("../../common/i8ui");
     var act_common = require("./common");
     //标签切换
     $(".app_SequenceReport_Menu input[type='radio']").live("click", function () {

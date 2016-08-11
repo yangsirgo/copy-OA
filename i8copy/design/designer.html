@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta http-equiv="x-ua-compatible"/>
     <title></title>
-    <script src="//res.i8xiaoshi.com/community/combine/script/i8plugins-core.min.js?v=20160801"></script>
+    <script src="./js/i8plugins-core.min.js"></script>
     <script type="text/javascript">
         var i8_session = {
             "uid": "35acfa7f-0533-4bba-99db-d2fdd6d4c5d4",
@@ -62,22 +62,22 @@
             timeout: 20000,
 //            map: [[/^(.*\.(?:css|js))(.*)$/i, '$1?ver=20160801']]
         });
-        var mxBasePath = "https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/mxGraph/src";
+        var mxBasePath = "./js/plugins/mxGraph/src";
         var wf_imgpath = i8_session.resWfHost + 'default/images/'; //图片路径
         var white_list = /^[\u4e00-\u9fa5_a-zA-Z0-9\(\)]+$/ig;
         var wf_graph; //图形类
         var wf_isChange = false;//是否提交后台产生新版本
     </script>
-    <script src="//res.i8xiaoshi.com/cb-res/??combine/script/com-controls.min.js?v=20160801"></script>
+    <script src="./cb-res/com-controls.min.js"></script>
     <!--<script type="text/javascript" src="https://res.i8xiaoshi.com/workflow/default/javascripts/design/activity/mxgraph.js"></script>-->
     <link href="//res.i8xiaoshi.com/community/combine/style/i8fw-core.min.css?v=20160801" media="all" rel="stylesheet"/>
     <link type="text/css" href="https://res.i8xiaoshi.com/workflow/default/stylesheets/app.css" rel="stylesheet"/>
     <link href="https://res.i8xiaoshi.com/workflow/default/stylesheets/design/activity/workflow.css" rel="stylesheet"
           type="text/css"/>
     <script type="text/javascript"
-            src="https://res.i8xiaoshi.com/workflow/default/javascripts/design/activity/app_newguid.js"></script>
+            src="./js/activity/app_newguid.js"></script>
     <script type="text/javascript"
-            src="https://res.i8xiaoshi.com/workflow/default/javascripts/plugins/mxGraph/src/js/mxClient-min.js"></script>
+            src="./js/plugins/mxGraph/src/js/mxClient-min.js"></script>
     <link type="text/css" href="https://res.i8xiaoshi.com/workflow/default/stylesheets/app_workflow_design.css"
           rel="stylesheet"/>
 
@@ -138,7 +138,7 @@
             );
             mxEvent.addListener(img, 'click',
                     mxUtils.bind(this, function (evt) {
-                        seajs.use('default/javascripts/design/activity/control/common', function (common) {
+                        seajs.use('./js/activity/control/common', function (common) {
                             common.wf_delLink();
                         }); //删除环节方法
                         mxEvent.consume(evt);

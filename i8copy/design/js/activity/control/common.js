@@ -3,7 +3,7 @@
  * 环节配置公共方法
  */
 define(function(require,exports) {
-    var i8ui = require("default/javascripts/common/i8ui");
+    var i8ui = require("../../common/i8ui");
     var baseinfoID =parent.js_wf_BaseInfoID;
     var wf_ArrayLine = new Array(); //连线存储数据数组
     var wf_ProcActity = new Array();//环节存储数据数组
@@ -36,8 +36,16 @@ define(function(require,exports) {
 //            }
 //        }
 //        else {//不存在则获取
-            $.ajax({url: encodeURI(i8_session.ajaxWfHost+'webajax/design/activity/getlistroletype'), type: 'get', dataType: 'json',
-                data: 'typeCode=' + typeCode + '&baseinfoid=' + baseinfoID + '&Model=' + selectedUserModel, async: false, success: function (json) {
+//            $.ajax({url: encodeURI(i8_session.ajaxWfHost+'webajax/design/activity/getlistroletype'), type: 'get', dataType: 'json',
+//                data: 'typeCode=' + typeCode + '&baseinfoid=' + baseinfoID + '&Model=' + selectedUserModel, async: false, success: function (json) {
+              if(typeCode==1){
+                  var json = {"ReturnObject":[{"Key":"员工","Value":"0"},{"Key":"经理","Value":"2500"},{"Key":"副总","Value":"5000"},{"Key":"CEO","Value":"10000"}],"Result":true,"Code":0,"Description":null}
+              }else if(typeCode==2){
+                  var json = {"ReturnObject":[{"Key":"CEO/总经理/总裁(杨国超)","Value":"b36d97c9-60be-4ecb-8717-083c95dd0ba4"},{"Key":"财务专员(caiwu)","Value":"77c63c34-4c47-46cb-96c7-3129206bcc78"},{"Key":"采购专员(RONG)","Value":"d949eda3-a58c-4128-80c5-7491afa0b390"},{"Key":"法务专员(renshi)","Value":"dc51284c-a11c-4c52-be81-b9a5146352b2"},{"Key":"行政专员(RONG)","Value":"0514b9a0-6648-412e-99fc-57410687ede2"},{"Key":"人事专员(renshi)","Value":"d33d1748-f8df-4f7d-9656-6f5ae756ab81"}],"Result":true,"Code":0,"Description":null}
+              }else if(typeCode==3){
+                  var json = {"ReturnObject":[{"Key":"核算中心负责人","Value":"FeiYongShenQing_col_16_centerAdminId"},{"Key":"发起人","Value":"SysOriginatorID"}],"Result":true,"Code":0,"Description":null}
+              };
+
                     if (json.Result) {
                         var jsonData = json.ReturnObject;
                         roleJson = {"code": typeCode, "value": jsonData};//存储值
@@ -49,9 +57,9 @@ define(function(require,exports) {
                     else
                         i8ui.alert({title: "获取角色失败,请联系管理员!"});
                 }
-            });
+            //});
         //}
-    }
+    //}
     //获取表单绑定字段
     //bingdID:要绑定的值ID，conditionType：绑定的类型0：简单条件1：复杂条件
     function wf_bindFormData(bindID) {

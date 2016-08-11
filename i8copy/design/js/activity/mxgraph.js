@@ -54,7 +54,7 @@ define(function(require,exports){
                 }
                 return mxGraph.prototype.createHandler.apply(this, arguments);
             };
-            var util=require('default/javascripts/common/util.js');
+            var util=require('../common/util.js');
             $(".tlftitle").text(util.stringCut($("#txt_name", window.parent.document).val(),40));
             $(".tlftitle").attr("title",$("#txt_name", window.parent.document).val());
             //获取流程名称
@@ -339,9 +339,9 @@ define(function(require,exports){
                     //获取模板
                     //seajs.use()
 
-                    require.async('default/javascripts/design/activity/template/'+ tplName + '.tpl',function(tpl){
+                    require.async('./template/'+ tplName + '.tpl',function(tpl){
                         tpl=template(tpl)({basePath:i8_session.resWfHost});
-                        var i8ui=require("default/javascripts/common/i8ui");
+                        var i8ui=require("../common/i8ui");
                         //seajs.use(i8_session.resWfHost+"default/javascripts/common/i8ui",function(i8ui){
                             i8ui.showNoTitle({title:showTitle,cont:tpl});
                             var actType = 1;//环节类型

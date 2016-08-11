@@ -4,7 +4,7 @@
  */
 define(function(require,exports) {
     var i8ui = require("default/javascripts/common/i8ui");
-    var act_common = require("default/javascripts/design/activity/control/common");
+    var act_common = require("../common");
     //提交方法
     $("#btn_SequenceReportSubmitSimple").live("click",function(){
         var txt_sequenceTitle = $("#txt_sequenceReportTitle");

@@ -4,7 +4,7 @@
  */
 define(function(require,exports) {
     var i8ui = require("default/javascripts/common/i8ui");
-    var act_common = require("default/javascripts/design/activity/control/common");
+    var act_common = require("../common");
     var i8selector = require("default/javascripts/plugins/i8selector/fw_selector");
     //添加专项角色
     $("#a_roleAddSimple").live("click", function () {

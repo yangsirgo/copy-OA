@@ -36,7 +36,7 @@ define(function(require,exports) {
                     check_pop.html('暂无有专项角色！');
                     return;
                 }
-                var tpl=require('default/template/design/specialrole-check-pop.tpl');
+                var tpl=require('../template/design/specialrole-check-pop.tpl');
                 var render = template(tpl);
                 var html = render(data.ReturnObject);
                 check_pop.html(html);

@@ -4,7 +4,7 @@
  */
 define(function(require,exports) {
     var i8ui = require("default/javascripts/common/i8ui");
-    var act_common = require("default/javascripts/design/activity/control/common");
+    var act_common = require("../common");
 
     //角色级联事件
     $(".wf_show_table[type='simple'] tr select:even").live("change",function(){
