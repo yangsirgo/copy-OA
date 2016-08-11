@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="x-ua-compatible"/>
+    <title></title>
+    <script src="./js/i8plugins-core.min.js"></script>
+    <script type="text/javascript">
+        var i8_session = {
+            "uid": "35acfa7f-0533-4bba-99db-d2fdd6d4c5d4",
+            "uname": "杨国超",
+            "utype": [4, 20, 30, 40],
+            "readstatus": 11111,
+            "orgid": "1",
+            "orgname": "北京友善科技有限公司",
+            "ukankan": true,
+            "uimage30": "https://dn-i8res.qbox.me/public/platform/defhead.png",
+            "email": "499251782@qq.com",
+            "aid": "3a1b83cb-cca7-41c1-852c-e5fceb78df4e",
+            "aname": "北京友善科技有限公司",
+            "nodeKey": "default",
+            "cname": "北京友善科技有限公司",
+            "clogo": "https://dn-i8res.qbox.me/public/platform/deflogo.png",
+            "apps": ["app_notice", "app_schedule", "app_task", "app_report", "app_document", "app_vacation", "app_finacial", "app_attendance", "app_salarybill", "app_personnelfile"],
+            "platform": {"version": "trial", "storagelimit": "5", "maxuser": "1000", "dctoken": "0"},
+            "usernum": 1,
+            "storenum": 0.00028188036830565,
+            "expire": "2016-10-01 23:59:59",
+            "expireapp": {},
+            "adminnav": {"invitemate": true, "designwf": true},
+            "usernav": {"addwf": true, "setinfo": true},
+            "portal": "calendar:true,checktop:false,members:true,birthday:false,topic:false,novice:false,taskrpt:false,managenovice:false,",
+            "notice": null,
+            "step": 0,
+            "appadmin": ["app_notice", "app_schedule", "app_task", "app_report", "app_document", "app_vacation", "app_finacial", "app_attendance", "app_salarybill", "app_personnelfile"],
+            "multiact": false,
+            "enbleinvite": true,
+            "cusapp": [],
+            "ability": ["app_finacial_payment_report"],
+            "timestamp": "2016-08-11 10:24:27.154",
+            "comapp": false,
+            "apppmt": {},
+            "userpmt": {"app_finacial": {"app_finacial_payment_report": "true"}},
+            "passexpire": 0,
+            "apppersonnel": [],
+            "resHost": "https://res.i8xiaoshi.com/community/",
+            "resWfHost": "https://res.i8xiaoshi.com/workflow/",
+            "ajaxHost": "/community/",
+            "ajaxWfHost": "/workflow/",
+            "baseHost": "/community/",
+            "wfbaseHost": "/workflow/",
+            "resVersion": "20160801",
+            "gotourl": "/workflow/process/task",
+            "protocol": "https://",
+            "subdomain": "953308",
+            "sid": "ac4ca50c-9fe9-4b84-9269-2ff623cf0341"
+        };
+        seajs.config({
+//            base: 'https://res.i8xiaoshi.com/workflow/',
+            debug: true,
+            charset: 'utf-8',
+            timeout: 20000,
+//            map: [[/^(.*\.(?:css|js))(.*)$/i, '$1?ver=20160801']]
+        });
+        var mxBasePath = "./js/plugins/mxGraph/src";
+        var wf_imgpath = i8_session.resWfHost + 'default/images/'; //图片路径
+        var white_list = /^[\u4e00-\u9fa5_a-zA-Z0-9\(\)]+$/ig;
+        var wf_graph; //图形类
+        var wf_isChange = false;//是否提交后台产生新版本
+    </script>
+    <script src="./cb-res/com-controls.min.js"></script>
+    <!--<script type="text/javascript" src="https://res.i8xiaoshi.com/workflow/default/javascripts/design/activity/mxgraph.js"></script>-->
+    <link href="//res.i8xiaoshi.com/community/combine/style/i8fw-core.min.css?v=20160801" media="all" rel="stylesheet"/>
+    <link type="text/css" href="https://res.i8xiaoshi.com/workflow/default/stylesheets/app.css" rel="stylesheet"/>
+    <link href="https://res.i8xiaoshi.com/workflow/default/stylesheets/design/activity/workflow.css" rel="stylesheet"
+          type="text/css"/>
+    <script type="text/javascript"
+            src="./js/activity/app_newguid.js"></script>
+    <script type="text/javascript"
+            src="./js/plugins/mxGraph/src/js/mxClient-min.js"></script>
+    <link type="text/css" href="https://res.i8xiaoshi.com/workflow/default/stylesheets/app_workflow_design.css"
+          rel="stylesheet"/>
+
+    <script type="text/javascript">
+        seajs.use("./js/activity/mxgraph.js")
+        //生成环节图标按钮
+        // Defines a subclass for mxVertexHandler that adds a set of clickable
+        // icons to every selected vertex.
+        function mxVertexToolHandler(state) {
+            mxVertexHandler.apply(this, arguments);
+        }
+        ;
+
+        mxVertexToolHandler.prototype = new mxVertexHandler();
+        mxVertexToolHandler.prototype.constructor = mxVertexToolHandler;
+
+        mxVertexToolHandler.prototype.domNode = null;
+
+        mxVertexToolHandler.prototype.init = function () {
+
+            mxVertexHandler.prototype.init.apply(this, arguments);
+
+            // In this example we force the use of DIVs for images in IE. This
+            // handles transparency in PNG images properly in IE and fixes the
+            // problem that IE routes all mouse events for a gesture via the
+            // initial IMG node, which means the target vertices
+            this.domNode = document.createElement('div');
+            this.domNode.style.position = 'absolute';
+            this.domNode.style.whiteSpace = 'nowrap';
+            var md = (mxClient.IS_TOUCH) ? 'touchstart' : 'mousedown';
+
+            // 修改
+            var img = mxUtils.createImage('https://res.i8xiaoshi.com/workflow/default/images/design/graph/pencil.png');
+            img.title = "修改";
+            img.style.cursor = 'pointer';
+            img.style.width = '20px';
+            img.style.height = '20px';
+            img.style.marginRight = '1px';
+            mxEvent.addListener(img, 'click',
+                    mxUtils.bind(this, function (evt) {
+                        this.graph.dblClick(evt, this.state.cell);
+                        mxEvent.consume(evt);
+                    })
+            );
+            this.domNode.appendChild(img);
+
+            // Delete
+            var img = mxUtils.createImage('https://res.i8xiaoshi.com/workflow/default/images/design/graph/delete.png');
+            img.title = "删除";
+            img.style.cursor = 'pointer';
+            img.style.width = '20px';
+            img.style.height = '20px';
+            mxEvent.addListener(img, md,
+                    mxUtils.bind(this, function (evt) {
+                        // Disables dragging the image
+                        mxEvent.consume(evt);
+                    })
+            );
+            mxEvent.addListener(img, 'click',
+                    mxUtils.bind(this, function (evt) {
+                        seajs.use('./js/activity/control/common', function (common) {
+                            common.wf_delLink();
+                        }); //删除环节方法
+                        mxEvent.consume(evt);
+                    })
+            );
+            this.domNode.appendChild(img);
+            this.graph.container.appendChild(this.domNode);
+            this.redrawTools();
+        };
+
+        mxVertexToolHandler.prototype.redraw = function () {
+            mxVertexHandler.prototype.redraw.apply(this);
+            this.redrawTools();
+        };
+
+        mxVertexToolHandler.prototype.redrawTools = function () {
+            //iframe下不支持，所以换成上面这种模式
+            var wf_keyHandlerMove = new mxKeyHandler(wf_graph);
+            //wf_keyHandlerMove.bindKey(46, function (evt) {//删除键盘事件
+            //    wf_delLink();
+            //});
+            wf_keyHandlerMove.bindKey(37, function (evt) {//键盘向左移动事件
+                nudge(37);
+            });
+            wf_keyHandlerMove.bindKey(38, function (evt) {//键盘向上移动事件
+                nudge(38);
+            });
+            wf_keyHandlerMove.bindKey(39, function (evt) {//键盘向右移动事件
+                nudge(39);
+            });
+            wf_keyHandlerMove.bindKey(40, function (evt) {//键盘向下移动事件
+                nudge(40);
+            });
+            if (this.state != null && this.domNode != null) {
+                //判断加载的工具如果是开始按钮和结束按钮的话则不添加
+                if (this.state.cell.value.nodeName != "StartActivity" && this.state.cell.value.nodeName != "EndActivity") {
+                    //定位图标坐标
+                    var dy = (mxClient.IS_VML && document.compatMode == 'CSS1Compat') ? 20 : 4;
+                    this.domNode.style.left = (this.state.x + this.state.width - 40) + 'px';
+                    this.domNode.style.top = (this.state.y + this.state.height + 2) + 'px';
+                }
+                else {
+                    this.domNode.parentNode.removeChild(this.domNode);
+                    this.domNode = null;
+                }
+            }
+        };
+        //键盘移动方法
+        var nudge = function (keyCode) {
+            if (!wf_graph.isSelectionEmpty()) {
+                var dx = 0;
+                var dy = 0;
+
+                if (keyCode == 37) {
+                    dx = -1;
+                }
+                else if (keyCode == 38) {
+                    dy = -1;
+                }
+                else if (keyCode == 39) {
+                    dx = 1;
+                }
+                else if (keyCode == 40) {
+                    dy = 1;
+                }
+                wf_graph.moveCells(wf_graph.getSelectionCells(), dx, dy);
+            }
+        };
+        mxVertexToolHandler.prototype.destroy = function (sender, me) {
+            mxVertexHandler.prototype.destroy.apply(this, arguments);
+
+            if (this.domNode != null) {
+                this.domNode.parentNode.removeChild(this.domNode);
+                this.domNode = null;
+            }
+        };
+    </script>
+    <style type="text/css">
+        a {
+            text-decoration: none;
+            color: #8c8c8c;
+        }
+
+        a:hover {
+            color: #8c8c8c;
+            text-decoration: none;
+        }
+
+        #table tr td img {
+            padding-top: 5px;
+        }
+    </style>
+</head>
+<body>
+<div id="div_content" class="workflow_content">
+    <div class="fdtopbg">
+        <div class="fdtopcon">
+            <div class="leftw">
+                <h1>环节设计器</h1>
+                <span class="tlftitle">标题</span>
+            </div>
+            <div class="rightw">
+                <span class="app_allprocess_caption" id="span_Help"></span>
+                <input type="button" class="btnsave btn-yellow-h32" id="btn_save" value="保存">
+                <input type="button" class="btnrevert btn-blue-h32 m-l15" id="btn_colose" value="还原窗口">
+            </div>
+        </div>
+    </div>
+
+    <!--<script type="text/javascript">-->
+    <!--$("#span_Help").live("mousemove", function () {-->
+    <!--$(".fdfformwarninfo").show();-->
+    <!--})-->
+    <!--$("#span_Help").live("mouseout", function () {-->
+    <!--$(".fdfformwarninfo").hide();-->
+    <!--})-->
+    <!--</script>-->
+    <!--自定义内容-->
+    <div id="div_contentFrom">
+        <table class="workflow_contentFrom_table">
+            <tr>
+                <td valign="top">
+                    <div class="wf_toolsleft">
+                        <!--<div class="wf_tools_Title">-->
+                        <!--环节控件-->
+                        <!--</div>-->
+                        <div id="graphTool">
+                        </div>
+                    </div>
+                </td>
+                <td style="vertical-align: top; padding-top: 5px;width:100%">
+                    <div id="graphContainer" class="workflow_graphContainer">
+                    </div>
+                </td>
+                <div class="fdfformwarninfo"
+                     style="display:none;position:absolute;z-index:999;top:30px;left:1000px;width:300px;">
+                    <h1>环节编辑器使用帮助：</h1>
+
+                    <p>
+                        1.环节设计器由控件库和环节设计区两部分组成。
+                    </p>
+
+                    <p>
+                        2.控件库里提供了设计环节的常用控件，拖拽控件到设计区，双击控件或点击编辑按钮后，可对环节属性值进行配置。
+                    </p>
+
+                    <p>
+                        3.环节之间可以连线代表环节流转的条件，当有条件分支时，双击连接线，即可打开条件设置。
+                    </p>
+
+                    <p>
+                        4.提交前，需要确保整个环节的完整性，包括环节开始和结束，所有中间环节的属性配置，以及所有条件的配置。
+                    </p>
+                </div>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>
+
+<script type="text/javascript">
+    var js_act_version = 1;//环节设计器版本，1：B方式2：C方式
+    //工具栏样式切换
+    $("#graphTool div").live("hover", function (event) {
+        if (event.type == 'mouseenter') {
+            $(this).css("background-color", "#f39c11");
+        } else {
+            $(this).css("background-color", "");
+        }
+    });
+
+</script>
